@@ -27,6 +27,12 @@
 		F00ECF392DEF07BA006C650E /* ArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */; };
 		F00ECF3B2DEF1002006C650E /* ArtworksContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */; };
 		F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */; };
+		F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */; };
+		F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */; };
+		F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */; };
+		F055A5602E10301700611D1D /* PastCompetitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55F2E10301700611D1D /* PastCompetitionsView.swift */; };
+		F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A5632E10324800611D1D /* PastCompetitionsViewModel.swift */; };
+		F055A5662E1036B000611D1D /* ScoringCompetitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A5652E1036B000611D1D /* ScoringCompetitionsViewModel.swift */; };
 		F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05681712E0C1499003D6C82 /* JoinButtonView.swift */; };
 		F05681742E0C14A7003D6C82 /* JoinButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05681732E0C14A7003D6C82 /* JoinButtonViewModel.swift */; };
 		F05681762E0C4730003D6C82 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05681752E0C4730003D6C82 /* Notification.swift */; };
@@ -98,6 +104,12 @@
 		F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkRepository.swift; sourceTree = "<group>"; };
 		F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworksContentView.swift; sourceTree = "<group>"; };
 		F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewer.swift; sourceTree = "<group>"; };
+		F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsContentView.swift; sourceTree = "<group>"; };
+		F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsView.swift; sourceTree = "<group>"; };
+		F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastCompetitionsContentView.swift; sourceTree = "<group>"; };
+		F055A55F2E10301700611D1D /* PastCompetitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastCompetitionsView.swift; sourceTree = "<group>"; };
+		F055A5632E10324800611D1D /* PastCompetitionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastCompetitionsViewModel.swift; sourceTree = "<group>"; };
+		F055A5652E1036B000611D1D /* ScoringCompetitionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsViewModel.swift; sourceTree = "<group>"; };
 		F05681712E0C1499003D6C82 /* JoinButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButtonView.swift; sourceTree = "<group>"; };
 		F05681732E0C14A7003D6C82 /* JoinButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButtonViewModel.swift; sourceTree = "<group>"; };
 		F05681752E0C4730003D6C82 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -299,6 +311,58 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F055A5552E102F9000611D1D /* ScoringCompetitions */ = {
+			isa = PBXGroup;
+			children = (
+				F055A5622E10323300611D1D /* ViewModels */,
+				F055A5572E102FB700611D1D /* Views */,
+			);
+			path = ScoringCompetitions;
+			sourceTree = "<group>";
+		};
+		F055A5562E102F9B00611D1D /* PastCompetitions */ = {
+			isa = PBXGroup;
+			children = (
+				F055A5612E10322B00611D1D /* ViewModels */,
+				F055A5582E102FBE00611D1D /* Views */,
+			);
+			path = PastCompetitions;
+			sourceTree = "<group>";
+		};
+		F055A5572E102FB700611D1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */,
+				F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F055A5582E102FBE00611D1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */,
+				F055A55F2E10301700611D1D /* PastCompetitionsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F055A5612E10322B00611D1D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F055A5632E10324800611D1D /* PastCompetitionsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F055A5622E10323300611D1D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F055A5652E1036B000611D1D /* ScoringCompetitionsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F05681702E0C1473003D6C82 /* JoinButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +394,8 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F055A5562E102F9B00611D1D /* PastCompetitions */,
+				F055A5552E102F9000611D1D /* ScoringCompetitions */,
 				F065665F2DD2196600C7D251 /* Competition */,
 				F05ADD7D2DD285B5008E104C /* Artworks */,
 				F05ADD7C2DD285AE008E104C /* Profile */,
@@ -589,6 +655,8 @@
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
+				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
+				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
 				F004D7022DDBEBF4009B1767 /* MockData.swift in Sources */,
 				F004D6FA2DDBEA56009B1767 /* AuthFlowView.swift in Sources */,
@@ -597,11 +665,14 @@
 				F004D6EF2DDBDC54009B1767 /* CompetitionContentView.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
+				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
+				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
 				F05ADD852DD29768008E104C /* MainTabbedView.swift in Sources */,
 				F05681762E0C4730003D6C82 /* Notification.swift in Sources */,
 				F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */,
 				F004D6ED2DDBDB15009B1767 /* FirestoreCompetitionRepository.swift in Sources */,
 				F004D7042DDCAC27009B1767 /* CustomAlertView.swift in Sources */,
+				F055A5662E1036B000611D1D /* ScoringCompetitionsViewModel.swift in Sources */,
 				F004D7002DDBEBD6009B1767 /* MockCompetition.swift in Sources */,
 				F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */,
 				F004D6E52DDBC093009B1767 /* LoadingState.swift in Sources */,
@@ -614,6 +685,7 @@
 				F05ADD7F2DD285C9008E104C /* ProfileView.swift in Sources */,
 				F004D6F12DDBE520009B1767 /* AppState.swift in Sources */,
 				F00ECF3B2DEF1002006C650E /* ArtworksContentView.swift in Sources */,
+				F055A5602E10301700611D1D /* PastCompetitionsView.swift in Sources */,
 				F00ECF392DEF07BA006C650E /* ArtworkRepository.swift in Sources */,
 				F00ECF312DEF05EE006C650E /* ArtworkViewModel.swift in Sources */,
 				F05ADD812DD285E0008E104C /* ArtworksView.swift in Sources */,

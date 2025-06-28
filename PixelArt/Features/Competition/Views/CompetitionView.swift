@@ -9,42 +9,47 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseCore
 
+enum CompetitionTo: String {
+    case scoringCompetitions = "scoringCompetitions"
+    case allCompetitions = "allCompetitions"
+}
 
 struct CompetitionView: View {
     
     @StateObject private var viewModel = CompetitionViewModel()
+    @State private var path = NavigationPath()
     
     var body: some View {
-        VStack(spacing: 0) {
-            /*
-            CustomNavBar(
-                title: "Competition",
-                trailingButtonIcon: "ic_crown",
-                trailingButtonAction: {
-                    print("Crown tapped")
+        NavigationStack(path: $path) {
+            VStack(spacing: 0) {
+                
+                CustomNavBar(
+                    title: "Competition",
+                    leadingButtonIcon: "ic_comp",
+                    leadingButtonAction: {
+                        path.append(CompetitionTo.scoringCompetitions)
+                    },
+                    trailingButtonIcon: "ic_crown") {
+                        path.append(CompetitionTo.allCompetitions)
+                    }
+                
+                
+                contentView
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(hex: "d4d4d4"))
+            }
+            .onAppear {
+                if case .none = viewModel.state {
+                    viewModel.retry()
                 }
-            )
-            */
-            
-            CustomNavBar(
-                title: "Competition",
-                leadingButtonIcon: "ic_comp",
-                leadingButtonAction: {
-                    print("comp tapped")
-                },
-                trailingButtonIcon: "ic_crown") {
-                    print("crown tapped")
+            }
+            .navigationDestination(for: CompetitionTo.self) { destinationValue in
+                switch destinationValue {
+                case .allCompetitions:
+                    PastCompetitionsView(path: $path)
+                case .scoringCompetitions:
+                    ScoringCompetitionsView(path: $path)
                 }
-            
-            
-            contentView
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(hex: "d4d4d4"))
-        }
-//        .ignoresSafeArea(edges: .top) // Eğer nav bar tam tepeye oturmalıysa
-        .onAppear {
-            if case .none = viewModel.state {
-                viewModel.retry()
             }
         }
     }
