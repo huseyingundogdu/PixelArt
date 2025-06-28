@@ -314,8 +314,9 @@
 		F055A5552E102F9000611D1D /* ScoringCompetitions */ = {
 			isa = PBXGroup;
 			children = (
-				F055A5622E10323300611D1D /* ViewModels */,
+				F055A5672E10446000611D1D /* Services */,
 				F055A5572E102FB700611D1D /* Views */,
+				F055A5622E10323300611D1D /* ViewModels */,
 			);
 			path = ScoringCompetitions;
 			sourceTree = "<group>";
@@ -361,6 +362,13 @@
 				F055A5652E1036B000611D1D /* ScoringCompetitionsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F055A5672E10446000611D1D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		F05681702E0C1473003D6C82 /* JoinButton */ = {

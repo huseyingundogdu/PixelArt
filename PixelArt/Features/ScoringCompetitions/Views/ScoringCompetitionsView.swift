@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScoringCompetitionsView: View {
     
-    @State private var viewModel = ScoringCompetitionsViewModel()
+    @StateObject private var viewModel = ScoringCompetitionsViewModel()
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -26,6 +26,11 @@ struct ScoringCompetitionsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "d4d4d4"))
             
+        }
+        .onAppear {
+            if case .none = viewModel.state {
+                viewModel.retry()
+            }
         }
         .navigationBarBackButtonHidden()
     }

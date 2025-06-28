@@ -9,6 +9,5 @@ import Foundation
 
 protocol CompetitionRepository {
     func fetchActiveCompetition() async throws -> Competition
-    func createEmptyArtworkRelatedToCompetition(currentUserId: String, currentCompetition: Competition) async throws
-    func isUserAlreadyCreatedArtworkRelatedToCurrentCompetition(currentUserId: String, currentCompetition: Competition) async throws -> Bool
+    func fetchScoringCompetitions() async throws -> [Competition]
 }
