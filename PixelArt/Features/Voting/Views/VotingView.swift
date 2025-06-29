@@ -22,7 +22,7 @@ struct VotingView: View {
         VStack(spacing: 0) {
             CustomNavBar(
                 title: "Voting",
-                subtitle: "",
+                subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
                     path.removeLast()

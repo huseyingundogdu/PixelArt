@@ -13,30 +13,36 @@ struct VotingContentView: View {
     
     var body: some View {
         ScrollView {
-            Text("Competition")
-                .font(.title)
-                .bold()
-            Text("\(competition.id)")
-            Text("\(competition.topic)")
+
             Text("\(competition.size[0]) x \(competition.size[1])")
-            Text("\(competition.status)")
-            
-            Divider()
             
             Text("Artworks")
-                .font(.title)
-                .bold()
+                .font(.custom("Micro5-Regular", size: 35))
+            
             
             ForEach(artworks, id: \.self) { artwork in
-                VStack {
-                    Text(artwork.id)
-                    Text(artwork.authorId)
-                    Text(artwork.data.description)
+                HStack {
+                    ArtworkViewer(artwork: artwork)
+                    
+                    VStack(alignment: .leading) {
+                        Text(artwork.authorId)
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "heart")
+                        }
+                    }
+                    
+                    Spacer()
+            
                 }
-                .background(.gray.opacity(0.2))
+                .padding(.horizontal)
             }
         }
-        
+        .scrollIndicators(.hidden)
+        .frame(maxWidth: .infinity)
+        .font(.custom("Micro5-Regular", size: 25))
+        .background(Color(hex: "d4d4d4"))
     }
 }
 

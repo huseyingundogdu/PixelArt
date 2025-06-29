@@ -10,7 +10,7 @@ import FirebaseCore
 
 struct MockData {
     static let competition = Competition(
-        id: "1",
+        id: "competition-city-2025-08-12",
         topic: "Mushrooms",
         colorPalette: ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#A133FF", "#33FFF5", "#F5FF33"],
         activatedAt: Timestamp(date: Date()),
