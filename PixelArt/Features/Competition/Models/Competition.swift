@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseCore
 
-struct Competition: Codable, Equatable {
+struct Competition: Identifiable, Hashable, Codable, Equatable {
     let id: String
     let topic: String
     let colorPalette: [String]

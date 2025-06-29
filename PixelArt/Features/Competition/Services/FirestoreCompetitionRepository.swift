@@ -31,7 +31,6 @@ final class FirestoreCompetitionRepository: CompetitionRepository {
     func fetchScoringCompetitions() async throws -> [Competition] {
         let snapshot = try await db.collection("scoringCompetitions")
             .whereField("status", isEqualTo: "scoring")
-            .limit(to: 1)
             .getDocuments()
         
         return try snapshot.documents.compactMap { document in

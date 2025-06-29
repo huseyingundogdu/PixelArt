@@ -15,7 +15,8 @@ struct ScoringCompetitionsView: View {
     var body: some View {
         VStack(spacing: 0) {
             CustomNavBar(
-                title: "Scoring Competitions",
+                title: "Competition",
+                subtitle: "Scoring",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
                     path.removeLast()
@@ -32,6 +33,7 @@ struct ScoringCompetitionsView: View {
                 viewModel.retry()
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
         .navigationBarBackButtonHidden()
     }
     
@@ -43,7 +45,9 @@ struct ScoringCompetitionsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let scoringCompetitions):
+            
             ScoringCompetitionsContentView(scoringCompetitions: scoringCompetitions)
+            
         case .error(let error):
             VStack(spacing: 16) {
                 Text("\(error.localizedDescription)")
