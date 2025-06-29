@@ -46,7 +46,7 @@ struct ScoringCompetitionsView: View {
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let scoringCompetitions):
             
-            ScoringCompetitionsContentView(scoringCompetitions: scoringCompetitions)
+            ScoringCompetitionsContentView(path: $path, scoringCompetitions: scoringCompetitions)
             
         case .error(let error):
             VStack(spacing: 16) {

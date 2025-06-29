@@ -371,6 +371,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F055A5682E1129E200611D1D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		F05681702E0C1473003D6C82 /* JoinButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +409,7 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F055A5682E1129E200611D1D /* New Group */,
 				F055A5562E102F9B00611D1D /* PastCompetitions */,
 				F055A5552E102F9000611D1D /* ScoringCompetitions */,
 				F065665F2DD2196600C7D251 /* Competition */,

@@ -9,9 +9,10 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseCore
 
-enum CompetitionTo: String {
-    case scoringCompetitions = "scoringCompetitions"
-    case allCompetitions = "allCompetitions"
+enum CompetitionTo: Hashable {
+    case scoringCompetitions
+    case allCompetitions
+    case voting(Competition)
 }
 
 struct CompetitionView: View {
@@ -49,6 +50,8 @@ struct CompetitionView: View {
                     PastCompetitionsView(path: $path)
                 case .scoringCompetitions:
                     ScoringCompetitionsView(path: $path)
+                case .voting(let competition):
+                    Text(competition.topic)
                 }
             }
         }

@@ -12,7 +12,7 @@ private enum StringItems: String {
 }
 
 struct ScoringCompetitionsContentView: View {
-    
+    @Binding var path: NavigationPath
     @State private var currentIndex = 0
     let scoringCompetitions: [Competition]
     
@@ -44,7 +44,7 @@ struct ScoringCompetitionsContentView: View {
                         
                         
                         Button("Score") {
-                            
+                            path.append(CompetitionTo.voting(competition))
                         }
                         .pixelBackground()
                     }
@@ -75,7 +75,7 @@ struct ScoringCompetitionsContentView: View {
 }
 
 #Preview {
-    ScoringCompetitionsContentView(scoringCompetitions: [MockData.competition, MockData.competition, MockData.competition])
+    ScoringCompetitionsContentView(path: .constant(NavigationPath()), scoringCompetitions: [MockData.competition, MockData.competition, MockData.competition])
 }
 
 struct SquareIndexView: View {
