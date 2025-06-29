@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct VotingView: View {
-    @StateObject private var viewModel = VotingViewModel()
+    @StateObject private var viewModel: VotingViewModel
     @Binding var path: NavigationPath
     let competition: Competition
+    
+    init(path: Binding<NavigationPath>, competition: Competition) {
+        _viewModel = StateObject(wrappedValue: VotingViewModel(competition: competition))
+        self._path = path
+        self.competition = competition
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,7 +35,7 @@ struct VotingView: View {
         }
         .onAppear {
             if case .none = viewModel.state {
-                
+                viewModel.retry()
             }
         }
         .toolbar(.hidden, for: .navigationBar)
@@ -43,9 +49,9 @@ struct VotingView: View {
             ProgressView("Loading artworks...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .font(.custom("Micro5-Regular", size: 32))
-        case .success(let t):
+        case .success(let artworks):
             
-            VotingContentView()
+            VotingContentView(competition: competition ,artworks: artworks)
             
         case .error(let error):
             VStack(spacing: 16) {

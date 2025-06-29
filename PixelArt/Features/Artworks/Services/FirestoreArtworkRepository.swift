@@ -29,4 +29,13 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             .setData(from: artwork)
     }
     
+    func fetchCompetitionArtworks(competitionId: String) async throws -> [Artwork] {
+        let snapshot = try await db.collection("submittedArtworks")
+            .whereField("competitionId", isEqualTo: competitionId)
+            .getDocuments()
+        
+        return try snapshot.documents.compactMap { document in
+            try document.data(as: Artwork.self)
+        }
+    }
 }
