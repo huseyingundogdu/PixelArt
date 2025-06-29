@@ -51,7 +51,7 @@ struct CompetitionView: View {
                 case .scoringCompetitions:
                     ScoringCompetitionsView(path: $path)
                 case .voting(let competition):
-                    Text(competition.topic)
+                    VotingView(path: $path, competition: competition)
                 }
             }
         }

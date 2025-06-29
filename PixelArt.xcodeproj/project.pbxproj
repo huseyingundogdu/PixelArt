@@ -48,6 +48,9 @@
 		F065666A2DD234B100C7D251 /* PixelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06566692DD234B100C7D251 /* PixelButton.swift */; };
 		F06566752DD239DB00C7D251 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F06566742DD239DB00C7D251 /* Images.xcassets */; };
 		F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065667D2DD2446000C7D251 /* CustomNavBar.swift */; };
+		F075BF882E11665200CCB78A /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF872E11665200CCB78A /* VotingView.swift */; };
+		F075BF8B2E11666B00CCB78A /* VotingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF8A2E11666B00CCB78A /* VotingContentView.swift */; };
+		F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF8C2E11667C00CCB78A /* VotingViewModel.swift */; };
 		F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120572D51A634009E8835 /* PixelArtApp.swift */; };
 		F0B1205A2D51A634009E8835 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120592D51A634009E8835 /* RootView.swift */; };
 		F0B1205C2D51A637009E8835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205B2D51A637009E8835 /* Assets.xcassets */; };
@@ -125,6 +128,9 @@
 		F06566692DD234B100C7D251 /* PixelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelButton.swift; sourceTree = "<group>"; };
 		F06566742DD239DB00C7D251 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F065667D2DD2446000C7D251 /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
+		F075BF872E11665200CCB78A /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
+		F075BF8A2E11666B00CCB78A /* VotingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingContentView.swift; sourceTree = "<group>"; };
+		F075BF8C2E11667C00CCB78A /* VotingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewModel.swift; sourceTree = "<group>"; };
 		F0B120542D51A634009E8835 /* PixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B120572D51A634009E8835 /* PixelArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtApp.swift; sourceTree = "<group>"; };
 		F0B120592D51A634009E8835 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -371,11 +377,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F055A5682E1129E200611D1D /* New Group */ = {
+		F055A5682E1129E200611D1D /* Voting */ = {
 			isa = PBXGroup;
 			children = (
+				F075BF842E1165F800CCB78A /* Views */,
+				F075BF852E1165FD00CCB78A /* ViewModels */,
+				F075BF862E11660300CCB78A /* Service */,
 			);
-			path = "New Group";
+			path = Voting;
 			sourceTree = "<group>";
 		};
 		F05681702E0C1473003D6C82 /* JoinButton */ = {
@@ -409,7 +418,7 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				F055A5682E1129E200611D1D /* New Group */,
+				F055A5682E1129E200611D1D /* Voting */,
 				F055A5562E102F9B00611D1D /* PastCompetitions */,
 				F055A5552E102F9000611D1D /* ScoringCompetitions */,
 				F065665F2DD2196600C7D251 /* Competition */,
@@ -519,6 +528,30 @@
 				F004D6F62DDBE6A4009B1767 /* Models */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		F075BF842E1165F800CCB78A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F075BF872E11665200CCB78A /* VotingView.swift */,
+				F075BF8A2E11666B00CCB78A /* VotingContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F075BF852E1165FD00CCB78A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F075BF8C2E11667C00CCB78A /* VotingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F075BF862E11660300CCB78A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		F0B1204B2D51A634009E8835 = {
@@ -668,6 +701,7 @@
 				F05ADD832DD296D2008E104C /* TabbedItems.swift in Sources */,
 				F00ECF372DEF07A2006C650E /* FirestoreArtworkRepository.swift in Sources */,
 				F06566582DD208C800C7D251 /* CompetitionView.swift in Sources */,
+				F075BF8B2E11666B00CCB78A /* VotingContentView.swift in Sources */,
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
@@ -679,6 +713,7 @@
 				F06566652DD219D000C7D251 /* Color+Extension.swift in Sources */,
 				F00ECF342DEF0629006C650E /* Artwork.swift in Sources */,
 				F004D6EF2DDBDC54009B1767 /* CompetitionContentView.swift in Sources */,
+				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
@@ -692,6 +727,7 @@
 				F004D7002DDBEBD6009B1767 /* MockCompetition.swift in Sources */,
 				F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */,
 				F004D6E52DDBC093009B1767 /* LoadingState.swift in Sources */,
+				F075BF882E11665200CCB78A /* VotingView.swift in Sources */,
 				F0F3AF342DD690F2008DB18C /* Competition.swift in Sources */,
 				F05681742E0C14A7003D6C82 /* JoinButtonViewModel.swift in Sources */,
 				F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */,

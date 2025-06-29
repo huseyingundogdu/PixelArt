@@ -1,22 +1,22 @@
 //
-//  ScoringCompetitionsView.swift
+//  VotingView.swift
 //  PixelArt
 //
-//  Created by Hüseyin Gündoğdu on 28/06/2025.
+//  Created by Hüseyin Gündoğdu on 29/06/2025.
 //
 
 import SwiftUI
 
-struct ScoringCompetitionsView: View {
-    
-    @StateObject private var viewModel = ScoringCompetitionsViewModel()
+struct VotingView: View {
+    @StateObject private var viewModel = VotingViewModel()
     @Binding var path: NavigationPath
+    let competition: Competition
     
     var body: some View {
         VStack(spacing: 0) {
             CustomNavBar(
-                title: "Competition",
-                subtitle: "Scoring",
+                title: "Voting",
+                subtitle: "",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
                     path.removeLast()
@@ -26,11 +26,10 @@ struct ScoringCompetitionsView: View {
             contentView
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "d4d4d4"))
-            
         }
         .onAppear {
             if case .none = viewModel.state {
-                viewModel.retry()
+                
             }
         }
         .toolbar(.hidden, for: .navigationBar)
@@ -41,12 +40,12 @@ struct ScoringCompetitionsView: View {
     private var contentView: some View {
         switch viewModel.state {
         case .none, .loading:
-            ProgressView("Loading scoring competitions...")
+            ProgressView("Loading artworks...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .font(.custom("Micro5-Regular", size: 32))
-        case .success(let scoringCompetitions):
+        case .success(let t):
             
-            ScoringCompetitionsContentView(path: $path, scoringCompetitions: scoringCompetitions)
+            VotingContentView()
             
         case .error(let error):
             VStack(spacing: 16) {
@@ -54,7 +53,7 @@ struct ScoringCompetitionsView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.red)
                 Button("Try Again") {
-                    viewModel.retry()
+                    
                 }
                 .pixelBackground(paddingValue: 12)
             }
@@ -67,5 +66,5 @@ struct ScoringCompetitionsView: View {
 }
 
 #Preview {
-    ScoringCompetitionsView(path: .constant(NavigationPath()))
+    VotingView(path: .constant(NavigationPath()), competition: MockData.competition)
 }
