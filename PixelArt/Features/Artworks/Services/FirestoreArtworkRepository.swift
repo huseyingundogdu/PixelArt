@@ -75,10 +75,10 @@ final class FirestoreArtworkRepository: ArtworkRepository {
     
     func fetchCompetitionArtworks(forCompetitionId competitionId: String) async throws -> [Artwork] {
         try await fetchArtworks(
-            from: FirestoreCollection.artworks,
+            from: FirestoreCollection.submittedArtworks,
             filters: [
                 ("competitionId", competitionId),
-                ("status", ArtworkStatus.activeCompetition.rawValue)
+                ("status", ArtworkStatus.archived.rawValue)
             ]
         )
     }

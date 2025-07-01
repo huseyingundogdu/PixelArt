@@ -9,7 +9,6 @@ import Foundation
 
 protocol ArtworkRepository {
     func fetchArtworks(by currentUserId: String) async throws -> [Artwork]
-    func fetchCompetitionArtworks(competitionId: String) async throws -> [Artwork]
     func createArtwork(_ artwork: Artwork) async throws
     
     //MARK: - User-Based Artworks

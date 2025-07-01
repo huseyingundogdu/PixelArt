@@ -21,7 +21,7 @@ final class VotingViewModel: ObservableObject {
     func loadArtworks() async {
         state = .loading
         do {
-            let artworks = try await artworkRepository.fetchCompetitionArtworks(competitionId: self.competition.id)
+            let artworks = try await artworkRepository.fetchCompetitionArtworks(forCompetitionId: self.competition.id)
             state = .success(artworks)
         } catch {
             state = .error(error)
