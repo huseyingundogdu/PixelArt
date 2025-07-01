@@ -58,7 +58,8 @@ final class JoinButtonViewModel: ObservableObject {
             data: createEmptyCanvas(size: competition.size),
             competitionId: competition.id,
             size: competition.size,
-            topic: competition.topic
+            topic: competition.topic,
+            status: .activeCompetition
         )
         
         do {
