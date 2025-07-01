@@ -8,8 +8,12 @@
 import Foundation
 import FirebaseFirestore
 
+private enum FirestoreCollection {
+    static let artworks = "artworks"
+    static let submittedArtworks = "submittedArtworks"
+}
+
 final class FirestoreArtworkRepository: ArtworkRepository {
-    
     
     private let db = Firestore.firestore()
     
@@ -27,6 +31,67 @@ final class FirestoreArtworkRepository: ArtworkRepository {
         try db.collection("artworks")
             .document(artwork.id)
             .setData(from: artwork)
+    }
+    
+    func fetchPersonalArtworks(forUserId userId: String) async throws -> [Artwork] {
+        try await fetchArtworks(
+            from: FirestoreCollection.artworks,
+            filters: [
+                ("authorId", userId),
+                ("status", ArtworkStatus.personal)
+            ]
+        )
+    }
+    
+    func fetchSharedArtworks(forUserId userId: String) async throws -> [Artwork] {
+        try await fetchArtworks(
+            from: FirestoreCollection.artworks,
+            filters: [
+                ("authorId", userId),
+                ("status", ArtworkStatus.shared)
+            ]
+        )
+    }
+    
+    func fetchActiveCompetitionArtworks(forUserId userId: String) async throws -> [Artwork] {
+        try await fetchArtworks(
+            from: FirestoreCollection.artworks,
+            filters: [
+                ("authorId", userId),
+                ("status", ArtworkStatus.activeCompetition)
+            ]
+        )
+    }
+    
+    func fetchArchivedArtworks(forUserId userId: String) async throws -> [Artwork] {
+        try await fetchArtworks(
+            from: FirestoreCollection.submittedArtworks,
+            filters: [
+                ("authorId", userId),
+                ("status", ArtworkStatus.archived)
+            ]
+        )
+    }
+    
+    func fetchCompetitionArtworks(forCompetitionId competitionId: String) async throws -> [Artwork] {
+        try await fetchArtworks(
+            from: FirestoreCollection.artworks,
+            filters: [
+                ("competitionId", competitionId),
+                ("status", ArtworkStatus.activeCompetition)
+            ]
+        )
+    }
+    
+    private func fetchArtworks(from collection: String, filters: [(String, Any)]) async throws ->[Artwork] {
+        var query: Query = db.collection(collection)
+        
+        for (field, value) in filters {
+            query = query.whereField(field, isEqualTo: value)
+        }
+        
+        let snapshot = try await query.getDocuments()
+        return try snapshot.documents.compactMap { try $0.data(as: Artwork.self) }
     }
     
 }
