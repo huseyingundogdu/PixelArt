@@ -9,70 +9,18 @@ import SwiftUI
 
 struct ArtworksContentView: View {
     
-    let artworks: [Artwork]
+    let personal: [Artwork]
+    let shared: [Artwork]
+    let active: [Artwork]
+    let archived: [Artwork]
     
     var body: some View {
         ScrollView {
-            // Personal artwork not submitted - use local db
-            VStack(alignment: .leading) {
-                Text("Personal Artworks")
-                    .font(.custom("Micro5-Regular", size: 30))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("There is no personal artwork, create one.")
-                    .foregroundStyle(.gray)
-            }
-            .padding()
-            
-            
-            Rectangle()
-                .frame(height: 3)
-                .padding(.horizontal)
-            
-            
-            // Current active competition artwork
-            VStack(alignment: .leading) {
-                Text("Active Competition Artwork")
-                    .font(.custom("Micro5-Regular", size: 30))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("There is no active competition artwork.")
-                    .foregroundStyle(.gray)
-                
-            }
-            .padding()
-            
-            
-            Rectangle()
-                .frame(height: 3)
-                .padding(.horizontal)
-            
-            // Archived submitted competition related artworks from firebase
-            VStack(alignment: .leading) {
-                
-                Text("Past Competition Artworks")
-                    .font(.custom("Micro5-Regular", size: 30))
-                
-                ForEach(artworks, id: \.self) { artwork in
-                    
-                    // Artwork Cell
-                    HStack {
-                        ArtworkViewer(artwork: artwork)
-                        
-                        VStack(alignment: .leading) {
-                            if let topic = artwork.topic {
-                                Text(topic)
-                            }
-                            if let competitionId = artwork.competitionId {
-                                Text(competitionId)
-                            }
-                            Text("\(artwork.size[0]) x \(artwork.size[1])")
-                        }
-                        
-                        Spacer()
-                    }
-                    
-                }
+            VStack(alignment: .leading, spacing: 24) {
+                SectionView(title: "Personal Artworks", artworks: personal)
+                SectionView(title: "Shared Artworks", artworks: shared)
+                SectionView(title: "Active Competition Artworks", artworks: active)
+                SectionView(title: "Past Competition Artworks", artworks: archived)
             }
             .padding()
         }
@@ -83,6 +31,36 @@ struct ArtworksContentView: View {
     }
 }
 
-#Preview {
-    ArtworksContentView(artworks: MockData.artworks)
+//#Preview {
+//    ArtworksContentView(artworks: MockData.artworks)
+//}
+
+
+struct SectionView: View {
+    let title: String
+    let artworks: [Artwork]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.custom("Micro5-Regular", size: 30))
+            
+            if artworks.isEmpty {
+                Text("No artworks available.")
+                    .foregroundStyle(.gray)
+            } else {
+                ForEach(artworks, id: \.self) { artwork in
+                    HStack {
+                        ArtworkViewer(artwork: artwork)
+                        VStack(alignment: .leading) {
+                            if let topic = artwork.topic { Text(topic) }
+                            if let competitionId = artwork.competitionId { Text(competitionId) }
+                            Text("\(artwork.size[0]) x \(artwork.size[1])")
+                        }
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
 }

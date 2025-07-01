@@ -109,5 +109,5 @@ struct CompetitionContentView: View {
 }
 
 #Preview {
-    CompetitionContentView(competition: MockData.competition, currentUserId: "currentUserId")
+    CompetitionContentView(competition: MockData.competition, currentUserId: MockData.currentUserId)
 }

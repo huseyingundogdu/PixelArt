@@ -14,4 +14,12 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     let competitionId: String?
     let size: [Int]
     var topic: String?
+    var status: ArtworkStatus
+}
+
+enum ArtworkStatus: String, Codable, CaseIterable, Hashable{
+    case personal = "personal"
+    case shared = "shared"
+    case activeCompetition = "activeCompetition"
+    case archived = "archived"
 }
