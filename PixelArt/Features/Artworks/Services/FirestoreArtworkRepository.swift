@@ -38,7 +38,7 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             from: FirestoreCollection.artworks,
             filters: [
                 ("authorId", userId),
-                ("status", ArtworkStatus.personal)
+                ("status", ArtworkStatus.personal.rawValue)
             ]
         )
     }
@@ -48,7 +48,7 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             from: FirestoreCollection.artworks,
             filters: [
                 ("authorId", userId),
-                ("status", ArtworkStatus.shared)
+                ("status", ArtworkStatus.shared.rawValue)
             ]
         )
     }
@@ -58,7 +58,7 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             from: FirestoreCollection.artworks,
             filters: [
                 ("authorId", userId),
-                ("status", ArtworkStatus.activeCompetition)
+                ("status", ArtworkStatus.activeCompetition.rawValue)
             ]
         )
     }
@@ -68,7 +68,7 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             from: FirestoreCollection.submittedArtworks,
             filters: [
                 ("authorId", userId),
-                ("status", ArtworkStatus.archived)
+                ("status", ArtworkStatus.archived.rawValue)
             ]
         )
     }
@@ -78,7 +78,7 @@ final class FirestoreArtworkRepository: ArtworkRepository {
             from: FirestoreCollection.artworks,
             filters: [
                 ("competitionId", competitionId),
-                ("status", ArtworkStatus.activeCompetition)
+                ("status", ArtworkStatus.activeCompetition.rawValue)
             ]
         )
     }

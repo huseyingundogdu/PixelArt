@@ -9,6 +9,8 @@ import Foundation
 import FirebaseCore
 
 struct MockData {
+    static let currentUserId = "user1"
+    
     static let competition = Competition(
         id: "1",
         topic: "Mushrooms",
