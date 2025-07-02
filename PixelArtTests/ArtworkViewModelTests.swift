@@ -21,4 +21,37 @@ final class ArtworkViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.isLoading)
     }
     
+    func test_loadUserArtworks_shouldPopulateOnlyPersonalArtworks() async {
+        // Arrange
+        let mockRepo = MockArtworkRepository()
+        mockRepo.personalArtworksShouldReturn = [
+            Artwork(
+                id: "test123",
+                authorId: "user123",
+                data: ["#000000"],
+                competitionId: nil,
+                size: [16, 16],
+                topic: "Sample",
+                status: .personal
+            )
+        ]
+        
+        mockRepo.activeCompetitionArtworksShouldReturn = []
+        mockRepo.archivedArtworksShouldReturn = []
+        mockRepo.sharedArtworksShouldReturn = []
+        
+        let viewModel = ArtworkViewModel(repository: mockRepo)
+        
+        // Act
+        await viewModel.loadUserArtworks()
+        
+        // Assert
+        XCTAssertEqual(viewModel.personalArtworks.count, 1)
+        XCTAssertEqual(viewModel.activeCompetitionArtworks.count, 0)
+        XCTAssertEqual(viewModel.archivedArtworks.count, 0)
+        XCTAssertEqual(viewModel.sharedArtworks.count, 0)
+        XCTAssertEqual(viewModel.personalArtworks.first?.id, "test123")
+        XCTAssertFalse(viewModel.isLoading)
+        XCTAssertNil(viewModel.error)
+    }
 }
