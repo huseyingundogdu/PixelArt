@@ -54,4 +54,23 @@ final class ArtworkViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertNil(viewModel.error)
     }
+    
+    func test_loadUserArtworks_shouldHandleError() async {
+        // Arrange
+        let mockRepo = MockArtworkRepository()
+        mockRepo.shouldThrowError = true
+        
+        let viewModel = ArtworkViewModel(repository: mockRepo, userId: "user123")
+        
+        // Act
+        await viewModel.loadUserArtworks()
+        
+        // Assert
+        XCTAssertNotNil(viewModel.error)
+        XCTAssertTrue(viewModel.personalArtworks.isEmpty)
+        XCTAssertTrue(viewModel.sharedArtworks.isEmpty)
+        XCTAssertTrue(viewModel.activeCompetitionArtworks.isEmpty)
+        XCTAssertTrue(viewModel.archivedArtworks.isEmpty)
+        XCTAssertFalse(viewModel.isLoading)
+    }
 }
