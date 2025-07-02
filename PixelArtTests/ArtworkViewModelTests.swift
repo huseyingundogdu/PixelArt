@@ -73,4 +73,75 @@ final class ArtworkViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.archivedArtworks.isEmpty)
         XCTAssertFalse(viewModel.isLoading)
     }
+    
+    func test_loadUserArtworks_shouldPopulateAllCategories() async {
+        // Arrange
+        let mockRepo = MockArtworkRepository()
+        mockRepo.shouldThrowError = false
+        
+        mockRepo.personalArtworksShouldReturn = [
+            Artwork(
+                id: "personal1",
+                authorId: "user123",
+                data: ["#000000"],
+                competitionId: nil,
+                size: [16, 16],
+                topic: "Personal",
+                status: .personal
+            )
+        ]
+        
+        mockRepo.sharedArtworksShouldReturn = [
+            Artwork(
+                id: "shared1",
+                authorId: "user123",
+                data: ["#111111"],
+                competitionId: nil,
+                size: [16, 16],
+                topic: "Shared",
+                status: .shared
+            )
+        ]
+        
+        mockRepo.activeCompetitionArtworksShouldReturn = [
+            Artwork(
+                id: "active1",
+                authorId: "user123",
+                data: ["#222222"],
+                competitionId: "competition1",
+                size: [16, 16],
+                topic: "Competition",
+                status: .personal
+            )
+        ]
+        
+        mockRepo.archivedArtworksShouldReturn = [
+            Artwork(
+                id: "archived1",
+                authorId: "user123",
+                data: ["#333333"],
+                competitionId: "competition2",
+                size: [16, 16],
+                topic: "Archived",
+                status: .archived
+            )
+        ]
+        
+        let viewModel = ArtworkViewModel(repository: mockRepo, userId: "user123")
+        
+        await viewModel.loadUserArtworks()
+        
+        XCTAssertEqual(viewModel.personalArtworks.count, 1)
+        XCTAssertEqual(viewModel.sharedArtworks.count, 1)
+        XCTAssertEqual(viewModel.activeCompetitionArtworks.count, 1)
+        XCTAssertEqual(viewModel.archivedArtworks.count, 1)
+        
+        XCTAssertEqual(viewModel.personalArtworks.first?.id, "personal1")
+        XCTAssertEqual(viewModel.sharedArtworks.first?.id, "shared1")
+        XCTAssertEqual(viewModel.activeCompetitionArtworks.first?.id, "active1")
+        XCTAssertEqual(viewModel.archivedArtworks.first?.id, "archived1")
+        
+        XCTAssertNil(viewModel.error)
+        XCTAssertFalse(viewModel.isLoading)
+    }
 }
