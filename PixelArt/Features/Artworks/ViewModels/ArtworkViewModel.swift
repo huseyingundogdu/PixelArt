@@ -61,10 +61,9 @@ final class ArtworkViewModel: ObservableObject {
         isLoading = false
     }
     
-    func retry() {
-        Task {
+    func retry() async {
             await loadUserArtworks()
-        }
+        
     }
     
 }
