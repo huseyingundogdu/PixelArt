@@ -51,6 +51,9 @@
 		F075BF882E11665200CCB78A /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF872E11665200CCB78A /* VotingView.swift */; };
 		F075BF8B2E11666B00CCB78A /* VotingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF8A2E11666B00CCB78A /* VotingContentView.swift */; };
 		F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF8C2E11667C00CCB78A /* VotingViewModel.swift */; };
+		F075BF952E148E3100CCB78A /* PixelArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF942E148E3100CCB78A /* PixelArtTests.swift */; };
+		F075BF9C2E148F4700CCB78A /* ArtworkViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF9B2E148F4700CCB78A /* ArtworkViewModelTests.swift */; };
+		F075BF9E2E14A43D00CCB78A /* MockArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF9D2E14A43D00CCB78A /* MockArtworkRepository.swift */; };
 		F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120572D51A634009E8835 /* PixelArtApp.swift */; };
 		F0B1205A2D51A634009E8835 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120592D51A634009E8835 /* RootView.swift */; };
 		F0B1205C2D51A637009E8835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205B2D51A637009E8835 /* Assets.xcassets */; };
@@ -85,6 +88,16 @@
 		F0F3AF342DD690F2008DB18C /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F3AF332DD690F2008DB18C /* Competition.swift */; };
 		F0F3AF362DD69F3C008DB18C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F3AF352DD69F3C008DB18C /* TimerView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F075BF962E148E3100CCB78A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0B1204C2D51A634009E8835 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0B120532D51A634009E8835;
+			remoteInfo = PixelArt;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F004D6E02DDBBCCC009B1767 /* CompetitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionViewModel.swift; sourceTree = "<group>"; };
@@ -131,6 +144,10 @@
 		F075BF872E11665200CCB78A /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
 		F075BF8A2E11666B00CCB78A /* VotingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingContentView.swift; sourceTree = "<group>"; };
 		F075BF8C2E11667C00CCB78A /* VotingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewModel.swift; sourceTree = "<group>"; };
+		F075BF922E148E3100CCB78A /* PixelArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixelArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F075BF942E148E3100CCB78A /* PixelArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtTests.swift; sourceTree = "<group>"; };
+		F075BF9B2E148F4700CCB78A /* ArtworkViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewModelTests.swift; sourceTree = "<group>"; };
+		F075BF9D2E14A43D00CCB78A /* MockArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArtworkRepository.swift; sourceTree = "<group>"; };
 		F0B120542D51A634009E8835 /* PixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B120572D51A634009E8835 /* PixelArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtApp.swift; sourceTree = "<group>"; };
 		F0B120592D51A634009E8835 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -145,6 +162,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F075BF8F2E148E3100CCB78A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0B120512D51A634009E8835 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,10 +578,21 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		F075BF932E148E3100CCB78A /* PixelArtTests */ = {
+			isa = PBXGroup;
+			children = (
+				F075BF942E148E3100CCB78A /* PixelArtTests.swift */,
+				F075BF9B2E148F4700CCB78A /* ArtworkViewModelTests.swift */,
+				F075BF9D2E14A43D00CCB78A /* MockArtworkRepository.swift */,
+			);
+			path = PixelArtTests;
+			sourceTree = "<group>";
+		};
 		F0B1204B2D51A634009E8835 = {
 			isa = PBXGroup;
 			children = (
 				F0B120562D51A634009E8835 /* PixelArt */,
+				F075BF932E148E3100CCB78A /* PixelArtTests */,
 				F0B120552D51A634009E8835 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -566,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B120542D51A634009E8835 /* PixelArt.app */,
+				F075BF922E148E3100CCB78A /* PixelArtTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -595,6 +631,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F075BF912E148E3100CCB78A /* PixelArtTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F075BF9A2E148E3100CCB78A /* Build configuration list for PBXNativeTarget "PixelArtTests" */;
+			buildPhases = (
+				F075BF8E2E148E3100CCB78A /* Sources */,
+				F075BF8F2E148E3100CCB78A /* Frameworks */,
+				F075BF902E148E3100CCB78A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F075BF972E148E3100CCB78A /* PBXTargetDependency */,
+			);
+			name = PixelArtTests;
+			productName = PixelArtTests;
+			productReference = F075BF922E148E3100CCB78A /* PixelArtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F0B120532D51A634009E8835 /* PixelArt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0B120622D51A637009E8835 /* Build configuration list for PBXNativeTarget "PixelArt" */;
@@ -648,6 +702,10 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					F075BF912E148E3100CCB78A = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = F0B120532D51A634009E8835;
+					};
 					F0B120532D51A634009E8835 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -670,11 +728,19 @@
 			projectRoot = "";
 			targets = (
 				F0B120532D51A634009E8835 /* PixelArt */,
+				F075BF912E148E3100CCB78A /* PixelArtTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F075BF902E148E3100CCB78A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0B120522D51A634009E8835 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,6 +758,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F075BF8E2E148E3100CCB78A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F075BF952E148E3100CCB78A /* PixelArtTests.swift in Sources */,
+				F075BF9C2E148F4700CCB78A /* ArtworkViewModelTests.swift in Sources */,
+				F075BF9E2E14A43D00CCB78A /* MockArtworkRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0B120502D51A634009E8835 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -747,7 +823,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F075BF972E148E3100CCB78A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0B120532D51A634009E8835 /* PixelArt */;
+			targetProxy = F075BF962E148E3100CCB78A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F075BF982E148E3100CCB78A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J9YF63537C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = huseyingundogdu.PixelArtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixelArt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PixelArt";
+			};
+			name = Debug;
+		};
+		F075BF992E148E3100CCB78A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J9YF63537C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = huseyingundogdu.PixelArtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PixelArt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PixelArt";
+			};
+			name = Release;
+		};
 		F0B120602D51A637009E8835 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -930,6 +1050,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F075BF9A2E148E3100CCB78A /* Build configuration list for PBXNativeTarget "PixelArtTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F075BF982E148E3100CCB78A /* Debug */,
+				F075BF992E148E3100CCB78A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F0B1204F2D51A634009E8835 /* Build configuration list for PBXProject "PixelArt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
