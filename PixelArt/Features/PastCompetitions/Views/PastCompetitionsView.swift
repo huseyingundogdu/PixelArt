@@ -26,6 +26,9 @@ struct PastCompetitionsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(hex: "d4d4d4"))
         }
+        .onAppear {
+            Task { await viewModel.loadPastCompetitions() }
+        }
         .navigationBarBackButtonHidden()
     }
     

@@ -39,10 +39,11 @@ struct CompetitionView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(hex: "d4d4d4"))
             }
-            .onAppear {
-                if case .none = viewModel.state {
-                    viewModel.retry()
-                }
+            .onAppear { 
+                Task { await viewModel.loadActiveCompetition() }
+//                if case .none = viewModel.state {
+//                    viewModel.retry()
+//                }
             }
             .navigationDestination(for: CompetitionTo.self) { destinationValue in
                 switch destinationValue {
