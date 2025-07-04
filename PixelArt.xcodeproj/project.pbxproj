@@ -27,6 +27,9 @@
 		F00ECF392DEF07BA006C650E /* ArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */; };
 		F00ECF3B2DEF1002006C650E /* ArtworksContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */; };
 		F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */; };
+		F010F1D42E18456600A34D7B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D32E18456600A34D7B /* ResultView.swift */; };
+		F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D52E18457300A34D7B /* ResultContentView.swift */; };
+		F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D72E18476800A34D7B /* ResultViewModel.swift */; };
 		F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */; };
 		F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */; };
 		F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */; };
@@ -120,6 +123,9 @@
 		F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkRepository.swift; sourceTree = "<group>"; };
 		F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworksContentView.swift; sourceTree = "<group>"; };
 		F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewer.swift; sourceTree = "<group>"; };
+		F010F1D32E18456600A34D7B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		F010F1D52E18457300A34D7B /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
+		F010F1D72E18476800A34D7B /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsContentView.swift; sourceTree = "<group>"; };
 		F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsView.swift; sourceTree = "<group>"; };
 		F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastCompetitionsContentView.swift; sourceTree = "<group>"; };
@@ -341,6 +347,32 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F010F1D02E18453E00A34D7B /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				F010F1D22E18454B00A34D7B /* ViewModels */,
+				F010F1D12E18454500A34D7B /* Views */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		F010F1D12E18454500A34D7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F010F1D32E18456600A34D7B /* ResultView.swift */,
+				F010F1D52E18457300A34D7B /* ResultContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F010F1D22E18454B00A34D7B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F010F1D72E18476800A34D7B /* ResultViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F055A5552E102F9000611D1D /* ScoringCompetitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +474,7 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F010F1D02E18453E00A34D7B /* Result */,
 				F055A5682E1129E200611D1D /* Voting */,
 				F055A5562E102F9B00611D1D /* PastCompetitions */,
 				F055A5552E102F9000611D1D /* ScoringCompetitions */,
@@ -794,6 +827,7 @@
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
 				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
+				F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */,
 				F05ADD852DD29768008E104C /* MainTabbedView.swift in Sources */,
 				F05681762E0C4730003D6C82 /* Notification.swift in Sources */,
 				F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */,
@@ -811,9 +845,11 @@
 				F065666A2DD234B100C7D251 /* PixelButton.swift in Sources */,
 				F004D6FC2DDBEA6D009B1767 /* LoginView.swift in Sources */,
 				F05ADD7F2DD285C9008E104C /* ProfileView.swift in Sources */,
+				F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */,
 				F004D6F12DDBE520009B1767 /* AppState.swift in Sources */,
 				F00ECF3B2DEF1002006C650E /* ArtworksContentView.swift in Sources */,
 				F055A5602E10301700611D1D /* PastCompetitionsView.swift in Sources */,
+				F010F1D42E18456600A34D7B /* ResultView.swift in Sources */,
 				F00ECF392DEF07BA006C650E /* ArtworkRepository.swift in Sources */,
 				F00ECF312DEF05EE006C650E /* ArtworkViewModel.swift in Sources */,
 				F05ADD812DD285E0008E104C /* ArtworksView.swift in Sources */,

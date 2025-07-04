@@ -1,26 +1,31 @@
 //
-//  PastCompetitionsView.swift
+//  ResultView.swift
 //  PixelArt
 //
-//  Created by Hüseyin Gündoğdu on 28/06/2025.
+//  Created by Hüseyin Gündoğdu on 04/07/2025.
 //
 
 import SwiftUI
 
-struct PastCompetitionsView: View {
+struct ResultView: View {
     
-    @StateObject private var viewModel = PastCompetitionsViewModel()
+    @StateObject private var viewModel: ResultViewModel
     @Binding var path: NavigationPath
+    let competition: Competition
+    
+    init(path: Binding<NavigationPath>, competition: Competition) {
+        _viewModel = StateObject(wrappedValue: ResultViewModel(competition: competition))
+        self._path = path
+        self.competition = competition
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             CustomNavBar(
-                title: "Competitions",
-                subtitle: "Past",
+                title: "Result",
+                subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
-                leadingButtonAction: {
-                    path.removeLast()
-                }
+                leadingButtonAction: { path.removeLast() }
             )
             
             contentView
@@ -28,27 +33,31 @@ struct PastCompetitionsView: View {
                 .background(Color(hex: "d4d4d4"))
         }
         .onAppear {
-            Task { await viewModel.loadPastCompetitions() }
+            Task { await viewModel.loadArchivedArtworks() }
         }
         .navigationBarBackButtonHidden()
+        .toolbar(.hidden, for: .navigationBar)
     }
     
+
     @ViewBuilder
     private var contentView: some View {
         switch viewModel.state {
         case .none, .loading:
-            ProgressView("Loading past competitions...")
+            ProgressView("Loading Artworks...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .font(.custom("Micro5-Regular", size: 32))
-        case .success(let pastCompetitions):
-            PastCompetitionsContentView(path: $path, pastCompetitions: pastCompetitions)
+        case .success(let artworks):
+            
+            ResultContentView(competition: competition, artworks: artworks)
+            
         case .error(let error):
             VStack(spacing: 16) {
                 Text("\(error.localizedDescription)")
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(.red)
+                    .foregroundColor(.red)
                 Button("Try Again") {
-                    
+                    viewModel.retry()
                 }
                 .pixelBackground(paddingValue: 12)
             }
@@ -58,8 +67,9 @@ struct PastCompetitionsView: View {
             .padding()
         }
     }
+    
 }
 
 #Preview {
-    PastCompetitionsView(path: .constant(NavigationPath()))
+    ResultView(path: .constant(NavigationPath()), competition: MockData.competition)
 }

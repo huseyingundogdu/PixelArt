@@ -13,6 +13,7 @@ enum CompetitionTo: Hashable {
     case scoringCompetitions
     case allCompetitions
     case voting(Competition)
+    case result(Competition)
 }
 
 struct CompetitionView: View {
@@ -53,6 +54,8 @@ struct CompetitionView: View {
                     ScoringCompetitionsView(path: $path)
                 case .voting(let competition):
                     VotingView(path: $path, competition: competition)
+                case .result(let competition):
+                    ResultView(path: $path, competition: competition)
                 }
             }
         }
