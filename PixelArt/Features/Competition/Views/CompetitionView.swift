@@ -13,6 +13,7 @@ enum CompetitionTo: Hashable {
     case scoringCompetitions
     case allCompetitions
     case voting(Competition)
+    case result(Competition)
 }
 
 struct CompetitionView: View {
@@ -39,10 +40,11 @@ struct CompetitionView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(hex: "d4d4d4"))
             }
-            .onAppear {
-                if case .none = viewModel.state {
-                    viewModel.retry()
-                }
+            .onAppear { 
+                Task { await viewModel.loadActiveCompetition() }
+//                if case .none = viewModel.state {
+//                    viewModel.retry()
+//                }
             }
             .navigationDestination(for: CompetitionTo.self) { destinationValue in
                 switch destinationValue {
@@ -52,6 +54,8 @@ struct CompetitionView: View {
                     ScoringCompetitionsView(path: $path)
                 case .voting(let competition):
                     VotingView(path: $path, competition: competition)
+                case .result(let competition):
+                    ResultView(path: $path, competition: competition)
                 }
             }
         }
