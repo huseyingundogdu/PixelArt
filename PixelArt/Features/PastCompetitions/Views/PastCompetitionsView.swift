@@ -15,7 +15,8 @@ struct PastCompetitionsView: View {
     var body: some View {
         VStack(spacing: 0) {
             CustomNavBar(
-                title: "Past Competitions",
+                title: "Competitions",
+                subtitle: "Past",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
                     path.removeLast()
