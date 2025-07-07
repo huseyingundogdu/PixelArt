@@ -9,14 +9,20 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var appState: AppState
+    @StateObject private var viewModel: ProfileViewModel = ProfileViewModel()
     
     var body: some View {
         VStack {
             Text("Profile View")
             
+            Text(appState.currentUser?.email ?? "0---0")
+            
             Button("Logout") {
-                appState.isLoggedIn = false
+                appState.logOut()
             }
+        }
+        .onAppear {
+            appState.authError = nil
         }
     }
 }

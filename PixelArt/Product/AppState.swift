@@ -6,9 +6,74 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class AppState: ObservableObject {
-    @Published var isLoggedIn: Bool = true
+    @Published var isLoggedIn: Bool = false
+    @Published var currentUser: User? = nil
+    @Published var authError: String? = nil
+    @Published var isLoading: Bool = false
     
-    //User information optinally cam be added
+    private let authService: FirebaseAuthService
+    
+    init(authService: FirebaseAuthService = FirebaseAuthService()) {
+        self.authService = authService
+        checkAuthStatus()
+    }
+    
+    func login(email: String, password: String) async {
+        DispatchQueue.main.async { self.isLoading = true }
+        do {
+            let user = try await authService.login(email: email, password: password)
+            DispatchQueue.main.async {
+                self.currentUser = user
+                self.isLoggedIn = true
+                self.authError = nil
+                self.isLoading = false
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.authError = error.localizedDescription
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func register(email: String, password: String) async {
+        DispatchQueue.main.async { self.isLoading = true }
+        do {
+            let user = try await authService.signUp(email: email, password: password)
+            DispatchQueue.main.async {
+                self.currentUser = user
+                self.isLoggedIn = true
+                self.authError = nil
+                self.isLoading = false
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.authError = error.localizedDescription
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func logOut() {
+        do {
+            try authService.signOut()
+            DispatchQueue.main.async {
+                self.currentUser = nil
+                self.isLoggedIn = false
+                self.authError = nil
+            }
+        } catch {
+            print("Logout failed: \(error)")
+        }
+    }
+    
+    private func checkAuthStatus() {
+        if let user = authService.getCurrentUser() {
+            currentUser = user
+            isLoggedIn = true
+        }
+    }
 }
