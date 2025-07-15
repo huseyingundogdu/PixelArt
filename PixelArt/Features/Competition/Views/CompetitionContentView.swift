@@ -18,15 +18,13 @@ private enum StringItems: String {
 struct CompetitionContentView: View {
     
     let competition: Competition
-    let currentUserId: String
-    
+    @EnvironmentObject var appState: AppState
     @State private var showJoinConfirmation = false
     @StateObject private var joinButtonVM: JoinButtonViewModel
-
-    init(competition: Competition, currentUserId: String) {
+    
+    init(competition: Competition) {
         self.competition = competition
-        self.currentUserId = currentUserId
-        _joinButtonVM = StateObject(wrappedValue: JoinButtonViewModel(userId: currentUserId, competition: competition))
+        _joinButtonVM = StateObject(wrappedValue: JoinButtonViewModel(competition: competition))
     }
     
     var body: some View {
@@ -43,10 +41,6 @@ struct CompetitionContentView: View {
                 .foregroundStyle(.black)
                 .padding(.horizontal)
                 .pixelBackground()
-                
-//                Button(StringItems.join.rawValue) {
-//                    showJoinConfirmation = true
-//                }
                 
             }
             .padding()
@@ -67,14 +61,12 @@ struct CompetitionContentView: View {
                 await joinButtonVM.joinCompetitionIfNeeded()
             }
         }
-//        .customAlert("Are you sure?", isPresented: $showJoinConfirmation, actionText: "Create") {
-//            // TODO: - Create artwork canvas
-//        } message: {
-//            Text("\(competition.size) Canvas with \(competition.topic) theme will be created.")
-//                .font(.custom("Micro5-Regular", size: 30))
-//        }
-
-
+        .onAppear {
+            if let user = appState.currentUser {
+                joinButtonVM.competition = competition
+                joinButtonVM.user = user
+            }
+        }
     }
     
     private func remainingTime(_ scoringAt: Timestamp) -> some View {
@@ -109,5 +101,6 @@ struct CompetitionContentView: View {
 }
 
 #Preview {
-    CompetitionContentView(competition: MockData.competition, currentUserId: MockData.currentUserId)
+    CompetitionContentView(competition: MockData.competition)
+        .environmentObject(AppState())
 }

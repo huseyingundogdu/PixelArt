@@ -70,7 +70,7 @@ struct CompetitionView: View {
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let competition):
             
-            CompetitionContentView(competition: competition, currentUserId: MockData.currentUserId)
+            CompetitionContentView(competition: competition)
             
         case .error(let error):
             VStack(spacing: 16) {
