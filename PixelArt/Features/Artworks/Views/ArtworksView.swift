@@ -10,10 +10,6 @@ import SwiftUI
 struct ArtworksView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = ArtworkViewModel()
-    @State private var showCreateConfirmation = false
-    @State private var width: String = ""
-    @State private var height: String = ""
-    @State private var isSizeLocked: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -21,7 +17,7 @@ struct ArtworksView: View {
                 title: "Artworks",
                 trailingButtonIcon: "ic_plus",
                 trailingButtonAction: {
-                    showCreateConfirmation = true
+                    viewModel.showCreateConfirmation = true
                 }
             )
             
@@ -57,27 +53,31 @@ struct ArtworksView: View {
             }
         }
         .overlayAlert(
-            isPresented: $showCreateConfirmation,
-            title: "Select size of freeform artwork",
+            isPresented: $viewModel.showCreateConfirmation,
+            title: "Freeform artwork",
             confirmText: "Create",
             message: {
                 VStack {
+                    TextField("Title", text: $viewModel.freeformArtworkTopic)
+                        .frame(maxWidth: .infinity)
+                        .pixelBackground(paddingValue: 10)
+                    
                     HStack(alignment: .center) {
                         
-                        TextField("", text: $width)
+                        TextField("", value: $viewModel.width, format: .number)
                             .pixelBackground(paddingValue: 10)
                         
                         Button {
-                            isSizeLocked.toggle()
+                            viewModel.isSizeLocked.toggle()
                         } label: {
-                            Image(isSizeLocked ? "ic_connected" : "ic_unconnected")
+                            Image(viewModel.isSizeLocked ? "ic_connected" : "ic_unconnected")
                                 .resizable()
                                 .interpolation(.none)
                                 .frame(width: 30, height: 30)
                             
                         }
                         
-                        TextField("", text: isSizeLocked ? $width : $height)
+                        TextField("", value: viewModel.isSizeLocked ? $viewModel.width : $viewModel.height, format: .number)
                             .pixelBackground(paddingValue: 10)
                         
                     }
@@ -87,11 +87,20 @@ struct ArtworksView: View {
                         Text("Height")
                     }
                     .frame(maxWidth: .infinity)
+                    
+                    Text("Height or Width cannot be 0.")
+                        .opacity(viewModel.hasSizeError ? 1.0 : 0.0)
+                        .foregroundStyle(.red)
                 }
             },
             onConfirm: {
-                print("Width: \(width)")
-                print("Height: \(height)")
+                Task {
+                    if viewModel.isSizeLocked {
+                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.width)
+                    } else {
+                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.height)
+                    }
+                }
             }
         )
         
