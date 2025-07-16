@@ -12,30 +12,48 @@ struct ProfileView: View {
     @StateObject private var viewModel: ProfileViewModel = ProfileViewModel()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
             CustomNavBar(
                 title: "Profile",
                 subtitle: "",
-                leadingButtonIcon: nil,
-                leadingButtonAction: nil,
-                trailingButtonIcon: nil,
-                trailingButtonAction: nil
+                leadingButtonIcon: "ic_gear",
+                leadingButtonAction: {},
+                trailingButtonIcon: "ic_logout",
+                trailingButtonAction: {
+                    appState.logOut()
+                }
             )
-            Spacer()
-            
-            Text("Profile View")
-            
-            Text(appState.currentUser?.email ?? "0---0")
-            
-            Button("Logout") {
-                appState.logOut()
+            ZStack {
+                if viewModel.isLoading {
+                    ProgressView("Loading Profile...")
+                        .font(.custom("Micro5-Regular", size: 32))
+                } else if let error = viewModel.error {
+                    VStack(spacing: 16) {
+                        Text("Error: \(error.localizedDescription)")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.red)
+                        Button("Try Again") {
+                            if let user = appState.currentUser {
+                                Task { await viewModel.setUserAndLoad(user: user) }
+                            }
+                        }
+                        .pixelBackground(paddingValue: 12)
+                    }
+                } else {
+                    ProfileContentView(
+                        user: appState.currentUser,
+                        archived: viewModel.archivedArtworks,
+                        shared: viewModel.sharedArtworks
+                    )
+                }
             }
-            
-            Spacer()
-            
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .background(Color(hex: "d4d4d4"))
         .onAppear {
-            appState.authError = nil
+            if let user = appState.currentUser {
+                Task { await viewModel.setUserAndLoad(user: user) }
+            }
         }
     }
 }

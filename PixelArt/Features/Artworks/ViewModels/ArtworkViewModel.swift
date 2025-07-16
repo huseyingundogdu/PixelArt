@@ -10,7 +10,7 @@ import FirebaseAuth
 
 final class ArtworkViewModel: ObservableObject {
     
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool = true
     @Published var personalArtworks: [Artwork] = []
     @Published var sharedArtworks: [Artwork] = []
     @Published var activeCompetitionArtworks: [Artwork] = []
@@ -55,7 +55,9 @@ final class ArtworkViewModel: ObservableObject {
     }
     
     func retry() async {
+        if let userId {
             await loadUserArtworks()
+        }
     }
     
 }

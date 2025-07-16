@@ -63,6 +63,7 @@
 		F0B1205A2D51A634009E8835 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120592D51A634009E8835 /* RootView.swift */; };
 		F0B1205C2D51A637009E8835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205B2D51A637009E8835 /* Assets.xcassets */; };
 		F0B1205F2D51A637009E8835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */; };
+		F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B735AC2E27256D00BA021A /* ProfileContentView.swift */; };
 		F0CC882A2DC22C3B002CA368 /* Geo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */; };
 		F0E03B8A2DC65894002A250B /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */; };
 		F0F3AF002DD67768008DB18C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F3AEFF2DD67768008DB18C /* GoogleService-Info.plist */; };
@@ -163,6 +164,7 @@
 		F0B120592D51A634009E8835 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F0B1205B2D51A637009E8835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F0B735AC2E27256D00BA021A /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geo-Regular.ttf"; sourceTree = "<group>"; };
 		F0CC882B2DC22C4B002CA368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			children = (
 				F05ADD7E2DD285C9008E104C /* ProfileView.swift */,
 				F08C592A2E1B4E620057DFEB /* ProfileViewModel.swift */,
+				F0B735AC2E27256D00BA021A /* ProfileContentView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
+				F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */,
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
 				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
 				F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */,
