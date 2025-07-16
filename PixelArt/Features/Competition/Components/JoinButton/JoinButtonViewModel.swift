@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 enum JoinButtonState {
     case idle
@@ -19,12 +20,11 @@ final class JoinButtonViewModel: ObservableObject {
     @Published var state: JoinButtonState = .idle
     
     private let repository: ArtworkRepository
-    private let userId: String
-    private let competition: Competition
+    var user: User?
+    var competition: Competition
     
-    init(repository: ArtworkRepository = FirestoreArtworkRepository(), userId: String, competition: Competition) {
+    init(repository: ArtworkRepository = FirestoreArtworkRepository(), competition: Competition) {
         self.repository = repository
-        self.userId = userId
         self.competition = competition
     }
  
@@ -33,8 +33,13 @@ final class JoinButtonViewModel: ObservableObject {
         
         state = .loading
         
+        guard let user else {
+            state = .error("401 - authentication error.")
+            return
+        }
+        
         do {
-            let artworks = try await repository.fetchArtworks(by: userId)
+            let artworks = try await repository.fetchArtworks(by: user.uid)
 
             if artworks.contains(where: { $0.competitionId == competition.id }) {
                 state = .joined
@@ -52,9 +57,14 @@ final class JoinButtonViewModel: ObservableObject {
         
         state = .loading
         
+        guard let user else {
+            state = .error("401 - authentication error.")
+            return
+        }
+        
         let artwork = Artwork(
             id: UUID().uuidString,
-            authorId: userId,
+            authorId: user.uid,
             data: createEmptyCanvas(size: competition.size),
             competitionId: competition.id,
             size: competition.size,

@@ -6,44 +6,37 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class ArtworkViewModel: ObservableObject {
     
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool = true
     @Published var personalArtworks: [Artwork] = []
     @Published var sharedArtworks: [Artwork] = []
     @Published var activeCompetitionArtworks: [Artwork] = []
     @Published var archivedArtworks: [Artwork] = []
     @Published var error: Error?
     
-    /*
-     NSError(
-         domain: "Test",
-         code: 999,
-         userInfo: [NSLocalizedDescriptionKey: "Bu bir test hatasıdır."]
-     )
-     */
-    
     private let repository: ArtworkRepository
-    private let userId: String
+    private var userId: String?
     
-    init(repository: ArtworkRepository = FirestoreArtworkRepository(), userId: String = "user1") {
+    init(repository: ArtworkRepository = FirestoreArtworkRepository()) {
         self.repository = repository
-        self.userId = userId
+    }
+    
+    func setUserAndLoad(user: User) async {
+        self.userId = user.uid
+        await loadUserArtworks()
     }
     
     func loadUserArtworks() async {
+        guard let userId else {
+            self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
+            return
+        }
+        
         isLoading = true
         error = nil
-        
-//      Basic Error Test
-        /*
-        self.error = NSError(
-            domain: "com.pixelart",
-            code: 500,
-            userInfo: [NSLocalizedDescriptionKey: "Sunucuya bağlanılamadı."]
-        )
-        */
         
         async let personal = repository.fetchPersonalArtworks(forUserId: userId)
         async let shared = repository.fetchSharedArtworks(forUserId: userId)
@@ -62,8 +55,9 @@ final class ArtworkViewModel: ObservableObject {
     }
     
     func retry() async {
+        if let userId {
             await loadUserArtworks()
-        
+        }
     }
     
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArtworksView: View {
-    
+    @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = ArtworkViewModel()
     
     var body: some View {
@@ -44,7 +44,9 @@ struct ArtworksView: View {
         }
         .background(Color(hex: "d4d4d4"))
         .onAppear {
-            Task { await viewModel.loadUserArtworks() }
+            if let user = appState.currentUser {
+                Task { await viewModel.setUserAndLoad(user: user) }
+            }
         }
 //        .onReceive(NotificationCenter.default.publisher(for: .refreshArtworks)) { _ in
 //            Task {
@@ -57,4 +59,5 @@ struct ArtworksView: View {
 
 #Preview {
     ArtworksView()
+        .environmentObject(AppState())
 }

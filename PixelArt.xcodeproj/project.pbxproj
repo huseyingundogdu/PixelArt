@@ -57,10 +57,13 @@
 		F075BF952E148E3100CCB78A /* PixelArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF942E148E3100CCB78A /* PixelArtTests.swift */; };
 		F075BF9C2E148F4700CCB78A /* ArtworkViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF9B2E148F4700CCB78A /* ArtworkViewModelTests.swift */; };
 		F075BF9E2E14A43D00CCB78A /* MockArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F075BF9D2E14A43D00CCB78A /* MockArtworkRepository.swift */; };
+		F08C59272E1B14310057DFEB /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C59262E1B14310057DFEB /* FirebaseAuthService.swift */; };
+		F08C592B2E1B4E620057DFEB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C592A2E1B4E620057DFEB /* ProfileViewModel.swift */; };
 		F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120572D51A634009E8835 /* PixelArtApp.swift */; };
 		F0B1205A2D51A634009E8835 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B120592D51A634009E8835 /* RootView.swift */; };
 		F0B1205C2D51A637009E8835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205B2D51A637009E8835 /* Assets.xcassets */; };
 		F0B1205F2D51A637009E8835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */; };
+		F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B735AC2E27256D00BA021A /* ProfileContentView.swift */; };
 		F0CC882A2DC22C3B002CA368 /* Geo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */; };
 		F0E03B8A2DC65894002A250B /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */; };
 		F0F3AF002DD67768008DB18C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F3AEFF2DD67768008DB18C /* GoogleService-Info.plist */; };
@@ -154,11 +157,14 @@
 		F075BF942E148E3100CCB78A /* PixelArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtTests.swift; sourceTree = "<group>"; };
 		F075BF9B2E148F4700CCB78A /* ArtworkViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewModelTests.swift; sourceTree = "<group>"; };
 		F075BF9D2E14A43D00CCB78A /* MockArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockArtworkRepository.swift; sourceTree = "<group>"; };
+		F08C59262E1B14310057DFEB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		F08C592A2E1B4E620057DFEB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F0B120542D51A634009E8835 /* PixelArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B120572D51A634009E8835 /* PixelArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArtApp.swift; sourceTree = "<group>"; };
 		F0B120592D51A634009E8835 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F0B1205B2D51A637009E8835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F0B735AC2E27256D00BA021A /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geo-Regular.ttf"; sourceTree = "<group>"; };
 		F0CC882B2DC22C4B002CA368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 		F004D6F52DDBE699009B1767 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F08C59262E1B14310057DFEB /* FirebaseAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -456,6 +463,8 @@
 			isa = PBXGroup;
 			children = (
 				F05ADD7E2DD285C9008E104C /* ProfileView.swift */,
+				F08C592A2E1B4E620057DFEB /* ProfileViewModel.swift */,
+				F0B735AC2E27256D00BA021A /* ProfileContentView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -813,10 +822,12 @@
 				F075BF8B2E11666B00CCB78A /* VotingContentView.swift in Sources */,
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
+				F08C59272E1B14310057DFEB /* FirebaseAuthService.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
+				F08C592B2E1B4E620057DFEB /* ProfileViewModel.swift in Sources */,
 				F004D7022DDBEBF4009B1767 /* MockData.swift in Sources */,
 				F004D6FA2DDBEA56009B1767 /* AuthFlowView.swift in Sources */,
 				F06566652DD219D000C7D251 /* Color+Extension.swift in Sources */,
@@ -825,6 +836,7 @@
 				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
+				F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */,
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
 				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
 				F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */,
