@@ -10,11 +10,19 @@ import SwiftUI
 struct ArtworksView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = ArtworkViewModel()
+    @State private var showCreateConfirmation = false
+    @State private var width: String = ""
+    @State private var height: String = ""
+    @State private var isSizeLocked: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             CustomNavBar(
-                title: "Artworks"
+                title: "Artworks",
+                trailingButtonIcon: "ic_plus",
+                trailingButtonAction: {
+                    showCreateConfirmation = true
+                }
             )
             
             ZStack {
@@ -48,12 +56,45 @@ struct ArtworksView: View {
                 Task { await viewModel.setUserAndLoad(user: user) }
             }
         }
-//        .onReceive(NotificationCenter.default.publisher(for: .refreshArtworks)) { _ in
-//            Task {
-//                print("Refreshing artworks...")
-//                await viewModel.retry()
-//            }
-//        }
+        .overlayAlert(
+            isPresented: $showCreateConfirmation,
+            title: "Select size of freeform artwork",
+            confirmText: "Create",
+            message: {
+                VStack {
+                    HStack(alignment: .center) {
+                        
+                        TextField("", text: $width)
+                            .pixelBackground(paddingValue: 10)
+                        
+                        Button {
+                            isSizeLocked.toggle()
+                        } label: {
+                            Image(isSizeLocked ? "ic_connected" : "ic_unconnected")
+                                .resizable()
+                                .interpolation(.none)
+                                .frame(width: 30, height: 30)
+                            
+                        }
+                        
+                        TextField("", text: isSizeLocked ? $width : $height)
+                            .pixelBackground(paddingValue: 10)
+                        
+                    }
+                    HStack {
+                        Text("Width")
+                        Spacer()
+                        Text("Height")
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            },
+            onConfirm: {
+                print("Width: \(width)")
+                print("Height: \(height)")
+            }
+        )
+        
     }
 }
 
