@@ -15,9 +15,14 @@ final class AppState: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let authService: FirebaseAuthService
+    private let userService: FirebaseUserService
     
-    init(authService: FirebaseAuthService = FirebaseAuthService()) {
+    init(
+        authService: FirebaseAuthService = FirebaseAuthService(),
+        userService: FirebaseUserService = FirebaseUserService()
+    ) {
         self.authService = authService
+        self.userService = userService
         checkAuthStatus()
     }
     
@@ -39,10 +44,13 @@ final class AppState: ObservableObject {
         }
     }
     
-    func register(email: String, password: String) async {
+    func register(email: String, username: String, password: String) async {
         DispatchQueue.main.async { self.isLoading = true }
         do {
             let user = try await authService.signUp(email: email, password: password)
+            
+            try await userService.createUserDocument(user: user, username: username)
+            
             DispatchQueue.main.async {
                 self.currentUser = user
                 self.isLoggedIn = true

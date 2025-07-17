@@ -12,6 +12,7 @@ struct SignupView: View {
     @Binding var path: NavigationPath
 
     @State private var email: String = ""
+    @State private var username: String = ""
     @State private var password: String = ""
     
     
@@ -34,6 +35,8 @@ struct SignupView: View {
                 
                 TextField("Email", text: $email)
                     .pixelBackground()
+                TextField("Username", text: $username)
+                    .pixelBackground()
                 SecureField("Password", text: $password)
                     .pixelBackground()
 //                SecureField("Password Again", text: $validationPassword)
@@ -44,7 +47,7 @@ struct SignupView: View {
                 Spacer()
                 
                 Button("Sign Up") {
-                    Task { await appState.register(email: email, password: password) }
+                    Task { await appState.register(email: email, username: username, password: password) }
                 }
                 .foregroundStyle(.black)
                 .pixelBackground()
@@ -70,6 +73,7 @@ struct SignupView: View {
     }
 }
 
-//#Preview {
-//    SignupView(path: .constant(NavigationPath()))
-//}
+#Preview {
+    SignupView(path: .constant(NavigationPath()))
+        .environmentObject(AppState())
+}

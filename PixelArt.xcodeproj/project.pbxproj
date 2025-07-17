@@ -64,6 +64,7 @@
 		F0B1205C2D51A637009E8835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205B2D51A637009E8835 /* Assets.xcassets */; };
 		F0B1205F2D51A637009E8835 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */; };
 		F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B735AC2E27256D00BA021A /* ProfileContentView.swift */; };
+		F0B735B22E288F1000BA021A /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B735B12E288F1000BA021A /* FirebaseUserService.swift */; };
 		F0CC882A2DC22C3B002CA368 /* Geo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */; };
 		F0E03B8A2DC65894002A250B /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */; };
 		F0F3AF002DD67768008DB18C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F3AEFF2DD67768008DB18C /* GoogleService-Info.plist */; };
@@ -165,6 +166,7 @@
 		F0B1205B2D51A637009E8835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B1205E2D51A637009E8835 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0B735AC2E27256D00BA021A /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
+		F0B735B12E288F1000BA021A /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
 		F0CC88292DC22C3B002CA368 /* Geo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geo-Regular.ttf"; sourceTree = "<group>"; };
 		F0CC882B2DC22C4B002CA368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0E03B892DC65894002A250B /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 		F05ADD7C2DD285AE008E104C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F0B735B02E288EFF00BA021A /* Service */,
 				F05ADD7E2DD285C9008E104C /* ProfileView.swift */,
 				F08C592A2E1B4E620057DFEB /* ProfileViewModel.swift */,
 				F0B735AC2E27256D00BA021A /* ProfileContentView.swift */,
@@ -670,6 +673,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F0B735B02E288EFF00BA021A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F0B735B12E288F1000BA021A /* FirebaseUserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -823,6 +834,7 @@
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
 				F08C59272E1B14310057DFEB /* FirebaseAuthService.swift in Sources */,
+				F0B735B22E288F1000BA021A /* FirebaseUserService.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
