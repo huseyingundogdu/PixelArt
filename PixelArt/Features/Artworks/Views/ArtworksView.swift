@@ -14,7 +14,11 @@ struct ArtworksView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             CustomNavBar(
-                title: "Artworks"
+                title: "Artworks",
+                trailingButtonIcon: "ic_plus",
+                trailingButtonAction: {
+                    viewModel.showCreateConfirmation = true
+                }
             )
             
             ZStack {
@@ -48,12 +52,58 @@ struct ArtworksView: View {
                 Task { await viewModel.setUserAndLoad(user: user) }
             }
         }
-//        .onReceive(NotificationCenter.default.publisher(for: .refreshArtworks)) { _ in
-//            Task {
-//                print("Refreshing artworks...")
-//                await viewModel.retry()
-//            }
-//        }
+        .overlayAlert(
+            isPresented: $viewModel.showCreateConfirmation,
+            title: "Freeform artwork",
+            confirmText: "Create",
+            message: {
+                VStack {
+                    TextField("Title", text: $viewModel.freeformArtworkTopic)
+                        .frame(maxWidth: .infinity)
+                        .pixelBackground(paddingValue: 10)
+                    
+                    HStack(alignment: .center) {
+                        
+                        TextField("", value: $viewModel.width, format: .number)
+                            .pixelBackground(paddingValue: 10)
+                        
+                        Button {
+                            viewModel.isSizeLocked.toggle()
+                        } label: {
+                            Image(viewModel.isSizeLocked ? "ic_connected" : "ic_unconnected")
+                                .resizable()
+                                .interpolation(.none)
+                                .frame(width: 30, height: 30)
+                            
+                        }
+                        
+                        TextField("", value: viewModel.isSizeLocked ? $viewModel.width : $viewModel.height, format: .number)
+                            .pixelBackground(paddingValue: 10)
+                        
+                    }
+                    HStack {
+                        Text("Width")
+                        Spacer()
+                        Text("Height")
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Text("Height or Width cannot be 0.")
+                        .opacity(viewModel.hasSizeError ? 1.0 : 0.0)
+                        .foregroundStyle(.red)
+                }
+            },
+            onConfirm: {
+                Task {
+                    if viewModel.isSizeLocked {
+                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.width)
+                    } else {
+                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.height)
+                    }
+                }
+            }
+        )
+        
     }
 }
 

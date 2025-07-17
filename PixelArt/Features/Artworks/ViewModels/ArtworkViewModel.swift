@@ -16,6 +16,12 @@ final class ArtworkViewModel: ObservableObject {
     @Published var activeCompetitionArtworks: [Artwork] = []
     @Published var archivedArtworks: [Artwork] = []
     @Published var error: Error?
+    @Published var hasSizeError: Bool = false
+    @Published var freeformArtworkTopic: String = ""
+    @Published var width: Int = 0
+    @Published var height: Int = 0
+    @Published var isSizeLocked: Bool = false
+    @Published var showCreateConfirmation: Bool = false
     
     private let repository: ArtworkRepository
     private var userId: String?
@@ -60,4 +66,52 @@ final class ArtworkViewModel: ObservableObject {
         }
     }
     
+    func createPersonalArtwork(width: Int, height: Int) async {
+        guard width != 0 && height != 0 else {
+            hasSizeError = true
+            return
+        }
+        guard let userId else {
+            self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
+            return
+        }
+        
+        isLoading = true
+        error = nil
+        
+        let artwork = Artwork(
+            id: UUID().uuidString,
+            authorId: userId,
+            data: createCanvasByGivenSize(size: isSizeLocked
+                                          ? [width, width]
+                                          : [width , height]),
+            competitionId: nil,
+            size: [width, height],
+            topic: freeformArtworkTopic == "" ? "Empty Title" : freeformArtworkTopic,
+            status: .personal
+        )
+        
+        do {
+            try await repository.createArtwork(artwork)
+            
+        } catch {
+            self.error = error
+        }
+        
+        clearCreateArtworkInputs()
+        await retry()
+    }
+    
+    private func createCanvasByGivenSize(size: [Int]) -> [String] {
+        let total = size[0] * size[1]
+        return Array(repeating: "ffffff", count: total)
+    }
+    
+    private func clearCreateArtworkInputs() {
+        freeformArtworkTopic = ""
+        width = 0
+        height = 0
+        isSizeLocked = false
+        hasSizeError = false
+    }
 }
