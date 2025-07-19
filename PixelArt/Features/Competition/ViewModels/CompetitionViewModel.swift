@@ -73,7 +73,7 @@ final class CompetitionViewModel: ObservableObject {
     
     func joinCurrentCompetition(_ competition: Competition) async {
         guard joinState == .idle else { return }
-        guard let user = appState?.currentUser else {
+        guard let appUser = appState?.currentAppUser else {
             joinState = .error("Auth error.")
             return
         }
@@ -82,7 +82,8 @@ final class CompetitionViewModel: ObservableObject {
         
         let artwork = Artwork(
             id: UUID().uuidString,
-            authorId: user.uid,
+            authorId: appUser.id,
+            authorUsername: appUser.username,
             data: Array(repeating: "ffffff", count: competition.size[0] * competition.size[1]),
             competitionId: competition.id,
             size: competition.size,

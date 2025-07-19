@@ -30,6 +30,9 @@
 		F010F1D42E18456600A34D7B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D32E18456600A34D7B /* ResultView.swift */; };
 		F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D52E18457300A34D7B /* ResultContentView.swift */; };
 		F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D72E18476800A34D7B /* ResultViewModel.swift */; };
+		F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */; };
+		F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */; };
+		F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */; };
 		F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */; };
 		F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */; };
 		F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */; };
@@ -141,6 +144,9 @@
 		F010F1D32E18456600A34D7B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F010F1D52E18457300A34D7B /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		F010F1D72E18476800A34D7B /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileViewModel.swift; sourceTree = "<group>"; };
+		F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileView.swift; sourceTree = "<group>"; };
+		F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileContentView.swift; sourceTree = "<group>"; };
 		F055A5592E102FE900611D1D /* ScoringCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsContentView.swift; sourceTree = "<group>"; };
 		F055A55B2E102FF800611D1D /* ScoringCompetitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringCompetitionsView.swift; sourceTree = "<group>"; };
 		F055A55D2E10300A00611D1D /* PastCompetitionsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastCompetitionsContentView.swift; sourceTree = "<group>"; };
@@ -358,6 +364,41 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		F04E28EF2E2C021300E759F4 /* CurrentUserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F0B735BC2E296AAF00BA021A /* Views */,
+				F0B735BB2E296A9E00BA021A /* ViewModels */,
+			);
+			path = CurrentUserProfile;
+			sourceTree = "<group>";
+		};
+		F04E28F02E2C022200E759F4 /* OtherUserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F04E28F22E2C023100E759F4 /* Views */,
+				F04E28F12E2C022B00E759F4 /* ViewModels */,
+			);
+			path = OtherUserProfile;
+			sourceTree = "<group>";
+		};
+		F04E28F12E2C022B00E759F4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F04E28F22E2C023100E759F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */,
+				F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F055A5552E102F9000611D1D /* ScoringCompetitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,8 +471,8 @@
 		F05ADD7C2DD285AE008E104C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F0B735BC2E296AAF00BA021A /* Views */,
-				F0B735BB2E296A9E00BA021A /* ViewModels */,
+				F04E28F02E2C022200E759F4 /* OtherUserProfile */,
+				F04E28EF2E2C021300E759F4 /* CurrentUserProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -968,6 +1009,8 @@
 				F0B735B22E288F1000BA021A /* DefaultUserService.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
+				F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */,
+				F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
 				F08C592B2E1B4E620057DFEB /* ProfileViewModel.swift in Sources */,
@@ -977,6 +1020,7 @@
 				F00ECF342DEF0629006C650E /* Artwork.swift in Sources */,
 				F004D6EF2DDBDC54009B1767 /* CompetitionContentView.swift in Sources */,
 				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
+				F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F0B735DE2E2AB22300BA021A /* DefaultArtworkService.swift in Sources */,
 				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,

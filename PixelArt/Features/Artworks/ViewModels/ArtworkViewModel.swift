@@ -72,7 +72,7 @@ final class ArtworkViewModel: ObservableObject {
     }
     
     func createPersonalArtwork(width: Int, height: Int) async {
-        guard let currentUserId else {
+        guard let appUser = appState?.currentAppUser else {
             self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
             return
         }
@@ -87,7 +87,8 @@ final class ArtworkViewModel: ObservableObject {
         
         let artwork = Artwork(
             id: UUID().uuidString,
-            authorId: currentUserId,
+            authorId: appUser.id,
+            authorUsername: appUser.username,
             data: createCanvasByGivenSize(size: isSizeLocked
                                           ? [width, width]
                                           : [width , height]),

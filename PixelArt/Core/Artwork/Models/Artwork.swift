@@ -10,6 +10,7 @@ import Foundation
 struct Artwork: Codable, Equatable, Identifiable, Hashable {
     let id: String
     let authorId: String
+    let authorUsername: String
     let data: [String]
     let competitionId: String?
     let size: [Int]

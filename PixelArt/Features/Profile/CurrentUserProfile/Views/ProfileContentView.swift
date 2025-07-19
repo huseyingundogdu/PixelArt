@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileContentView: View {
+    @Binding var path: NavigationPath
     @State private var selectedIndex: Int = 0
     
     let user: AppUser
@@ -25,6 +26,7 @@ struct ProfileContentView: View {
                     ArtworkViewer(artwork: 
                                     Artwork(id: "",
                                             authorId: "",
+                                            authorUsername: "",
                                             data: user.profilePictureData,
                                             competitionId: nil,
                                             size: [2, 2],
@@ -70,6 +72,10 @@ struct ProfileContentView: View {
                             Spacer()
                         }
                         .font(.custom("Micro5-Regular", size: 25))
+                        
+                        Button(user.followers[0]) {
+                            path.append(ProfileTo.otherUserProfile(user.followers[0]))
+                        }
                     }
                 }
                 
@@ -122,6 +128,7 @@ struct ProfileContentView: View {
 
 #Preview {
     ProfileContentView(
+        path: .constant(NavigationPath()),
         user: AppUser(
             id: "user-id",
             email: "user-email",
