@@ -6,55 +6,73 @@
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseAuth
 
-private enum FirestoreCollection {
-    static let users = "users"
-}
 
-final class FirebaseUserService {
+final class DefaultUserService: UserService {
     
-    private let db = Firestore.firestore()
+    private let userRepository: UserRepository
+    private let currentUserId: String?
     
-    func createUserDocument(user: User, username: String) async throws {
+    init(
+        userRepository: UserRepository = FirebaseUserRepository(),
+        currentUserId: String?
+    ) {
+        self.userRepository = userRepository
+        self.currentUserId = currentUserId
+    }
+    
+    func registerNewUser(firebaseUid: String, email: String, username: String) async throws {
+        guard isUsernameValid(username: username) else {
+            throw AppUserError.invalidUsername
+        }
+            
         let newUser = AppUser(
-            id: user.uid,
-            email: user.email ?? "Error!",
+            id: firebaseUid,
+            email: email,
             username: username,
-            profilePictureData: createDefaultProfilePictureData(),
+            profilePictureData: createDefaultProfilePicture(),
             followers: [],
             following: [],
             joinedCompetition: [],
             createdAt: Date()
         )
         
-        try db.collection(FirestoreCollection.users)
-            .document(user.uid)
-            .setData(from: newUser)
+        try await userRepository.createAppUser(newUser)
     }
     
-    private func createDefaultProfilePictureData() -> [String] {
+    func getAppUser(uid: String) async throws -> AppUser {
+        return try await userRepository.fetchAppUser(uid: uid)
+    }
+    
+    func updateAppUser(_ user: AppUser) async throws {
+        guard isAuthorized(user: user) else {
+            throw AppUserError.unauthorized
+        }
+        try await userRepository.updateAppUser(user)
+    }
+    
+    func deleteAppUser(_ user: AppUser) async throws {
+        guard isAuthorized(user: user) else {
+            throw AppUserError.unauthorized
+        }
+        try await userRepository.deleteAppUser(user)
+    }
+    
+    private func isAuthorized(user: AppUser) -> Bool {
+        if let currentUserId {
+            return user.id == currentUserId
+        }
+        return false
+    }
+    
+    private func createDefaultProfilePicture() -> [String] {
         MockData.personArtwork.data
     }
     
-    func fetchAppUser(uid: String) async throws -> AppUser {
-        let snapshot = try await db.collection(FirestoreCollection.users)
-            .document(uid)
-            .getDocument()
-        
-        return try snapshot.data(as: AppUser.self)
+    private func isUsernameValid(username: String) -> Bool {
+        !username.isEmpty
     }
 }
 
 
-struct AppUser: Identifiable, Codable {
-    let id: String
-    let email: String
-    let username: String
-    let profilePictureData: [String]
-    let followers: [String]
-    let following: [String]
-    let joinedCompetition: [String]
-    let createdAt: Date
-}
+

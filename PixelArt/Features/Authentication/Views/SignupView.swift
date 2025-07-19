@@ -9,12 +9,17 @@ import SwiftUI
 
 struct SignupView: View {
     @EnvironmentObject var appState: AppState
-    @Binding var path: NavigationPath
-
-    @State private var email: String = ""
-    @State private var username: String = ""
-    @State private var password: String = ""
     
+    @Binding var path: NavigationPath
+    @StateObject private var viewModel: SignupViewModel
+    
+    init(
+        path: Binding<NavigationPath>,
+        appState: AppState
+    ) {
+        _path = path
+        _viewModel = StateObject(wrappedValue:SignupViewModel(appState:appState))
+    }
     
     var body: some View {
         VStack {
@@ -33,21 +38,20 @@ struct SignupView: View {
                     .padding()
                 
                 
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .pixelBackground()
-                TextField("Username", text: $username)
+                TextField("Username", text: $viewModel.username)
                     .pixelBackground()
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $viewModel.password)
                     .pixelBackground()
-//                SecureField("Password Again", text: $validationPassword)
-//                    .pixelBackground()
+
                 
                 Text("\(appState.authError ?? "")")
                 
                 Spacer()
                 
                 Button("Sign Up") {
-                    Task { await appState.register(email: email, username: username, password: password) }
+                    Task { await viewModel.signUp() }
                 }
                 .foregroundStyle(.black)
                 .pixelBackground()
@@ -73,7 +77,7 @@ struct SignupView: View {
     }
 }
 
-#Preview {
-    SignupView(path: .constant(NavigationPath()))
-        .environmentObject(AppState())
-}
+//#Preview {
+//    SignupView(path: .constant(NavigationPath()))
+//        .environmentObject(AppState())
+//}

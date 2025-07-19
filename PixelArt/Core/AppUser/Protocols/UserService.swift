@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+protocol UserService {
+    func registerNewUser(firebaseUid: String, email: String, username: String) async throws
+    func getAppUser(uid: String) async throws -> AppUser
+    func updateAppUser(_ user: AppUser) async throws
+    func deleteAppUser(_ user: AppUser) async throws
+}

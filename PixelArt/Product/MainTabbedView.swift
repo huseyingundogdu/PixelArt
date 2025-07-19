@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct MainTabbedView: View {
-    @State var selectedTab = 0
+    let appState: AppState
+    @State var selectedTab = 1
 
     // View'leri bir kere yarat ve sakla
-    private let competitionView = CompetitionView()
-    private let artworksView = ArtworksView()
-    private let profileView = ProfileView()
+    private let competitionView: CompetitionView
+    private let artworksView: ArtworksView
+    private let profileView: ProfileView
+    
+    init(appState: AppState) {
+        self.appState = appState
+        self.competitionView = CompetitionView(appState: appState)
+        self.artworksView = ArtworksView(appState: appState)
+        self.profileView = ProfileView(appState: appState)
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -55,9 +63,9 @@ struct MainTabbedView: View {
     }
 }
 
-#Preview {
-    MainTabbedView()
-}
+//#Preview {
+//    MainTabbedView()
+//}
 
 extension MainTabbedView{
     func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View{

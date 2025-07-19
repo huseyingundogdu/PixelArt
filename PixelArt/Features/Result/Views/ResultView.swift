@@ -33,7 +33,7 @@ struct ResultView: View {
                 .background(Color(hex: "d4d4d4"))
         }
         .onAppear {
-            Task { await viewModel.loadArchivedArtworks() }
+            Task { await viewModel.loadCompetitionArtworks() }
         }
         .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .navigationBar)

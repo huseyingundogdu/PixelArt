@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel: ProfileViewModel = ProfileViewModel()
+    let appState: AppState
+    @StateObject private var viewModel: ProfileViewModel
+    
+    init(appState: AppState) {
+        self.appState = appState
+        _viewModel = StateObject(wrappedValue: ProfileViewModel(appState: appState))
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -20,7 +25,7 @@ struct ProfileView: View {
                 leadingButtonAction: {},
                 trailingButtonIcon: "ic_logout",
                 trailingButtonAction: {
-                    appState.logOut()
+                    viewModel.logOutButtonTapped()
                 }
             )
             ZStack {
@@ -33,15 +38,15 @@ struct ProfileView: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(.red)
                         Button("Try Again") {
-                            if let user = appState.currentUser {
-                                Task { await viewModel.setUserAndLoad(user: user) }
-                            }
+           
+//                                Task { await viewModel.setUserAndLoad(user: user) }
+                            
                         }
                         .pixelBackground(paddingValue: 12)
                     }
                 } else {
                     ProfileContentView(
-                        user: appState.currentUser,
+                        user: viewModel.currentUser,
                         archived: viewModel.archivedArtworks,
                         shared: viewModel.sharedArtworks
                     )
@@ -51,14 +56,12 @@ struct ProfileView: View {
         }
         .background(Color(hex: "d4d4d4"))
         .onAppear {
-            if let user = appState.currentUser {
-                Task { await viewModel.setUserAndLoad(user: user) }
-            }
+            Task { await viewModel.setUserAndLoad() }
         }
     }
 }
 
-#Preview {
-    ProfileView()
-        .environmentObject(AppState())
-}
+//#Preview {
+//    ProfileView()
+//        .environmentObject(AppState())
+//}

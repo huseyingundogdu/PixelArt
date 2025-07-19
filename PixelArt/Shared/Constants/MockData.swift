@@ -18,7 +18,7 @@ struct MockData {
         activatedAt: Timestamp(date: Date()),
         scoringAt: Timestamp(date: Date().addingTimeInterval(3 * 24 * 60 * 60)), // 3 gün sonrası
         finishAt: Timestamp(date: Date().addingTimeInterval(6 * 24 * 60 * 60)),  // 6 gün sonrası
-        status: "active",
+        status: .active,
         size: [16, 16]
     )
     

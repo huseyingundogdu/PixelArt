@@ -15,11 +15,9 @@ struct RootView: View {
     
     var body: some View {
         if appState.isLoggedIn {
-            MainTabbedView()
-                .environmentObject(appState)
+            MainTabbedView(appState: appState)
         } else {
-            AuthFlowView()
-                .environmentObject(appState)
+            AuthFlowView(appState: appState)
         }
     }
     

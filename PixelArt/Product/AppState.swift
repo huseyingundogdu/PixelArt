@@ -15,67 +15,10 @@ final class AppState: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let authService: FirebaseAuthService
-    private let userService: FirebaseUserService
     
-    init(
-        authService: FirebaseAuthService = FirebaseAuthService(),
-        userService: FirebaseUserService = FirebaseUserService()
-    ) {
+    init(authService: FirebaseAuthService = FirebaseAuthService()) {
         self.authService = authService
-        self.userService = userService
         checkAuthStatus()
-    }
-    
-    func login(email: String, password: String) async {
-        DispatchQueue.main.async { self.isLoading = true }
-        do {
-            let user = try await authService.login(email: email, password: password)
-            DispatchQueue.main.async {
-                self.currentUser = user
-                self.isLoggedIn = true
-                self.authError = nil
-                self.isLoading = false
-            }
-        } catch {
-            DispatchQueue.main.async {
-                self.authError = error.localizedDescription
-                self.isLoading = false
-            }
-        }
-    }
-    
-    func register(email: String, username: String, password: String) async {
-        DispatchQueue.main.async { self.isLoading = true }
-        do {
-            let user = try await authService.signUp(email: email, password: password)
-            
-            try await userService.createUserDocument(user: user, username: username)
-            
-            DispatchQueue.main.async {
-                self.currentUser = user
-                self.isLoggedIn = true
-                self.authError = nil
-                self.isLoading = false
-            }
-        } catch {
-            DispatchQueue.main.async {
-                self.authError = error.localizedDescription
-                self.isLoading = false
-            }
-        }
-    }
-    
-    func logOut() {
-        do {
-            try authService.signOut()
-            DispatchQueue.main.async {
-                self.currentUser = nil
-                self.isLoggedIn = false
-                self.authError = nil
-            }
-        } catch {
-            print("Logout failed: \(error)")
-        }
     }
     
     private func checkAuthStatus() {
@@ -83,5 +26,18 @@ final class AppState: ObservableObject {
             currentUser = user
             isLoggedIn = true
         }
+    }
+    
+    func logOut() {
+        isLoading = true
+        do {
+            try authService.signOut()
+            self.currentUser = nil
+            self.isLoggedIn = false
+            self.authError = nil
+        } catch {
+            self.authError = error.localizedDescription
+        }
+        isLoading = false
     }
 }

@@ -13,24 +13,27 @@ final class ResultViewModel: ObservableObject {
     @Published var state: LoadingState<[Artwork]> = .none
     
     private let competition: Competition
-    private let repository: ArtworkRepository
+    private let artworkService: ArtworkService
     
-    init(competition: Competition, repository: ArtworkRepository = FirestoreArtworkRepository()) {
+    init(
+        competition: Competition,
+        artworkService: ArtworkService = DefaultArtworkService()
+    ) {
         self.competition = competition
-        self.repository = repository
+        self.artworkService = artworkService
     }
     
-    func loadArchivedArtworks() async {
+    func loadCompetitionArtworks() async {
         state = .loading
         do {
-            let archivedArtworks = try await repository.fetchCompetitionArtworks(forCompetitionId: self.competition.id)
-            state = .success(archivedArtworks)
+            let competitionArtworks = try await artworkService.fetchCompetitionArtworks(competition.id)
+            state = .success(competitionArtworks)
         } catch {
             state = .error(error)
         }
     }
     
     func retry() {
-        Task { await loadArchivedArtworks() }
+        Task { await loadCompetitionArtworks() }
     }
 }

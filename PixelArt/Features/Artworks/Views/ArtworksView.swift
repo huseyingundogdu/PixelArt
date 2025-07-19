@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ArtworksView: View {
-    @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel = ArtworkViewModel()
+    let appState: AppState
+    @StateObject private var viewModel: ArtworkViewModel
+    
+    init(appState: AppState) {
+        self.appState = appState
+        _viewModel = StateObject(wrappedValue: ArtworkViewModel(appState: appState))
+    }
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -48,9 +53,7 @@ struct ArtworksView: View {
         }
         .background(Color(hex: "d4d4d4"))
         .onAppear {
-            if let user = appState.currentUser {
-                Task { await viewModel.setUserAndLoad(user: user) }
-            }
+            Task { await viewModel.loadUserArtworks() }
         }
         .overlayAlert(
             isPresented: $viewModel.showCreateConfirmation,
@@ -95,6 +98,7 @@ struct ArtworksView: View {
             },
             onConfirm: {
                 Task {
+                    //FIXME: Buradaki logic i view model ayarlasin
                     if viewModel.isSizeLocked {
                         await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.width)
                     } else {
@@ -107,7 +111,7 @@ struct ArtworksView: View {
     }
 }
 
-#Preview {
-    ArtworksView()
-        .environmentObject(AppState())
-}
+//#Preview {
+//    ArtworksView()
+//        .environmentObject(AppState())
+//}

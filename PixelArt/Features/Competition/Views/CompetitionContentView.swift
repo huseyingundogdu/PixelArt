@@ -16,16 +16,9 @@ private enum StringItems: String {
 }
 
 struct CompetitionContentView: View {
-    
     let competition: Competition
-    @EnvironmentObject var appState: AppState
-    @State private var showJoinConfirmation = false
-    @StateObject private var joinButtonVM: JoinButtonViewModel
     
-    init(competition: Competition) {
-        self.competition = competition
-        _joinButtonVM = StateObject(wrappedValue: JoinButtonViewModel(competition: competition))
-    }
+    @ObservedObject var viewModel: CompetitionViewModel
     
     var body: some View {
         ScrollView {
@@ -35,8 +28,8 @@ struct CompetitionContentView: View {
                 competitionTopic(competition.topic)
                 colorsOfCompetition(competition.colorPalette)
                 
-                JoinButtonView(vm: joinButtonVM) {
-                    showJoinConfirmation = true
+                JoinButtonView(state: viewModel.joinState) {
+                    viewModel.showJoinConfirmation = true
                 }
                 .foregroundStyle(.black)
                 .padding(.horizontal)
@@ -50,7 +43,7 @@ struct CompetitionContentView: View {
         .frame(maxWidth: .infinity)
         .background(Color(hex: "d4d4d4"))
         .overlayAlert(
-            isPresented: $showJoinConfirmation,
+            isPresented: $viewModel.showJoinConfirmation,
             title: "Are you sure?",
             confirmText: "Create"
         ) {
@@ -58,14 +51,11 @@ struct CompetitionContentView: View {
         } onConfirm: {
             // Firestore’a artwork oluştur
             Task {
-                await joinButtonVM.joinCompetitionIfNeeded()
+                await viewModel.joinCurrentCompetition(competition)
             }
         }
         .onAppear {
-            if let user = appState.currentUser {
-                joinButtonVM.competition = competition
-                joinButtonVM.user = user
-            }
+            Task { await viewModel.checkIfUserAlreadyJoined(competition) }
         }
     }
     
@@ -100,7 +90,7 @@ struct CompetitionContentView: View {
     }
 }
 
-#Preview {
-    CompetitionContentView(competition: MockData.competition)
-        .environmentObject(AppState())
-}
+//#Preview {
+//    CompetitionContentView(competition: MockData.competition)
+//        .environmentObject(AppState())
+//}

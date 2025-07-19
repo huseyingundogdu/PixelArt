@@ -11,4 +11,5 @@ protocol UserRepository {
     func fetchAppUser(uid: String) async throws -> AppUser
     func createAppUser(_ user: AppUser) async throws
     func updateAppUser(_ user: AppUser) async throws
+    func deleteAppUser(_ user: AppUser) async throws
 }

@@ -11,17 +11,20 @@ final class VotingViewModel: ObservableObject {
     @Published var state: LoadingState<[Artwork]> = .none    
     
     private let competition: Competition
-    private let artworkRepository: ArtworkRepository
+    private let artworkService: ArtworkService
     
-    init(competition: Competition, artworkRepository: ArtworkRepository = FirestoreArtworkRepository()) {
+    init(
+        competition: Competition,
+        artworkService: ArtworkService = DefaultArtworkService()
+    ) {
         self.competition = competition
-        self.artworkRepository = artworkRepository
+        self.artworkService = artworkService
     }
     
-    func loadArtworks() async {
+    func loadScoringArtworks() async {
         state = .loading
         do {
-            let artworks = try await artworkRepository.fetchCompetitionArtworks(forCompetitionId: self.competition.id)
+            let artworks = try await artworkService.fetchCompetitionArtworks(competition.id)
             state = .success(artworks)
         } catch {
             state = .error(error)
@@ -29,8 +32,6 @@ final class VotingViewModel: ObservableObject {
     }
     
     func retry() {
-        Task {
-            await loadArtworks()
-        }
+        Task { await loadScoringArtworks() }
     }
 }

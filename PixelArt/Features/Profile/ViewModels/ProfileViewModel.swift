@@ -16,19 +16,29 @@ final class ProfileViewModel: ObservableObject {
     @Published var sharedArtworks: [Artwork] = []
     @Published var error: Error?
     
-    private var user: User?
-    private let artworkRepository: ArtworkRepository
-    private let userRepository: UserRepository
+    private weak var appState: AppState?
+    private let artworkService: ArtworkService
+    private let userService: UserService
+    private let authService: FirebaseAuthService
     
-    init(
-        artworkRepository: ArtworkRepository = FirestoreArtworkRepository()
-        userRepository: UserRepository = FirebaseUserService()
-    ) {
-        self.repository = repository
+    var currentUser: User? {
+        appState?.currentUser
     }
     
-    func setUserAndLoad(user: User) async {
-        self.user = user
+    init(
+        appState: AppState,
+        artworkService: ArtworkService = DefaultArtworkService(),
+        userService: UserService = DefaultUserService(currentUserId: nil),
+        authService: FirebaseAuthService = FirebaseAuthService()
+    ) {
+        self.appState = appState
+        self.artworkService = artworkService
+        self.userService = userService
+        self.authService = authService
+    }
+    
+    func setUserAndLoad() async {
+        guard let user = appState?.currentUser else { return }
         await loadUserArtworks(userUid: user.uid)
     }
     
@@ -36,8 +46,8 @@ final class ProfileViewModel: ObservableObject {
         isLoading = true
         error = nil
         
-        async let archived = repository.fetchArchivedArtworks(forUserId: userUid)
-        async let shared = repository.fetchSharedArtworks(forUserId: userUid)
+        async let archived = artworkService.fetchArchived(for: userUid)
+        async let shared = artworkService.fetchShared(for: userUid)
         
         do {
             archivedArtworks = try await archived
@@ -47,5 +57,9 @@ final class ProfileViewModel: ObservableObject {
         }
         
         isLoading = false
+    }
+    
+    func logOutButtonTapped() {
+        appState?.logOut()
     }
 }

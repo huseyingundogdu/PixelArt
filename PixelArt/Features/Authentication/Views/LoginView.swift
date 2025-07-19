@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var appState: AppState
+    let appState: AppState
     @Binding var path: NavigationPath
+    @StateObject private var viewModel: LoginViewModel
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    init(
+        appState: AppState,
+        path: Binding<NavigationPath>
+    ) {
+        self.appState = appState
+        _path = path
+        _viewModel = StateObject(wrappedValue: LoginViewModel(appState:appState))
+    }
     
     var body: some View {
         VStack {
@@ -23,19 +30,21 @@ struct LoginView: View {
                 .padding()
                 
             
-            TextField("Email", text: $email)
+            TextField("Email", text: $viewModel.email)
                 .pixelBackground()
-            SecureField("Password", text: $password)
+            SecureField("Password", text: $viewModel.password)
                 .pixelBackground()
             
-            Text("\(appState.authError ?? "")")
+            if let error = viewModel.authError {
+                Text("\(error)")
+            }
             
             Spacer()
             
             Button {
-                Task { await appState.login(email: email, password: password) }
+                Task { await viewModel.login() }
             } label: {
-                if appState.isLoading {
+                if viewModel.isLoading {
                     ProgressView()
                         .frame(width: 200)
                 } else {
@@ -55,9 +64,6 @@ struct LoginView: View {
         .font(.custom("Micro5-Regular", size: 30))
         .pixelBackground()
         .padding()
-        .onAppear {
-            appState.authError = nil
-        }
     }
 }
 

@@ -17,9 +17,31 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     var status: ArtworkStatus
 }
 
-enum ArtworkStatus: String, Codable, CaseIterable, Hashable{
+enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
     case personal = "personal"
     case shared = "shared"
     case activeCompetition = "activeCompetition"
     case archived = "archived"
+}
+
+enum ArtworkFilter {
+    case authorId(String)
+    case status(ArtworkStatus)
+    case competitionId(String)
+    
+    var field: String {
+        switch self {
+        case .authorId: return "authorId"
+        case .status: return "status"
+        case .competitionId: return "competitionId"
+        }
+    }
+    
+    var value: String {
+        switch self {
+        case .authorId(let value): return value
+        case .status(let value): return value.rawValue
+        case .competitionId(let value): return value
+        }
+    }
 }

@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct AppUser: Identifiable, Codable {
+    let id: String
+    let email: String
+    let username: String
+    let profilePictureData: [String]
+    let followers: [String]
+    let following: [String]
+    let joinedCompetition: [String]
+    let createdAt: Date
+}
