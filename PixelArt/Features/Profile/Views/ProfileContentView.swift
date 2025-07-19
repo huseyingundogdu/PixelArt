@@ -11,7 +11,7 @@ import FirebaseAuth
 struct ProfileContentView: View {
     @State private var selectedIndex: Int = 0
     
-    let user: User?
+    let user: AppUser
     let archived: [Artwork]
     let shared: [Artwork]
     
@@ -22,34 +22,54 @@ struct ProfileContentView: View {
             VStack {
                 
                 VStack(alignment: .center) {
-                    ArtworkViewer(artwork: MockData.personArtwork)
+                    ArtworkViewer(artwork: 
+                                    Artwork(id: "",
+                                            authorId: "",
+                                            data: user.profilePictureData,
+                                            competitionId: nil,
+                                            size: [2, 2],
+                                            topic: nil,
+                                            status: .personal)
+                    )
                         .scaleEffect(0.8)
                     
                     VStack(spacing: 20) {
                         HStack(alignment: .top) {
                             VStack(alignment: .leading) {
-                                Text("User name")
+                                Text(user.username)
                                 
                                 
-                                Text(user?.email ?? "ERROR!")
+                                Text(user.email)
                                     .foregroundStyle(.gray)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Spacer()
                         }
+                        .font(.custom("Micro5-Regular", size: 25))
                         
                         HStack {
-                            Text("24")
-                            Text("Followers")
-                                .foregroundStyle(.gray)
-                            
-                            Text("12")
-                            Text("Following")
-                                .foregroundStyle(.gray)
-                            
+                            Button {
+                                
+                            } label: {
+                                Text("\(user.followers.count)")
+                                Text("Followers")
+                                    .foregroundStyle(.gray)
+                            }
+                            .foregroundStyle(.black)
+
+                            Button {
+                                
+                            } label: {
+                                Text("\(user.following.count)")
+                                Text("Following")
+                                    .foregroundStyle(.gray)
+                            }
+                            .foregroundStyle(.black)
+
                             Spacer()
                         }
+                        .font(.custom("Micro5-Regular", size: 25))
                     }
                 }
                 
@@ -57,7 +77,7 @@ struct ProfileContentView: View {
                     .frame(height: 3)
                 
                 VStack {
-                    Text("Gallery of \(user?.email ?? "ERROR")")
+                    Text("Gallery of \(user.username)")
                         .font(.custom("Micro5-Regular", size: 35))
                     
                    
@@ -98,6 +118,23 @@ struct ProfileContentView: View {
             .padding()
         }
     }
+}
+
+#Preview {
+    ProfileContentView(
+        user: AppUser(
+            id: "user-id",
+            email: "user-email",
+            username: "username",
+            profilePictureData: ["#5C2751", "#6457A6", "#9DACFF", "#4BC0D9"],
+            followers: [],
+            following: [],
+            joinedCompetitions: [],
+            createdAt: .now
+        ),
+        archived: [],
+        shared: []
+    )
 }
 
 

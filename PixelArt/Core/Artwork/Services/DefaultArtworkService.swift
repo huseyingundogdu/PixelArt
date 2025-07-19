@@ -32,7 +32,7 @@ final class DefaultArtworkService: ArtworkService {
     
     
     func fetchArchived(for userId: String) async throws -> [Artwork] {
-        try await fetchArtworks(matching: [
+        try await fetchSubmittedArtworks(matching: [
             .authorId(userId),
             .status(.archived)
         ])

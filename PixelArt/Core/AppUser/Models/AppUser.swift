@@ -14,6 +14,6 @@ struct AppUser: Identifiable, Codable {
     let profilePictureData: [String]
     let followers: [String]
     let following: [String]
-    let joinedCompetition: [String]
+    let joinedCompetitions: [String]
     let createdAt: Date
 }

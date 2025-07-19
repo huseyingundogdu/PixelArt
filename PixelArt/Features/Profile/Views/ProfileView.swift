@@ -45,11 +45,13 @@ struct ProfileView: View {
                         .pixelBackground(paddingValue: 12)
                     }
                 } else {
-                    ProfileContentView(
-                        user: viewModel.currentUser,
-                        archived: viewModel.archivedArtworks,
-                        shared: viewModel.sharedArtworks
-                    )
+                    if let user = viewModel.appUser {
+                        ProfileContentView(
+                            user: user,
+                            archived: viewModel.archivedArtworks,
+                            shared: viewModel.sharedArtworks
+                        )
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

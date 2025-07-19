@@ -33,7 +33,7 @@ final class DefaultUserService: UserService {
             profilePictureData: createDefaultProfilePicture(),
             followers: [],
             following: [],
-            joinedCompetition: [],
+            joinedCompetitions: [],
             createdAt: Date()
         )
         

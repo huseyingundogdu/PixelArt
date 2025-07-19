@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+enum JoinButtonState: Equatable {
+    case idle
+    case loading
+    case joined
+    case error(String)
+}
+
 struct JoinButtonView: View {
 
     var state: JoinButtonState
