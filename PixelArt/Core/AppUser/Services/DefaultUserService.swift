@@ -38,7 +38,7 @@ final class FirebaseUserService {
         MockData.personArtwork.data
     }
     
-    func fetchUser(uid: String) async throws -> AppUser {
+    func fetchAppUser(uid: String) async throws -> AppUser {
         let snapshot = try await db.collection(FirestoreCollection.users)
             .document(uid)
             .getDocument()

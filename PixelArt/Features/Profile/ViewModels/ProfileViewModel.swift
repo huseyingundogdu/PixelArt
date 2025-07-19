@@ -17,9 +17,13 @@ final class ProfileViewModel: ObservableObject {
     @Published var error: Error?
     
     private var user: User?
-    private let repository: ArtworkRepository
+    private let artworkRepository: ArtworkRepository
+    private let userRepository: UserRepository
     
-    init(repository: ArtworkRepository = FirestoreArtworkRepository()) {
+    init(
+        artworkRepository: ArtworkRepository = FirestoreArtworkRepository()
+        userRepository: UserRepository = FirebaseUserService()
+    ) {
         self.repository = repository
     }
     
