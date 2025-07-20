@@ -17,9 +17,15 @@ enum CompetitionTo: Hashable {
 }
 
 struct CompetitionView: View {
+    let appState: AppState
     
-    @StateObject private var viewModel = CompetitionViewModel()
+    @StateObject private var viewModel: CompetitionViewModel
     @State private var path = NavigationPath()
+    
+    init(appState: AppState) {
+        self.appState = appState
+        _viewModel = StateObject(wrappedValue: CompetitionViewModel(appState: appState))
+    }
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -42,16 +48,13 @@ struct CompetitionView: View {
             }
             .onAppear { 
                 Task { await viewModel.loadActiveCompetition() }
-//                if case .none = viewModel.state {
-//                    viewModel.retry()
-//                }
             }
             .navigationDestination(for: CompetitionTo.self) { destinationValue in
                 switch destinationValue {
                 case .allCompetitions:
-                    PastCompetitionsView(path: $path)
+                    PastCompetitionsView(appState: appState, path: $path)
                 case .scoringCompetitions:
-                    ScoringCompetitionsView(path: $path)
+                    ScoringCompetitionsView(appState: appState, path: $path)
                 case .voting(let competition):
                     VotingView(path: $path, competition: competition)
                 case .result(let competition):
@@ -70,7 +73,10 @@ struct CompetitionView: View {
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let competition):
             
-            CompetitionContentView(competition: competition)
+            CompetitionContentView(
+                competition: competition,
+                viewModel: viewModel
+            )
             
         case .error(let error):
             VStack(spacing: 16) {
@@ -90,6 +96,6 @@ struct CompetitionView: View {
     }
 }
 
-#Preview {
-    CompetitionView()
-}
+//#Preview {
+//    CompetitionView()
+//}

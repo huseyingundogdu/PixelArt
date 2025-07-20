@@ -18,13 +18,14 @@ struct MockData {
         activatedAt: Timestamp(date: Date()),
         scoringAt: Timestamp(date: Date().addingTimeInterval(3 * 24 * 60 * 60)), // 3 gün sonrası
         finishAt: Timestamp(date: Date().addingTimeInterval(6 * 24 * 60 * 60)),  // 6 gün sonrası
-        status: "active",
+        status: .active,
         size: [16, 16]
     )
     
     static let artwork = Artwork(
         id: "1",
         authorId: "authorId",
+        authorUsername: "authorUsername",
         data: ["870058", "a4303f", "f2d0a4", "c8d6af"],
         competitionId: "competitionId",
         size: [2, 2],
@@ -35,6 +36,7 @@ struct MockData {
     static let artwork2 = Artwork(
         id: "3",
         authorId: "authorId",
+        authorUsername: "authorUsername",
         data: [
             "ffffff", "f0f0f0", "e0e0e0", "d0d0d0", "c0c0c0", "b0b0b0", "a0a0a0", "909090",
             "808080", "707070", "606060", "505050", "404040", "303030", "202020", "101010",
@@ -54,6 +56,7 @@ struct MockData {
     static let artwork_heart = Artwork(
         id: "7",
         authorId: "authorId",
+        authorUsername: "authorUsername",
         data: [
             "ffffff","ffffff","ffffff","ff0000","ff0000","ffffff","ffffff","ffffff","ffffff","ffffff","ff0000","ff0000","ffffff","ffffff","ffffff","ffffff",
             "ffffff","ffffff","ff0000","ff0000","ff0000","ff0000","ffffff","ffffff","ffffff","ff0000","ff0000","ff0000","ff0000","ffffff","ffffff","ffffff",
@@ -81,6 +84,7 @@ struct MockData {
     static let artwork_smileyface = Artwork(
         id: "9",
         authorId: "smileyMaster",
+        authorUsername: "authorUsername",
         data: [
         "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf",
         "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf", "f1f2bf",
@@ -113,6 +117,7 @@ struct MockData {
     static let artwork_face_avatar = Artwork(
         id: "11",
         authorId: "authorId",
+        authorUsername: "authorUsername",
         data: [
         "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "692b2b", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "692b2b", "692b2b", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c",
         "ab825c", "ab825c", "692b2b", "692b2b", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "692b2b", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "ab825c", "692b2b", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",
@@ -145,6 +150,7 @@ struct MockData {
     static let artwork_skull = Artwork(
         id: "12",
         authorId: "authorId",
+        authorUsername: "authorUsername",
         data: [
         "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "444444", "444444", "444444", "444444", "444444", "444444", "444444", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "444444", "444444", "434343", "d8d8d8", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "d9d9d9",
         "434343", "444444", "444444", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "444444", "d9d9d9", "d8d8d8", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "d8d8d8", "d8d8d8", "444444", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff", "ffffff",
@@ -178,6 +184,7 @@ struct MockData {
     static let artwork_mushroom = Artwork(
         id: "13",
         authorId: "mushroomArtist",
+        authorUsername: "authorUsername",
         data: [
         "F7EDE2", "#f7ede2", "#f7EDe2", "#F7EDE2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2",
         "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2", "f7ede2",
@@ -212,6 +219,7 @@ struct MockData {
         Artwork(
             id: "1",
             authorId: "authorId",
+            authorUsername: "authorUsername",
             data: ["870058", "a4303f", "f2d0a4", "c8d6af"],
             competitionId: "competitionId",
             size: [2, 2],
@@ -221,6 +229,7 @@ struct MockData {
         Artwork(
             id: "2",
             authorId: "authorId",
+            authorUsername: "authorUsername",
             data: [
                 "ff0000", "ff9900", "ffff00", "99ff00",
                 "00ff00", "00ff99", "00ffff", "0099ff",
@@ -235,6 +244,7 @@ struct MockData {
         Artwork(
             id: "3",
             authorId: "authorId",
+            authorUsername: "authorUsername",
             data: [
                 "ffffff", "f0f0f0", "e0e0e0", "d0d0d0", "c0c0c0", "b0b0b0", "a0a0a0", "909090",
                 "808080", "707070", "606060", "505050", "404040", "303030", "202020", "101010",
@@ -255,6 +265,7 @@ struct MockData {
     static let personArtwork = Artwork(
         id: "1",
         authorId: "1",
+        authorUsername: "authorUsername",
         data: [
             "#ffffff", "#ffffff", "#ffffff", "#b4b4b4", "#b4b4b4", "#b4b4b4", "#ffffff", "#ffffff", "#ffffff", "#b4b4b4",
             "#b4b4b4", "#b4b4b4", "#ffffff", "#ffffff", "#ffffff", "#000000", "#000000", "#000000", "#ffffff", "#ffffff",

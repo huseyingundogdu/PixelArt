@@ -10,16 +10,21 @@ import Foundation
 final class ScoringCompetitionsViewModel: ObservableObject {
     @Published var state: LoadingState<[Competition]> = .none
     
-    private let repository: CompetitionRepository
+    private let competitionService: CompetitionService
+    private weak var appState: AppState?
     
-    init(repository: CompetitionRepository = FirestoreCompetitionRepository()) {
-        self.repository = repository
+    init(
+        appState: AppState,
+        competitionService: CompetitionService = DefaultCompetitionService()
+    ) {
+        self.appState = appState
+        self.competitionService = competitionService
     }
     
     func loadScoringCompetitions() async {
         state = .loading
         do {
-            let competitions = try await repository.fetchScoringCompetitions()
+            let competitions = try await competitionService.fetchScoringCompetitions()
             state = .success(competitions)
         } catch {
             state = .error(error)

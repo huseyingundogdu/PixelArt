@@ -23,20 +23,23 @@ final class ArtworkViewModel: ObservableObject {
     @Published var isSizeLocked: Bool = false
     @Published var showCreateConfirmation: Bool = false
     
-    private let repository: ArtworkRepository
-    private var userId: String?
-    
-    init(repository: ArtworkRepository = FirestoreArtworkRepository()) {
-        self.repository = repository
+    private weak var appState: AppState?
+    private let artworkService: ArtworkService
+    private var currentUserId: String? {
+        appState?.currentUser?.uid
     }
     
-    func setUserAndLoad(user: User) async {
-        self.userId = user.uid
-        await loadUserArtworks()
+    init(
+        appState: AppState,
+        artworkService: ArtworkService = DefaultArtworkService()
+    ) {
+        self.appState = appState
+        self.artworkService = artworkService
     }
+    
     
     func loadUserArtworks() async {
-        guard let userId else {
+        guard let currentUserId else {
             self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
             return
         }
@@ -44,16 +47,18 @@ final class ArtworkViewModel: ObservableObject {
         isLoading = true
         error = nil
         
-        async let personal = repository.fetchPersonalArtworks(forUserId: userId)
-        async let shared = repository.fetchSharedArtworks(forUserId: userId)
-        async let activeCompetition = repository.fetchActiveCompetitionArtworks(forUserId: userId)
-        async let archived = repository.fetchArchivedArtworks(forUserId: userId)
+        async let personal = try await artworkService.fetchPersonal(for: currentUserId)
+        async let shared = try await artworkService.fetchShared(for: currentUserId)
+        async let activeCompetition = try await artworkService.fetchActiveCompetition(for: currentUserId)
+        async let archived = try await artworkService.fetchArchived(for: currentUserId)
+        
         
         do {
             personalArtworks = try await personal
             sharedArtworks = try await shared
             activeCompetitionArtworks = try await activeCompetition
             archivedArtworks = try await archived
+
         } catch {
             self.error = error
         }
@@ -61,18 +66,19 @@ final class ArtworkViewModel: ObservableObject {
     }
     
     func retry() async {
-        if let userId {
+        if let currentUserId {
             await loadUserArtworks()
         }
     }
     
     func createPersonalArtwork(width: Int, height: Int) async {
-        guard width != 0 && height != 0 else {
-            hasSizeError = true
+        guard let appUser = appState?.currentAppUser else {
+            self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
             return
         }
-        guard let userId else {
-            self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
+        
+        guard width != 0 && height != 0 else {
+            hasSizeError = true
             return
         }
         
@@ -81,7 +87,8 @@ final class ArtworkViewModel: ObservableObject {
         
         let artwork = Artwork(
             id: UUID().uuidString,
-            authorId: userId,
+            authorId: appUser.id,
+            authorUsername: appUser.username,
             data: createCanvasByGivenSize(size: isSizeLocked
                                           ? [width, width]
                                           : [width , height]),
@@ -92,8 +99,7 @@ final class ArtworkViewModel: ObservableObject {
         )
         
         do {
-            try await repository.createArtwork(artwork)
-            
+            try await artworkService.createArtwork(artwork)
         } catch {
             self.error = error
         }

@@ -1,0 +1,48 @@
+//
+//  Artwork.swift
+//  PixelArt
+//
+//  Created by Hüseyin Gündoğdu on 03/06/2025.
+//
+
+import Foundation
+
+struct Artwork: Codable, Equatable, Identifiable, Hashable {
+    let id: String
+    let authorId: String
+    let authorUsername: String
+    let data: [String]
+    let competitionId: String?
+    let size: [Int]
+    var topic: String?
+    var status: ArtworkStatus
+}
+
+enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
+    case personal = "personal"
+    case shared = "shared"
+    case activeCompetition = "activeCompetition"
+    case archived = "archived"
+}
+
+enum ArtworkFilter {
+    case authorId(String)
+    case status(ArtworkStatus)
+    case competitionId(String)
+    
+    var field: String {
+        switch self {
+        case .authorId: return "authorId"
+        case .status: return "status"
+        case .competitionId: return "competitionId"
+        }
+    }
+    
+    var value: String {
+        switch self {
+        case .authorId(let value): return value
+        case .status(let value): return value.rawValue
+        case .competitionId(let value): return value
+        }
+    }
+}

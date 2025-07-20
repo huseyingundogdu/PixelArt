@@ -15,6 +15,12 @@ struct Competition: Identifiable, Hashable, Codable, Equatable {
     let activatedAt: Timestamp
     let scoringAt: Timestamp
     let finishAt: Timestamp
-    let status: String
+    let status: CompetitionStatus
     let size: [Int]
+}
+
+enum CompetitionStatus: String, Codable, CaseIterable {
+    case active
+    case scoring
+    case past
 }

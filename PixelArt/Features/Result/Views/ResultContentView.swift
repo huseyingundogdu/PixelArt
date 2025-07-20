@@ -33,7 +33,7 @@ struct ResultContentView: View {
                 
                 ForEach(artworks, id: \.self) { artwork in
                     HStack {
-                        ArtworkViewer(artwork: artwork)
+                        ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
                         
                         
                         Text(artwork.authorId)

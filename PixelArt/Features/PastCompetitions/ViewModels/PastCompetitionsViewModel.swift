@@ -11,16 +11,21 @@ final class PastCompetitionsViewModel: ObservableObject {
     
     @Published var state: LoadingState<[Competition]> = .none
     
-    private let repository: FirestoreCompetitionRepository
+    private let competitionService: CompetitionService
+    private weak var appState: AppState?
     
-    init(repository: FirestoreCompetitionRepository = FirestoreCompetitionRepository()) {
-        self.repository = repository
+    init(
+        appState: AppState,
+        competitionService: CompetitionService = DefaultCompetitionService()
+    ) {
+        self.appState = appState
+        self.competitionService = competitionService
     }
     
     func loadPastCompetitions() async {
         state = .loading
         do {
-            let pastCompetitions = try await repository.fetchPastCompetitions()
+            let pastCompetitions = try await competitionService.fetchPastCompetitions()
             state = .success(pastCompetitions)
         } catch {
             state = .error(error)

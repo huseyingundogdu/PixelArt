@@ -7,29 +7,32 @@
 
 import SwiftUI
 
-struct JoinButtonView: View {
-    
-    @ObservedObject var vm: JoinButtonViewModel
+enum JoinButtonState: Equatable {
+    case idle
+    case loading
+    case joined
+    case error(String)
+}
 
-    var onRequestJoin: () -> Void
+struct JoinButtonView: View {
+
+    var state: JoinButtonState
+    var onTapped: () -> Void
     
     var body: some View {
         Button {
             // Eskiden doğrudan join yapıyorduk
             // Şimdi "Are you sure?" açtırıyoruz:
-            onRequestJoin()
+            onTapped()
         } label: {
             labelView
         }
         .disabled(!isButtonEnabled)
-        .task {
-            await vm.checkIfUserAlreadyJoined()
-        }
     }
     
     @ViewBuilder
     private var labelView: some View {
-        switch vm.state {
+        switch state {
         case .idle:
             Text("Join")
                 .bold()
@@ -50,7 +53,7 @@ struct JoinButtonView: View {
     }
     
     private var isButtonEnabled: Bool {
-        switch vm.state {
+        switch state {
         case .idle, .error:
             return true
         default:

@@ -10,45 +10,49 @@ import SwiftUI
 struct ArtworkViewer: View {
     @State private var showFullScreen: Bool = false
     let artwork: Artwork
-    
+    let viewSize: CGFloat // dışarıdan verilecek çerçeve
+    let isFullScreenAvailable: Bool
+
     var body: some View {
+        let columns = artwork.size[0]
+        let rows = artwork.size[1]
+        let cellSize = viewSize / CGFloat(columns)
+
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-            ForEach(0..<artwork.size[1], id: \.self) { row in
+            ForEach(0..<rows, id: \.self) { row in
                 GridRow {
-                    ForEach(0..<artwork.size[0], id: \.self) { col in
-                        let index = row * artwork.size[0] + col
+                    ForEach(0..<columns, id: \.self) { col in
+                        let index = row * columns + col
                         Rectangle()
                             .fill(Color(hex: artwork.data[index]))
-//                            .frame(width: 25, height: 25)
+                            .frame(width: cellSize, height: cellSize)
                     }
                 }
             }
         }
-        .frame(width: 150, height: 150)
-        .padding(4)
+        .frame(width: viewSize, height: cellSize * CGFloat(rows))
         .border(.black, width: 4)
-        .pixelBackground(paddingValue: 10)
         .overlay(alignment: .topTrailing) {
-            Button {
-                showFullScreen = true
-            } label: {
-                Image("ic_eye")
-                    .resizable()
-                    .interpolation(.none)
-                    .frame(width: 30, height: 30)
-                    .padding()
+            if isFullScreenAvailable {
+                Button {
+                    showFullScreen = true
+                } label: {
+                    Image("ic_eye")
+                        .resizable()
+                        .interpolation(.none)
+                        .frame(width: 20, height: 20)
+                        .padding(8)
+                }
             }
         }
         .fullScreenCover(isPresented: $showFullScreen) {
             FullscreenArtworkView(artwork: artwork)
         }
-        
-        
     }
 }
 
 #Preview {
-    ArtworkViewer(artwork: MockData.artwork_mushroom)
+    ArtworkViewer(artwork: MockData.artwork_mushroom, viewSize: 200, isFullScreenAvailable: true)
 }
 
 struct FullscreenArtworkView: View {

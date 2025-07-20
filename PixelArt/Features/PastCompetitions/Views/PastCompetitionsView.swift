@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct PastCompetitionsView: View {
+    let appState: AppState
     
-    @StateObject private var viewModel = PastCompetitionsViewModel()
+    @StateObject private var viewModel: PastCompetitionsViewModel
     @Binding var path: NavigationPath
+    
+    init(
+        appState: AppState,
+        path: Binding<NavigationPath>
+    ) {
+        self.appState = appState
+        _path = path
+        _viewModel = StateObject(wrappedValue: PastCompetitionsViewModel(appState: appState))
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -60,6 +70,6 @@ struct PastCompetitionsView: View {
     }
 }
 
-#Preview {
-    PastCompetitionsView(path: .constant(NavigationPath()))
-}
+//#Preview {
+//    PastCompetitionsView(path: .constant(NavigationPath()))
+//}

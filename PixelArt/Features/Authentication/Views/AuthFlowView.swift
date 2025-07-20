@@ -12,14 +12,21 @@ enum AuthFlowViewPath: Hashable {
 }
 
 struct AuthFlowView: View {
-    @EnvironmentObject var appState: AppState
+    let appState: AppState
     @State private var path: NavigationPath = NavigationPath()
+    
+    init(appState: AppState) {
+        self.appState = appState
+    }
     
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
                 CustomNavBar(title: "PixelArt", subtitle: "Login")
-                LoginView(path: $path)
+                LoginView(
+                    appState: appState,
+                    path: $path
+                )
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -27,13 +34,17 @@ struct AuthFlowView: View {
             .navigationDestination(for: AuthFlowViewPath.self) { destination in
                 switch destination {
                 case .signUp:
-                    SignupView(path: $path)
+                    SignupView(
+                        path: $path,
+                        appState: appState
+                    )
                 }
             }
         }
     }
 }
 
-#Preview {
-    AuthFlowView()
-}
+//#Preview {
+//    AuthFlowView()
+//        .environmentObject(AppState())
+//}
