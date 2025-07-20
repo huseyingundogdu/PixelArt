@@ -7,11 +7,10 @@
 
 import Foundation
 
-
 final class OtherUserProfileViewModel: ObservableObject {
     
-    @Published var state: LoadingState<OtherUserProfileData> = .none
-        
+    @Published var state: LoadingState<ProfileViewData> = .none
+    
     private weak var appState: AppState?
     private let artworkService: ArtworkService
     private let userService: UserService
@@ -38,7 +37,7 @@ final class OtherUserProfileViewModel: ObservableObject {
             let archivedArtworks = try await loadSelectedUserArchivedArtworks()
             let sharedArtworks = try await loadSelectedUserSharedArtworks()
             
-            state = .success(OtherUserProfileData(user: appUser, archive: archivedArtworks, shared: sharedArtworks))
+            state = .success(ProfileViewData(user: appUser, archived: archivedArtworks, shared: sharedArtworks))
         } catch {
             state = .error(error)
         }
@@ -56,10 +55,15 @@ final class OtherUserProfileViewModel: ObservableObject {
         return try await artworkService.fetchArchived(for: selectedUserId)
     }
     
+    func isOwnProfile() -> Bool {
+        return appState?.currentUser?.uid == selectedUserId
+    }
+    
+    func isFollowing() -> Bool {
+//        guard let currentUser = appState.currentUser else {
+//            
+//        }
+    }
 }
 
-struct OtherUserProfileData: Codable, Equatable, Hashable {
-    let user: AppUser
-    let archive: [Artwork]
-    let shared: [Artwork]
-}
+

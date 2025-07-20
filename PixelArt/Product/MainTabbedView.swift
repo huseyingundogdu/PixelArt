@@ -14,13 +14,13 @@ struct MainTabbedView: View {
     // View'leri bir kere yarat ve sakla
     private let competitionView: CompetitionView
     private let artworksView: ArtworksView
-    private let profileView: ProfileView
+    private let profileView: CurrentUserProfileView
     
     init(appState: AppState) {
         self.appState = appState
         self.competitionView = CompetitionView(appState: appState)
         self.artworksView = ArtworksView(appState: appState)
-        self.profileView = ProfileView(appState: appState)
+        self.profileView = CurrentUserProfileView(appState: appState)
     }
 
     var body: some View {

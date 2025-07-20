@@ -51,7 +51,7 @@ struct SectionView: View {
             } else {
                 ForEach(artworks, id: \.self) { artwork in
                     HStack {
-                        ArtworkViewer(artwork: artwork)
+                        ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
                         VStack(alignment: .leading) {
                             if let topic = artwork.topic { Text(topic) }
                             if let competitionId = artwork.competitionId { Text(competitionId) }

@@ -16,12 +16,13 @@ struct ProfileContentView: View {
     let archived: [Artwork]
     let shared: [Artwork]
     
+    let showFollowButton: Bool
+    let isFollowing: Bool?
+    let onFollowTapped: (() -> Void)?
+    
     var body: some View {
-        
         ScrollView {
-            
             VStack {
-                
                 VStack(alignment: .center) {
                     ArtworkViewer(artwork: 
                                     Artwork(id: "",
@@ -31,7 +32,8 @@ struct ProfileContentView: View {
                                             competitionId: nil,
                                             size: [2, 2],
                                             topic: nil,
-                                            status: .personal)
+                                            status: .personal), viewSize: 200,
+                                  isFullScreenAvailable: true
                     )
                         .scaleEffect(0.8)
                     
@@ -39,20 +41,28 @@ struct ProfileContentView: View {
                         HStack(alignment: .top) {
                             VStack(alignment: .leading) {
                                 Text(user.username)
-                                
-                                
                                 Text(user.email)
                                     .foregroundStyle(.gray)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Spacer()
+                            
+                            if showFollowButton {
+                                if let isFollowing {
+                                    Button(isFollowing ? "Unfollow" : "Follow") {
+                                        onFollowTapped?()
+                                    }
+                                } else {
+                                    ProgressView()
+                                }
+                            }
                         }
                         .font(.custom("Micro5-Regular", size: 25))
                         
                         HStack {
                             Button {
-                                
+                                path.append(ProfileTo.follow(user.username, "Followers", user.followers))
                             } label: {
                                 Text("\(user.followers.count)")
                                 Text("Followers")
@@ -61,7 +71,7 @@ struct ProfileContentView: View {
                             .foregroundStyle(.black)
 
                             Button {
-                                
+                                path.append(ProfileTo.follow(user.username, "Following", user.following))
                             } label: {
                                 Text("\(user.following.count)")
                                 Text("Following")
@@ -73,47 +83,34 @@ struct ProfileContentView: View {
                         }
                         .font(.custom("Micro5-Regular", size: 25))
                         
-                        Button(user.followers[0]) {
-                            path.append(ProfileTo.otherUserProfile(user.followers[0]))
-                        }
                     }
                 }
                 
                 Rectangle()
                     .frame(height: 3)
                 
-                VStack {
+                VStack(spacing: 10) {
                     Text("Gallery of \(user.username)")
                         .font(.custom("Micro5-Regular", size: 35))
-                    
-                   
                     
                     CustomSegmentedControl(
                         options: ["Competition", "Shared"],
                         selectedIndex: $selectedIndex
                     )
                     
+                    Rectangle()
+                        .frame(height: 3)
+                    
                     if selectedIndex == 0 {
-                        ForEach(archived, id: \.self) { artwork in
-                            HStack {
-                                ArtworkViewer(artwork: artwork)
-                                    .scaleEffect(0.8)
-                                
-                                VStack {
-                                    Text(artwork.competitionId ?? "ERROR")
-                                    Text("Like - 25")
-                                }
+                        VStack(spacing: 10) {
+                            ForEach(archived, id: \.self) { artwork in
+                                galleryRow(isCompetition: true, artwork: artwork)
                             }
-                            
-                            Spacer()
                         }
                     } else {
-                        ForEach(shared, id: \.self) { artwork in
-                            HStack {
-                                ArtworkViewer(artwork: artwork)
-                                    .scaleEffect(0.8)
-                                
-                                Spacer()
+                        VStack(spacing: 10) {
+                            ForEach(shared, id: \.self) { artwork in
+                                galleryRow(isCompetition: false, artwork: artwork)
                             }
                         }
                     }
@@ -126,6 +123,33 @@ struct ProfileContentView: View {
     }
 }
 
+extension ProfileContentView {
+    private func galleryRow(isCompetition: Bool, artwork: Artwork) -> some View {
+        HStack(alignment: .top) {
+            ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
+            VStack(alignment: .leading) {
+                Text("Competition: \(artwork.topic ?? "ERROR")")
+                Text("Topic: " + (artwork.topic ?? "ERROR"))
+                Spacer()
+                if isCompetition {
+                    HStack {
+                        Spacer()
+                        Text("25")
+                        Image("ic_heart_fill")
+                            .resizable()
+                            .interpolation(.none)
+                            .frame(width: 20, height: 20)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top)
+        }
+        .background(Color(hex:"d4d4d4"))
+        .pixelBackground(paddingValue: 10)
+    }
+}
+/*
 #Preview {
     ProfileContentView(
         path: .constant(NavigationPath()),
@@ -139,10 +163,11 @@ struct ProfileContentView: View {
             joinedCompetitions: [],
             createdAt: .now
         ),
-        archived: [],
-        shared: []
+        archived: [MockData.artwork_face_avatar, MockData.artwork2],
+        shared: [MockData.artwork_heart, MockData.artwork_skull]
     )
 }
+ */
 
 
 struct CustomSegmentedControl: View {

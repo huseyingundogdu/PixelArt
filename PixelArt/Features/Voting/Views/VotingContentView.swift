@@ -22,7 +22,7 @@ struct VotingContentView: View {
             
             ForEach(artworks, id: \.self) { artwork in
                 HStack {
-                    ArtworkViewer(artwork: artwork)
+                    ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
                     
                     VStack(alignment: .leading) {
                         Text(artwork.authorId)

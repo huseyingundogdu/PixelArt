@@ -25,9 +25,22 @@ struct OtherUserProfileView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            CustomNavBar(
+                title: "Profile",
+                subtitle: nil,
+                leadingButtonIcon: "ic_arrow",
+                leadingButtonAction: {
+                    path.removeLast()
+                },
+                trailingButtonIcon: nil,
+                trailingButtonAction: nil
+            )
             contentView
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .background(Color(hex: "d4d4d4"))
+        .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             Task { await viewModel.load() }
         }
@@ -39,11 +52,17 @@ struct OtherUserProfileView: View {
         case .none, .loading:
             ProgressView("Loading...")
         case .success(let data):
-            OtherUserProfileContentView(
-                appUser: data.user,
-                archivedArtworks: data.archive,
-                sharedArtworks: data.shared
+            
+            ProfileContentView(
+                path: $path,
+                user: data.user,
+                archived: data.archived,
+                shared: data.shared,
+                showFollowButton: !viewModel.isOwnProfile(),
+                isFollowing: nil,
+                onFollowTapped: nil
             )
+            
         case .error(let error):
             VStack {
                 Text("\(error.localizedDescription)")
