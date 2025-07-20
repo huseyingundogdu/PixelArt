@@ -17,7 +17,7 @@ struct ProfileContentView: View {
     let shared: [Artwork]
     
     let showFollowButton: Bool
-    let isFollowing: Bool?
+    @Binding var isFollowing: Bool?
     let onFollowTapped: (() -> Void)?
     
     var body: some View {

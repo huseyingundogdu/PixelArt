@@ -46,7 +46,9 @@ final class CurrentUserProfileViewModel: ObservableObject {
             state = .success(ProfileViewData(
                 user: appUser,
                 archived: archivedArtworks,
-                shared: sharedArtworks))
+                shared: sharedArtworks,
+                isFollowing: nil
+            ))
         } catch {
             state = .error(error)
         }

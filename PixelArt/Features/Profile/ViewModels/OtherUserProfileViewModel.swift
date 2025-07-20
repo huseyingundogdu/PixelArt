@@ -11,9 +11,13 @@ final class OtherUserProfileViewModel: ObservableObject {
     
     @Published var state: LoadingState<ProfileViewData> = .none
     
+    @Published var error: Error? = nil
+    @Published var isFollowing: Bool? = nil
+    
     private weak var appState: AppState?
     private let artworkService: ArtworkService
     private let userService: UserService
+    private let followService: FollowService
         
     private let selectedUserId: String
     
@@ -21,11 +25,13 @@ final class OtherUserProfileViewModel: ObservableObject {
         appState: AppState,
         artworkService: ArtworkService = DefaultArtworkService(),
         userService: UserService = DefaultUserService(currentUserId: nil),
+        followService: FollowService,
         selectedUserId: String
     ) {
         self.appState = appState
         self.artworkService = artworkService
         self.userService = userService
+        self.followService = followService
         self.selectedUserId = selectedUserId
     }
     
@@ -36,8 +42,9 @@ final class OtherUserProfileViewModel: ObservableObject {
             let appUser = try await loadSelectedUserInformation()
             let archivedArtworks = try await loadSelectedUserArchivedArtworks()
             let sharedArtworks = try await loadSelectedUserSharedArtworks()
+            isFollowing = try await isFollowing()
             
-            state = .success(ProfileViewData(user: appUser, archived: archivedArtworks, shared: sharedArtworks))
+            state = .success(ProfileViewData(user: appUser, archived: archivedArtworks, shared: sharedArtworks, isFollowing: isFollowing))
         } catch {
             state = .error(error)
         }
@@ -59,10 +66,34 @@ final class OtherUserProfileViewModel: ObservableObject {
         return appState?.currentUser?.uid == selectedUserId
     }
     
-    func isFollowing() -> Bool {
-//        guard let currentUser = appState.currentUser else {
-//            
-//        }
+    func isFollowing() async throws -> Bool {
+        guard let currentUser = appState?.currentUser else {
+            throw NSError(domain: "Unauthorized", code: 401, userInfo: [NSLocalizedDescriptionKey: "Unauthorized - Please login first."])
+        }
+        
+        return try await followService.isFollowing(followerId: currentUser.uid, followedId: selectedUserId)
+    }
+    
+    func toggleFollow() async {
+        guard let currentUser = appState?.currentUser else { return }
+            
+        do {
+            let isFollowing = try await followService.isFollowing(followerId: currentUser.uid, followedId: selectedUserId)
+            
+            if isFollowing {
+                try await followService.unfollow(followerId: currentUser.uid, followedId: selectedUserId)
+                self.isFollowing = false
+            } else {
+                try await followService.follow(followerId: currentUser.uid, followedId: selectedUserId)
+                self.isFollowing = true
+            }
+            
+        } catch {
+            self.error = error
+            print(error.localizedDescription)
+        }
+        
+        
     }
 }
 

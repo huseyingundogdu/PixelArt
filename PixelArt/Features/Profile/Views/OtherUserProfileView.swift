@@ -21,7 +21,7 @@ struct OtherUserProfileView: View {
         self.appState = appState
         _path = path
         self.selectedUserId = selectedUserId
-        _viewModel = StateObject(wrappedValue: OtherUserProfileViewModel(appState: appState, selectedUserId: selectedUserId))
+        _viewModel = StateObject(wrappedValue: OtherUserProfileViewModel(appState: appState, followService: AppUserBasedFollowService(userService: DefaultUserService(currentUserId: appState.currentUser?.uid)), selectedUserId: selectedUserId))
     }
     
     var body: some View {
@@ -59,8 +59,10 @@ struct OtherUserProfileView: View {
                 archived: data.archived,
                 shared: data.shared,
                 showFollowButton: !viewModel.isOwnProfile(),
-                isFollowing: nil,
-                onFollowTapped: nil
+                isFollowing: $viewModel.isFollowing,
+                onFollowTapped: {
+                    Task { await viewModel.toggleFollow() }
+                }
             )
             
         case .error(let error):

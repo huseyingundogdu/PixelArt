@@ -75,7 +75,7 @@ struct CurrentUserProfileView: View {
                 archived: data.archived,
                 shared: data.shared,
                 showFollowButton: false,
-                isFollowing: nil,
+                isFollowing: .constant(nil),
                 onFollowTapped: nil
             )
         case .error(let error):
