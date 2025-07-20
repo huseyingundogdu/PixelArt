@@ -12,4 +12,7 @@ protocol UserRepository {
     func createAppUser(_ user: AppUser) async throws
     func updateAppUser(_ user: AppUser) async throws
     func deleteAppUser(_ user: AppUser) async throws
+    
+    func follow(followerId: String, followedId: String) async throws
+    func unfollow(followerId: String, followedId: String) async throws
 }

@@ -37,4 +37,30 @@ final class FirebaseUserRepository: UserRepository {
             .document(user.id)
             .delete()
     }
+    
+    func follow(followerId: String, followedId: String) async throws {
+        let followerRef = db.collection(FirestoreCollection.users).document(followerId)
+        let followedRef = db.collection(FirestoreCollection.users).document(followedId)
+        
+        try await followerRef.updateData([
+            "following": FieldValue.arrayUnion([followedId])
+        ])
+        
+        try await followedRef.updateData([
+            "following": FieldValue.arrayUnion([followerId])
+        ])
+    }
+    
+    func unfollow(followerId: String, followedId: String) async throws {
+        let followerRef = db.collection(FirestoreCollection.users).document(followerId)
+        let followedRef = db.collection(FirestoreCollection.users).document(followedId)
+        
+        try await followerRef.updateData([
+            "following": FieldValue.arrayRemove([followedId])
+        ])
+        
+        try await followedRef.updateData([
+            "following": FieldValue.arrayRemove([followerId])
+        ])
+    }
 }

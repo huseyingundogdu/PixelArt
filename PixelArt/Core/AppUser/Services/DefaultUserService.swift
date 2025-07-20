@@ -72,6 +72,14 @@ final class DefaultUserService: UserService {
     private func isUsernameValid(username: String) -> Bool {
         !username.isEmpty
     }
+    
+    func follow(followerId: String, followedId: String) async throws {
+        try await userRepository.follow(followerId: followerId, followedId: followedId)
+    }
+    
+    func unfollow(followerId: String, followedId: String) async throws {
+        try await userRepository.unfollow(followerId: followerId, followedId: followedId)
+    }
 }
 
 
