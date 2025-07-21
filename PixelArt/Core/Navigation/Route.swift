@@ -9,6 +9,7 @@ import SwiftUI
 
 enum Route: Hashable {
     case competition(CompetitionRoutes)
+    case artworks(ArtworksRoutes)
     case profile(ProfileRoutes)
     
     @ViewBuilder

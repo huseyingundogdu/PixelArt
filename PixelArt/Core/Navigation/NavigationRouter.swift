@@ -10,6 +10,7 @@ import SwiftUI
 final class NavigationRouter: ObservableObject {
     
     @Published var competitionRoutes: [CompetitionRoutes] = []
+    @Published var artworksRoutes: [ArtworksRoutes] = []
     @Published var profileRoutes: [ProfileRoutes] = []
     
 }
