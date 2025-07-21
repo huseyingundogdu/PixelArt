@@ -51,6 +51,11 @@
 		F05ADD812DD285E0008E104C /* ArtworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05ADD802DD285E0008E104C /* ArtworksView.swift */; };
 		F05ADD832DD296D2008E104C /* TabbedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05ADD822DD296D2008E104C /* TabbedItems.swift */; };
 		F05ADD852DD29768008E104C /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05ADD842DD29768008E104C /* MainTabbedView.swift */; };
+		F0628A562E2DC129005B907C /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A552E2DC129005B907C /* NavigationRouter.swift */; };
+		F0628A582E2DC132005B907C /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A572E2DC132005B907C /* Route.swift */; };
+		F0628A5B2E2DC300005B907C /* CompetitionRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5A2E2DC300005B907C /* CompetitionRoutes.swift */; };
+		F0628A5D2E2DC30D005B907C /* ArtworkRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5C2E2DC30D005B907C /* ArtworkRoutes.swift */; };
+		F0628A5F2E2DC318005B907C /* ProfileRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */; };
 		F06566582DD208C800C7D251 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06566572DD208C800C7D251 /* CompetitionView.swift */; };
 		F065665B2DD20A8500C7D251 /* Micro5-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F065665A2DD20A8400C7D251 /* Micro5-Regular.ttf */; };
 		F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065665D2DD20F6E00C7D251 /* PixelBackgroundModifier.swift */; };
@@ -171,6 +176,11 @@
 		F05ADD802DD285E0008E104C /* ArtworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworksView.swift; sourceTree = "<group>"; };
 		F05ADD822DD296D2008E104C /* TabbedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedItems.swift; sourceTree = "<group>"; };
 		F05ADD842DD29768008E104C /* MainTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
+		F0628A552E2DC129005B907C /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		F0628A572E2DC132005B907C /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		F0628A5A2E2DC300005B907C /* CompetitionRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionRoutes.swift; sourceTree = "<group>"; };
+		F0628A5C2E2DC30D005B907C /* ArtworkRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkRoutes.swift; sourceTree = "<group>"; };
+		F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoutes.swift; sourceTree = "<group>"; };
 		F06566572DD208C800C7D251 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
 		F065665A2DD20A8400C7D251 /* Micro5-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Micro5-Regular.ttf"; sourceTree = "<group>"; };
 		F065665D2DD20F6E00C7D251 /* PixelBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelBackgroundModifier.swift; sourceTree = "<group>"; };
@@ -531,6 +541,26 @@
 			path = Artworks;
 			sourceTree = "<group>";
 		};
+		F0628A542E2DC112005B907C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F0628A592E2DC2F6005B907C /* Routes */,
+				F0628A572E2DC132005B907C /* Route.swift */,
+				F0628A552E2DC129005B907C /* NavigationRouter.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F0628A592E2DC2F6005B907C /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				F0628A5A2E2DC300005B907C /* CompetitionRoutes.swift */,
+				F0628A5C2E2DC30D005B907C /* ArtworkRoutes.swift */,
+				F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,6 +744,7 @@
 		F0B735B52E29699600BA021A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F0628A542E2DC112005B907C /* Navigation */,
 				F04E29062E2CA98B00E759F4 /* Follow */,
 				F0B735CC2E296ECA00BA021A /* Auth */,
 				F0B735C72E296E6A00BA021A /* AppUser */,
@@ -1049,8 +1080,10 @@
 				F04E29012E2C691D00E759F4 /* UserListViewModel.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
 				F08C59272E1B14310057DFEB /* FirebaseAuthService.swift in Sources */,
+				F0628A562E2DC129005B907C /* NavigationRouter.swift in Sources */,
 				F0B735B22E288F1000BA021A /* DefaultUserService.swift in Sources */,
 				F04E29042E2C954100E759F4 /* ProfileViewData.swift in Sources */,
+				F0628A5B2E2DC300005B907C /* CompetitionRoutes.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
 				F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */,
@@ -1072,6 +1105,7 @@
 				F0B735E02E2AC8C900BA021A /* CompetitionService.swift in Sources */,
 				F0B735E22E2AC8D800BA021A /* DefaultCompetitionService.swift in Sources */,
 				F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */,
+				F0628A5F2E2DC318005B907C /* ProfileRoutes.swift in Sources */,
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
 				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
 				F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */,
@@ -1080,8 +1114,10 @@
 				F05681762E0C4730003D6C82 /* Notification.swift in Sources */,
 				F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */,
 				F004D6ED2DDBDB15009B1767 /* FirestoreCompetitionRepository.swift in Sources */,
+				F0628A582E2DC132005B907C /* Route.swift in Sources */,
 				F004D7042DDCAC27009B1767 /* CustomAlertView.swift in Sources */,
 				F055A5662E1036B000611D1D /* ScoringCompetitionsViewModel.swift in Sources */,
+				F0628A5D2E2DC30D005B907C /* ArtworkRoutes.swift in Sources */,
 				F004D7002DDBEBD6009B1767 /* MockCompetition.swift in Sources */,
 				F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */,
 				F004D6E52DDBC093009B1767 /* LoadingState.swift in Sources */,
