@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct UserListContentView: View {
-    @Binding var path: NavigationPath
     let appUsers: [AppUser]
     
     var body: some View {
         ScrollView {
             ForEach(appUsers) { user in
                 Button {
-                    path.append(ProfileTo.otherUserProfile(user.id))
+
                 } label: {
                     HStack {
                         //FIXME: ArtoworkViewer will change to Profile Picture Viewer fixed size 64x64
@@ -51,7 +50,6 @@ struct UserListContentView: View {
 
 #Preview {
     UserListContentView(
-        path: .constant(NavigationPath()),
         appUsers: [
         AppUser(
             id: "user-id-1",

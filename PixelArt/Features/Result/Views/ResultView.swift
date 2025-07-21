@@ -10,12 +10,10 @@ import SwiftUI
 struct ResultView: View {
     
     @StateObject private var viewModel: ResultViewModel
-    @Binding var path: NavigationPath
     let competition: Competition
     
-    init(path: Binding<NavigationPath>, competition: Competition) {
+    init(competition: Competition) {
         _viewModel = StateObject(wrappedValue: ResultViewModel(competition: competition))
-        self._path = path
         self.competition = competition
     }
     
@@ -25,7 +23,7 @@ struct ResultView: View {
                 title: "Result",
                 subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
-                leadingButtonAction: { path.removeLast() }
+                leadingButtonAction: {  }
             )
             
             contentView
@@ -71,5 +69,5 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(path: .constant(NavigationPath()), competition: MockData.competition)
+    ResultView(competition: MockData.competition)
 }

@@ -20,7 +20,7 @@ struct CompetitionView: View {
     let appState: AppState
     
     @StateObject private var viewModel: CompetitionViewModel
-    @State private var path = NavigationPath()
+
     
     init(appState: AppState) {
         self.appState = appState
@@ -28,17 +28,17 @@ struct CompetitionView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             VStack(spacing: 0) {
                 
                 CustomNavBar(
                     title: "Competition",
                     leadingButtonIcon: "ic_comp",
                     leadingButtonAction: {
-                        path.append(CompetitionTo.scoringCompetitions)
+                        
                     },
                     trailingButtonIcon: "ic_crown") {
-                        path.append(CompetitionTo.allCompetitions)
+                        
                     }
                 
                 
@@ -48,18 +48,6 @@ struct CompetitionView: View {
             }
             .onAppear { 
                 Task { await viewModel.loadActiveCompetition() }
-            }
-            .navigationDestination(for: CompetitionTo.self) { destinationValue in
-                switch destinationValue {
-                case .allCompetitions:
-                    PastCompetitionsView(appState: appState, path: $path)
-                case .scoringCompetitions:
-                    ScoringCompetitionsView(appState: appState, path: $path)
-                case .voting(let competition):
-                    VotingView(path: $path, competition: competition)
-                case .result(let competition):
-                    ResultView(path: $path, competition: competition)
-                }
             }
         }
     }

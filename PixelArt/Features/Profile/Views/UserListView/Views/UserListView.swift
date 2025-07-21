@@ -9,7 +9,6 @@ import SwiftUI
 
 struct UserListView: View {
     let appState: AppState
-    @Binding var path: NavigationPath
     @StateObject private var viewModel: UserListViewModel
     
     let usersIds: [String]
@@ -18,13 +17,11 @@ struct UserListView: View {
 
     init(
         appState: AppState,
-        path: Binding<NavigationPath>,
         usersIds: [String],
         title: String,
         subtitle: String
     ) {
         self.appState = appState
-        _path = path
         _viewModel = StateObject(wrappedValue: UserListViewModel(appState: appState, idArr: usersIds))
         self.usersIds = usersIds
         self.title = title
@@ -38,7 +35,7 @@ struct UserListView: View {
                 subtitle: subtitle,
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    path.removeLast()
+
                 }
             )
             
@@ -58,7 +55,7 @@ struct UserListView: View {
             ProgressView("Loading...")
         case .success(let appUsers):
             
-            UserListContentView(path: $path, appUsers: appUsers)
+            UserListContentView(appUsers: appUsers)
             
         case .error(let error):
             VStack {
@@ -72,6 +69,3 @@ struct UserListView: View {
     }
 }
 
-//#Preview {
-//    UserListView(path: .constant(NavigationPath()))
-//}

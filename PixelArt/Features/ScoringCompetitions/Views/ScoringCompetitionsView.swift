@@ -11,14 +11,12 @@ struct ScoringCompetitionsView: View {
     let appState: AppState
     
     @StateObject private var viewModel: ScoringCompetitionsViewModel
-    @Binding var path: NavigationPath
+
     
     init(
-        appState: AppState,
-        path: Binding<NavigationPath>
+        appState: AppState
     ) {
         self.appState = appState
-        _path = path
         _viewModel = StateObject(wrappedValue: ScoringCompetitionsViewModel(appState: appState))
     }
     
@@ -29,7 +27,6 @@ struct ScoringCompetitionsView: View {
                 subtitle: "Scoring",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    path.removeLast()
                 }
             )
             
@@ -56,7 +53,7 @@ struct ScoringCompetitionsView: View {
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let scoringCompetitions):
             
-            ScoringCompetitionsContentView(path: $path, scoringCompetitions: scoringCompetitions)
+            ScoringCompetitionsContentView(scoringCompetitions: scoringCompetitions)
             
         case .error(let error):
             VStack(spacing: 16) {
@@ -76,6 +73,3 @@ struct ScoringCompetitionsView: View {
     }
 }
 
-//#Preview {
-//    ScoringCompetitionsView(path: .constant(NavigationPath()))
-//}

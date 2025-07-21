@@ -15,7 +15,6 @@ enum ProfileTo: Hashable {
 struct CurrentUserProfileView: View {
     let appState: AppState
     @StateObject private var viewModel: CurrentUserProfileViewModel
-    @State private var path: NavigationPath = NavigationPath()
     
     init(appState: AppState) {
         self.appState = appState
@@ -23,7 +22,7 @@ struct CurrentUserProfileView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
                 CustomNavBar(
                     title: "Profile",
@@ -42,24 +41,6 @@ struct CurrentUserProfileView: View {
             .onAppear {
                 Task { await viewModel.load() }
             }
-            .navigationDestination(for: ProfileTo.self) { destinationValue in
-                switch destinationValue {
-                case .otherUserProfile(let selectedUserId):
-                    OtherUserProfileView(
-                        appState: appState,
-                        path: $path,
-                        selectedUserId: selectedUserId
-                    )
-                case .follow(let title, let subtitle, let usersIds):
-                    UserListView(
-                        appState: appState,
-                        path: $path,
-                        usersIds: usersIds,
-                        title: title,
-                        subtitle: subtitle
-                    )
-                }
-            }
         }
     }
     
@@ -70,7 +51,6 @@ struct CurrentUserProfileView: View {
             ProgressView("Loading...")
         case .success(let data):
             ProfileContentView(
-                path: $path,
                 user: data.user,
                 archived: data.archived,
                 shared: data.shared,

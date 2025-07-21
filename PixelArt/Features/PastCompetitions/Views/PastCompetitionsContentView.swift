@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PastCompetitionsContentView: View {
-    @Binding var path: NavigationPath
+
     let pastCompetitions: [Competition]
     
     var body: some View {
@@ -18,7 +18,7 @@ struct PastCompetitionsContentView: View {
                     RowView(competition: competition)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .pixelBackground()
-                        .onTapGesture { path.append(CompetitionTo.result(competition)) }
+                        .onTapGesture {  }
                 }
             }
             .padding()
@@ -31,7 +31,7 @@ struct PastCompetitionsContentView: View {
 }
 
 #Preview {
-    PastCompetitionsContentView(path: .constant(NavigationPath()),pastCompetitions: [MockData.competition, MockData.competition, MockData.competition])
+    PastCompetitionsContentView(pastCompetitions: [MockData.competition, MockData.competition, MockData.competition])
 }
 
 

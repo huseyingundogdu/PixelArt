@@ -9,7 +9,6 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileContentView: View {
-    @Binding var path: NavigationPath
     @State private var selectedIndex: Int = 0
     
     let user: AppUser
@@ -62,7 +61,7 @@ struct ProfileContentView: View {
                         
                         HStack {
                             Button {
-                                path.append(ProfileTo.follow(user.username, "Followers", user.followers))
+                                
                             } label: {
                                 Text("\(user.followers.count)")
                                 Text("Followers")
@@ -71,7 +70,7 @@ struct ProfileContentView: View {
                             .foregroundStyle(.black)
 
                             Button {
-                                path.append(ProfileTo.follow(user.username, "Following", user.following))
+                                
                             } label: {
                                 Text("\(user.following.count)")
                                 Text("Following")
@@ -149,25 +148,6 @@ extension ProfileContentView {
         .pixelBackground(paddingValue: 10)
     }
 }
-/*
-#Preview {
-    ProfileContentView(
-        path: .constant(NavigationPath()),
-        user: AppUser(
-            id: "user-id",
-            email: "user-email",
-            username: "username",
-            profilePictureData: ["#5C2751", "#6457A6", "#9DACFF", "#4BC0D9"],
-            followers: [],
-            following: [],
-            joinedCompetitions: [],
-            createdAt: .now
-        ),
-        archived: [MockData.artwork_face_avatar, MockData.artwork2],
-        shared: [MockData.artwork_heart, MockData.artwork_skull]
-    )
-}
- */
 
 
 struct CustomSegmentedControl: View {

@@ -10,16 +10,14 @@ import SwiftUI
 struct OtherUserProfileView: View {
     let appState: AppState
     let selectedUserId: String
-    @Binding var path: NavigationPath
+    
     @StateObject private var viewModel: OtherUserProfileViewModel
     
     init(
         appState: AppState,
-        path: Binding<NavigationPath>,
         selectedUserId: String
     ) {
         self.appState = appState
-        _path = path
         self.selectedUserId = selectedUserId
         _viewModel = StateObject(wrappedValue: OtherUserProfileViewModel(appState: appState, followService: AppUserBasedFollowService(userService: DefaultUserService(currentUserId: appState.currentUser?.uid)), selectedUserId: selectedUserId))
     }
@@ -31,7 +29,7 @@ struct OtherUserProfileView: View {
                 subtitle: nil,
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    path.removeLast()
+
                 },
                 trailingButtonIcon: nil,
                 trailingButtonAction: nil
@@ -54,7 +52,6 @@ struct OtherUserProfileView: View {
         case .success(let data):
             
             ProfileContentView(
-                path: $path,
                 user: data.user,
                 archived: data.archived,
                 shared: data.shared,
@@ -74,6 +71,3 @@ struct OtherUserProfileView: View {
     
 }
 
-//#Preview {
-//    OtherUserProfileView()
-//}

@@ -11,14 +11,12 @@ struct PastCompetitionsView: View {
     let appState: AppState
     
     @StateObject private var viewModel: PastCompetitionsViewModel
-    @Binding var path: NavigationPath
+
     
     init(
-        appState: AppState,
-        path: Binding<NavigationPath>
+        appState: AppState
     ) {
         self.appState = appState
-        _path = path
         _viewModel = StateObject(wrappedValue: PastCompetitionsViewModel(appState: appState))
     }
     
@@ -29,7 +27,7 @@ struct PastCompetitionsView: View {
                 subtitle: "Past",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    path.removeLast()
+                    
                 }
             )
             
@@ -51,7 +49,7 @@ struct PastCompetitionsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .font(.custom("Micro5-Regular", size: 32))
         case .success(let pastCompetitions):
-            PastCompetitionsContentView(path: $path, pastCompetitions: pastCompetitions)
+            PastCompetitionsContentView(pastCompetitions: pastCompetitions)
         case .error(let error):
             VStack(spacing: 16) {
                 Text("\(error.localizedDescription)")
@@ -70,6 +68,3 @@ struct PastCompetitionsView: View {
     }
 }
 
-//#Preview {
-//    PastCompetitionsView(path: .constant(NavigationPath()))
-//}
