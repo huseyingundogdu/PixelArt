@@ -9,11 +9,14 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     @State private var selectedIndex: Int = 0
     
     let user: AppUser
     let archived: [Artwork]
     let shared: [Artwork]
+    let context: RouteContext
     
     let showFollowButton: Bool
     @Binding var isFollowing: Bool?
@@ -61,7 +64,12 @@ struct ProfileContentView: View {
                         
                         HStack {
                             Button {
-                                
+                                switch context {
+                                case .competition:
+                                    router.competitionRoutes.append(.follower(username: user.username, followerIds: user.followers))
+                                case .profile:
+                                    router.profileRoutes.append(.follower(username: user.username, followerIds: user.followers))
+                                }
                             } label: {
                                 Text("\(user.followers.count)")
                                 Text("Followers")
@@ -70,7 +78,12 @@ struct ProfileContentView: View {
                             .foregroundStyle(.black)
 
                             Button {
-                                
+                                switch context {
+                                case .competition:
+                                    router.competitionRoutes.append(.following(username: user.username, followingIds: user.following))
+                                case .profile:
+                                    router.profileRoutes.append(.following(username: user.username, followingIds: user.following))
+                                }
                             } label: {
                                 Text("\(user.following.count)")
                                 Text("Following")

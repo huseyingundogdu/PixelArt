@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ResultView: View {
+    @EnvironmentObject private var router: NavigationRouter
     
     @StateObject private var viewModel: ResultViewModel
     let competition: Competition
@@ -23,7 +24,9 @@ struct ResultView: View {
                 title: "Result",
                 subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
-                leadingButtonAction: {  }
+                leadingButtonAction: { 
+                    router.competitionRoutes.removeLast()
+                }
             )
             
             contentView

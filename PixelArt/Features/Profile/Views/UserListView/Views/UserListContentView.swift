@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct UserListContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     let appUsers: [AppUser]
+    let context: RouteContext
     
     var body: some View {
         ScrollView {
             ForEach(appUsers) { user in
                 Button {
+                    switch context {
+                    case .competition:
+                        router.competitionRoutes.append(.userProfile(userId: user.id))
+                    case .profile:
+                        router.profileRoutes.append(.userProfile(userId: user.id))
+                    }
 
                 } label: {
                     HStack {
@@ -81,5 +90,7 @@ struct UserListContentView: View {
             joinedCompetitions: [],
             createdAt: .now
         )
-    ])
+    ],
+        context: .competition
+    )
 }

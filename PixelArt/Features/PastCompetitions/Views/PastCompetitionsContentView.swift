@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PastCompetitionsContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
 
     let pastCompetitions: [Competition]
     
@@ -18,7 +19,9 @@ struct PastCompetitionsContentView: View {
                     RowView(competition: competition)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .pixelBackground()
-                        .onTapGesture {  }
+                        .onTapGesture { 
+                            router.competitionRoutes.append(.result(competition: competition))
+                        }
                 }
             }
             .padding()

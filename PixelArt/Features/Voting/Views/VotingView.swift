@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct VotingView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     @StateObject private var viewModel: VotingViewModel
     let competition: Competition
     
@@ -23,7 +25,7 @@ struct VotingView: View {
                 subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-
+                    router.competitionRoutes.removeLast()
                 }
             )
             

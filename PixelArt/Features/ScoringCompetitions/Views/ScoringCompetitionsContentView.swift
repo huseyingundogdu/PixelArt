@@ -12,6 +12,8 @@ private enum StringItems: String {
 }
 
 struct ScoringCompetitionsContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     @State private var currentIndex = 0
     let scoringCompetitions: [Competition]
     
@@ -43,7 +45,7 @@ struct ScoringCompetitionsContentView: View {
                         
                         
                         Button("Score") {
-
+                            router.competitionRoutes.append(.voting(competition: competition))
                         }
                         .pixelBackground()
                     }

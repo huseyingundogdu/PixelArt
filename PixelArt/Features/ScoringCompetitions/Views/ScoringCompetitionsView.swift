@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ScoringCompetitionsView: View {
+    @EnvironmentObject private var router: NavigationRouter
     let appState: AppState
     
     @StateObject private var viewModel: ScoringCompetitionsViewModel
 
-    
     init(
         appState: AppState
     ) {
@@ -27,6 +27,7 @@ struct ScoringCompetitionsView: View {
                 subtitle: "Scoring",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
+                    router.competitionRoutes.removeLast()
                 }
             )
             

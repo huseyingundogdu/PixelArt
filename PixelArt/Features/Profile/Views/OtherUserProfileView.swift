@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct OtherUserProfileView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     let appState: AppState
     let selectedUserId: String
-    
+    let context: RouteContext
+
     @StateObject private var viewModel: OtherUserProfileViewModel
     
     init(
         appState: AppState,
-        selectedUserId: String
+        selectedUserId: String,
+        context: RouteContext
     ) {
         self.appState = appState
         self.selectedUserId = selectedUserId
+        self.context = context
         _viewModel = StateObject(wrappedValue: OtherUserProfileViewModel(appState: appState, followService: AppUserBasedFollowService(userService: DefaultUserService(currentUserId: appState.currentUser?.uid)), selectedUserId: selectedUserId))
     }
     
@@ -29,7 +34,12 @@ struct OtherUserProfileView: View {
                 subtitle: nil,
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-
+                    switch context {
+                    case .competition:
+                        router.competitionRoutes.removeLast()
+                    case .profile:
+                        router.profileRoutes.removeLast()
+                    }
                 },
                 trailingButtonIcon: nil,
                 trailingButtonAction: nil
@@ -55,6 +65,7 @@ struct OtherUserProfileView: View {
                 user: data.user,
                 archived: data.archived,
                 shared: data.shared,
+                context: context,
                 showFollowButton: !viewModel.isOwnProfile(),
                 isFollowing: $viewModel.isFollowing,
                 onFollowTapped: {

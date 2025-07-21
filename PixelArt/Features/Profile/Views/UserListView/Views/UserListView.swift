@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct UserListView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     let appState: AppState
     @StateObject private var viewModel: UserListViewModel
     
     let usersIds: [String]
     let title: String
     let subtitle: String
-
+    let context: RouteContext
+    
     init(
         appState: AppState,
         usersIds: [String],
         title: String,
-        subtitle: String
+        subtitle: String,
+        context: RouteContext
     ) {
         self.appState = appState
         _viewModel = StateObject(wrappedValue: UserListViewModel(appState: appState, idArr: usersIds))
         self.usersIds = usersIds
         self.title = title
         self.subtitle = subtitle
+        self.context = context
     }
     
     var body: some View {
@@ -35,7 +40,12 @@ struct UserListView: View {
                 subtitle: subtitle,
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-
+                    switch context {
+                    case .competition:
+                        router.competitionRoutes.removeLast()
+                    case .profile:
+                        router.profileRoutes.removeLast()
+                    }
                 }
             )
             
@@ -55,7 +65,7 @@ struct UserListView: View {
             ProgressView("Loading...")
         case .success(let appUsers):
             
-            UserListContentView(appUsers: appUsers)
+            UserListContentView(appUsers: appUsers, context: context)
             
         case .error(let error):
             VStack {

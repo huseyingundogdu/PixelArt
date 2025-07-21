@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PastCompetitionsView: View {
+    @EnvironmentObject private var router: NavigationRouter
     let appState: AppState
     
     @StateObject private var viewModel: PastCompetitionsViewModel
@@ -27,7 +28,7 @@ struct PastCompetitionsView: View {
                 subtitle: "Past",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    
+                    router.competitionRoutes.removeLast()
                 }
             )
             

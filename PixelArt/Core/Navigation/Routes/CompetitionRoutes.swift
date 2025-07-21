@@ -14,7 +14,7 @@ enum CompetitionRoutes: Hashable {
     case scoringCompetitions
     case voting(competition: Competition)
     case userProfile(userId: String)
-    case followers(username: String, folllowerIds: [String])
+    case follower(username: String, followerIds: [String])
     case following(username: String, followingIds: [String])
     
     @ViewBuilder
@@ -29,21 +29,27 @@ enum CompetitionRoutes: Hashable {
         case .voting(let competition):
             VotingView(competition: competition)
         case .userProfile(let userId):
-
-            if let currentUser = appState.currentUser {
-                if currentUser.uid == userId {
-                    CurrentUserProfileView(appState: appState)
-                } else {
-                    OtherUserProfileView(appState: appState, selectedUserId: userId)
-                }
-            } else {
-                EmptyView()
-            }
-            
-        case .followers(let username, let followerIds):
-            UserListView(appState: appState, usersIds: followerIds, title: "Followers", subtitle: username)
+            OtherUserProfileView(
+                appState: appState,
+                selectedUserId: userId,
+                context: .competition
+            )
+        case .follower(let username, let followerIds):
+            UserListView(
+                appState: appState,
+                usersIds: followerIds,
+                title: "Followers",
+                subtitle: username,
+                context: .competition
+            )
         case .following(let username, let followingIds):
-            UserListView(appState: appState, usersIds: followingIds, title: "Following", subtitle: username)
+            UserListView(
+                appState: appState,
+                usersIds: followingIds,
+                title: "Following",
+                subtitle: username,
+                context: .competition
+            )
         }
     }
 }

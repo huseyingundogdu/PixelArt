@@ -9,16 +9,9 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseCore
 
-enum CompetitionTo: Hashable {
-    case scoringCompetitions
-    case allCompetitions
-    case voting(Competition)
-    case result(Competition)
-}
-
 struct CompetitionView: View {
     let appState: AppState
-    
+    @EnvironmentObject private var router: NavigationRouter
     @StateObject private var viewModel: CompetitionViewModel
 
     
@@ -28,17 +21,17 @@ struct CompetitionView: View {
     }
     
     var body: some View {
-        NavigationStack {
+
             VStack(spacing: 0) {
                 
                 CustomNavBar(
                     title: "Competition",
                     leadingButtonIcon: "ic_comp",
                     leadingButtonAction: {
-                        
+                        router.competitionRoutes.append(.scoringCompetitions)
                     },
                     trailingButtonIcon: "ic_crown") {
-                        
+                        router.competitionRoutes.append(.pastCompetitions)
                     }
                 
                 
@@ -49,7 +42,7 @@ struct CompetitionView: View {
             .onAppear { 
                 Task { await viewModel.loadActiveCompetition() }
             }
-        }
+        
     }
     
     @ViewBuilder
@@ -83,7 +76,3 @@ struct CompetitionView: View {
         }
     }
 }
-
-//#Preview {
-//    CompetitionView()
-//}

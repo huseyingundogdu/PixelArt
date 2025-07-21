@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-enum ProfileTo: Hashable {
-    case otherUserProfile(String)
-    case follow(String, String, [String])
-}
-
 struct CurrentUserProfileView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     let appState: AppState
     @StateObject private var viewModel: CurrentUserProfileViewModel
     
@@ -22,7 +19,6 @@ struct CurrentUserProfileView: View {
     }
     
     var body: some View {
-        NavigationStack {
             VStack(alignment: .leading, spacing: 0) {
                 CustomNavBar(
                     title: "Profile",
@@ -41,7 +37,6 @@ struct CurrentUserProfileView: View {
             .onAppear {
                 Task { await viewModel.load() }
             }
-        }
     }
     
     @ViewBuilder
@@ -54,10 +49,12 @@ struct CurrentUserProfileView: View {
                 user: data.user,
                 archived: data.archived,
                 shared: data.shared,
+                context: .profile,
                 showFollowButton: false,
                 isFollowing: .constant(nil),
                 onFollowTapped: nil
             )
+            .environmentObject(router)
         case .error(let error):
             VStack {
                 Text("\(error.localizedDescription)")
@@ -65,10 +62,3 @@ struct CurrentUserProfileView: View {
         }
     }
 }
-
-
-
-//#Preview {
-//    ProfileView()
-//        .environmentObject(AppState())
-//}
