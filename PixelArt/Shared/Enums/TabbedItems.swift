@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum TabbedItems: Int, CaseIterable{
-    case competition = 0
+enum TabbedItems: CaseIterable {
+    case competition
     case artworks
     case profile
     

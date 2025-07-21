@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 
 struct RootView: View {
-    
     @StateObject var appState = AppState()
     
     var body: some View {

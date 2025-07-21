@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct VotingView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     @StateObject private var viewModel: VotingViewModel
-    @Binding var path: NavigationPath
     let competition: Competition
     
-    init(path: Binding<NavigationPath>, competition: Competition) {
+    init(competition: Competition) {
         _viewModel = StateObject(wrappedValue: VotingViewModel(competition: competition))
-        self._path = path
         self.competition = competition
     }
     
@@ -25,7 +25,7 @@ struct VotingView: View {
                 subtitle: "\(competition.topic)",
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
-                    path.removeLast()
+                    router.competitionRoutes.removeLast()
                 }
             )
             
@@ -72,5 +72,5 @@ struct VotingView: View {
 }
 
 #Preview {
-    VotingView(path: .constant(NavigationPath()), competition: MockData.competition)
+    VotingView(competition: MockData.competition)
 }

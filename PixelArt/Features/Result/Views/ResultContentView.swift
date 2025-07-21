@@ -13,6 +13,8 @@ private enum StringItems {
 }
 
 struct ResultContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
+    
     let competition: Competition
     let artworks: [Artwork]
     
@@ -35,9 +37,11 @@ struct ResultContentView: View {
                     HStack {
                         ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
                         
-                        
-                        Text(artwork.authorId)
-                        
+                        Button {
+                            router.competitionRoutes.append(.userProfile(userId: artwork.authorId))
+                        } label: {
+                            Text(artwork.authorUsername)
+                        }
                         
                         Spacer()
                         

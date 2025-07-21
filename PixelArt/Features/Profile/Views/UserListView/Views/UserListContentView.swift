@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct UserListContentView: View {
-    @Binding var path: NavigationPath
+    @EnvironmentObject private var router: NavigationRouter
+    
     let appUsers: [AppUser]
+    let context: RouteContext
     
     var body: some View {
         ScrollView {
             ForEach(appUsers) { user in
                 Button {
-                    path.append(ProfileTo.otherUserProfile(user.id))
+                    switch context {
+                    case .competition:
+                        router.competitionRoutes.append(.userProfile(userId: user.id))
+                    case .profile:
+                        router.profileRoutes.append(.userProfile(userId: user.id))
+                    }
+
                 } label: {
                     HStack {
                         //FIXME: ArtoworkViewer will change to Profile Picture Viewer fixed size 64x64
@@ -51,7 +59,6 @@ struct UserListContentView: View {
 
 #Preview {
     UserListContentView(
-        path: .constant(NavigationPath()),
         appUsers: [
         AppUser(
             id: "user-id-1",
@@ -83,5 +90,7 @@ struct UserListContentView: View {
             joinedCompetitions: [],
             createdAt: .now
         )
-    ])
+    ],
+        context: .competition
+    )
 }

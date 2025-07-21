@@ -8,44 +8,64 @@
 import SwiftUI
 
 struct MainTabbedView: View {
+    @StateObject private var router: NavigationRouter = NavigationRouter()
+    
     let appState: AppState
-    @State var selectedTab = 1
-
-    // View'leri bir kere yarat ve sakla
-    private let competitionView: CompetitionView
-    private let artworksView: ArtworksView
-    private let profileView: CurrentUserProfileView
+    @State private var selectedTab: TabbedItems = .artworks
     
     init(appState: AppState) {
         self.appState = appState
-        self.competitionView = CompetitionView(appState: appState)
-        self.artworksView = ArtworksView(appState: appState)
-        self.profileView = CurrentUserProfileView(appState: appState)
     }
-
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                competitionView
-                    .tag(0)
-                    .toolbarBackground(Color(hex: "3b3b3b"), for: .tabBar)
-
-                artworksView
-                    .tag(1)
-
-                profileView
-                    .tag(2)
+                NavigationStack(path: $router.competitionRoutes) {
+                    CompetitionView(appState: appState)
+                        .navigationDestination(for: CompetitionRoutes.self) { route in
+                            route.destination(appState: appState)
+                        }
+                }
+                .environmentObject(router)
+                .tag(TabbedItems.competition)
+                .toolbarBackground(Color(hex: "3b3b3b"), for: .tabBar)
+                
+                NavigationStack(path: $router.artworksRoutes) {
+                    ArtworksView(appState: appState)
+                        .navigationDestination(for: ArtworksRoutes.self) { route in
+                            
+                        }
+                }
+                .environmentObject(router)
+                .tag(TabbedItems.artworks)
+                
+                NavigationStack(path: $router.profileRoutes) {
+                    CurrentUserProfileView(appState: appState)
+                        .navigationDestination(for: ProfileRoutes.self) { route in
+                            route.destination(appState: appState)
+                        }
+                }
+                .environmentObject(router)
+                .tag(TabbedItems.profile)
             }
-
+            
             HStack {
                 ForEach(TabbedItems.allCases, id: \.self) { item in
                     Button {
-                        selectedTab = item.rawValue
+                        if selectedTab == item {
+                            withAnimation {
+                                router.resetRoute(for: item)
+                            }
+                        } else {
+                            withAnimation {
+                                selectedTab = item
+                            }
+                        }
                     } label: {
                         CustomTabItem(
                             imageName: item.iconName,
                             title: item.title,
-                            isActive: (selectedTab == item.rawValue)
+                            isActive: (item == selectedTab)
                         )
                     }
                 }
@@ -55,36 +75,28 @@ struct MainTabbedView: View {
             .background(Color(hex: "3b3b3b"))
         }
         .ignoresSafeArea()
-        .onChange(of: selectedTab) { _, newValue in
-            if newValue == 1 {
-                NotificationCenter.default.post(name: .refreshArtworks, object: nil)
-            }
-        }
     }
 }
 
-//#Preview {
-//    MainTabbedView()
-//}
 
 extension MainTabbedView{
     func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View{
-
-            HStack(spacing: 10){
-                Image(imageName)
-                    .resizable()
-                    .renderingMode(.template)
+        
+        HStack(spacing: 10){
+            Image(imageName)
+                .resizable()
+                .renderingMode(.template)
+                .foregroundColor(isActive ? .black : .gray)
+                .frame(width: 25, height: 25)
+            if isActive{
+                Text(title)
+                    .font(.custom("Micro5-Regular", size: 20))
                     .foregroundColor(isActive ? .black : .gray)
-                    .frame(width: 25, height: 25)
-                if isActive{
-                    Text(title)
-                        .font(.custom("Micro5-Regular", size: 20))
-                        .foregroundColor(isActive ? .black : .gray)
-                }
-                
             }
-            .frame(maxWidth: isActive ? .infinity : 30)
-            .pixelBackground(paddingValue: 20)
+            
+        }
+        .frame(maxWidth: isActive ? .infinity : 30)
+        .pixelBackground(paddingValue: 20)
         
     }
 }

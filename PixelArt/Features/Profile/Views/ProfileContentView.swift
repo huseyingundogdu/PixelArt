@@ -9,12 +9,14 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileContentView: View {
-    @Binding var path: NavigationPath
+    @EnvironmentObject private var router: NavigationRouter
+    
     @State private var selectedIndex: Int = 0
     
     let user: AppUser
     let archived: [Artwork]
     let shared: [Artwork]
+    let context: RouteContext
     
     let showFollowButton: Bool
     @Binding var isFollowing: Bool?
@@ -62,7 +64,12 @@ struct ProfileContentView: View {
                         
                         HStack {
                             Button {
-                                path.append(ProfileTo.follow(user.username, "Followers", user.followers))
+                                switch context {
+                                case .competition:
+                                    router.competitionRoutes.append(.follower(username: user.username, followerIds: user.followers))
+                                case .profile:
+                                    router.profileRoutes.append(.follower(username: user.username, followerIds: user.followers))
+                                }
                             } label: {
                                 Text("\(user.followers.count)")
                                 Text("Followers")
@@ -71,7 +78,12 @@ struct ProfileContentView: View {
                             .foregroundStyle(.black)
 
                             Button {
-                                path.append(ProfileTo.follow(user.username, "Following", user.following))
+                                switch context {
+                                case .competition:
+                                    router.competitionRoutes.append(.following(username: user.username, followingIds: user.following))
+                                case .profile:
+                                    router.profileRoutes.append(.following(username: user.username, followingIds: user.following))
+                                }
                             } label: {
                                 Text("\(user.following.count)")
                                 Text("Following")
@@ -149,25 +161,6 @@ extension ProfileContentView {
         .pixelBackground(paddingValue: 10)
     }
 }
-/*
-#Preview {
-    ProfileContentView(
-        path: .constant(NavigationPath()),
-        user: AppUser(
-            id: "user-id",
-            email: "user-email",
-            username: "username",
-            profilePictureData: ["#5C2751", "#6457A6", "#9DACFF", "#4BC0D9"],
-            followers: [],
-            following: [],
-            joinedCompetitions: [],
-            createdAt: .now
-        ),
-        archived: [MockData.artwork_face_avatar, MockData.artwork2],
-        shared: [MockData.artwork_heart, MockData.artwork_skull]
-    )
-}
- */
 
 
 struct CustomSegmentedControl: View {
