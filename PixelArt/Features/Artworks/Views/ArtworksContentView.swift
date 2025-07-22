@@ -16,7 +16,7 @@ struct ArtworksContentView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 10) {
                 SectionView(title: "Personal Artworks", artworks: personal)
                 SectionView(title: "Shared Artworks", artworks: shared)
                 SectionView(title: "Active Competition Artworks", artworks: active)
@@ -51,7 +51,15 @@ struct SectionView: View {
             } else {
                 ForEach(artworks, id: \.self) { artwork in
                     HStack {
-                        ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
+                        
+                        PixelGridView(
+                            data: artwork.data,
+                            columns: artwork.size[0],
+                            rows: artwork.size[1],
+                            availableWidth: K.Artwork.Size.regular.width,
+                            availableHeight: K.Artwork.Size.regular.height
+                        )
+                        
                         VStack(alignment: .leading) {
                             if let topic = artwork.topic { Text(topic) }
                             if let competitionId = artwork.competitionId { Text(competitionId) }

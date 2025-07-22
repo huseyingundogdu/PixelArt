@@ -22,7 +22,13 @@ struct VotingContentView: View {
             
             ForEach(artworks, id: \.self) { artwork in
                 HStack {
-                    ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
+                    PixelGridView(
+                        data: artwork.data,
+                        columns: artwork.size[0],
+                        rows: artwork.size[1],
+                        availableWidth: K.Artwork.Size.regular.width,
+                        availableHeight: K.Artwork.Size.regular.height
+                    )
                     
                     VStack(alignment: .leading) {
                         Text(artwork.authorId)
