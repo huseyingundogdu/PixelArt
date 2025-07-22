@@ -27,16 +27,12 @@ struct UserListContentView: View {
                 } label: {
                     HStack {
                         //FIXME: ArtoworkViewer will change to Profile Picture Viewer fixed size 64x64
-                        ArtworkViewer(artwork: Artwork(
-                            id: "",
-                            authorId: "",
-                            authorUsername: "",
+                        PixelGridView(
                             data: user.profilePictureData,
-                            competitionId: nil,
-                            size: [2, 2],
-                            status: .personal),
-                                      viewSize: 50,
-                                      isFullScreenAvailable: false
+                            columns: K.Artwork.Grid.profileColumns,
+                            rows: K.Artwork.Grid.profileRows,
+                            availableWidth: K.Artwork.Size.small.width,
+                            availableHeight: K.Artwork.Size.small.height
                         )
                         
                         

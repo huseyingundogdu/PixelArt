@@ -26,7 +26,6 @@
 		F00ECF372DEF07A2006C650E /* FirestoreArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */; };
 		F00ECF392DEF07BA006C650E /* ArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */; };
 		F00ECF3B2DEF1002006C650E /* ArtworksContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */; };
-		F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */; };
 		F010F1D42E18456600A34D7B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D32E18456600A34D7B /* ResultView.swift */; };
 		F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D52E18457300A34D7B /* ResultContentView.swift */; };
 		F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D72E18476800A34D7B /* ResultViewModel.swift */; };
@@ -56,6 +55,9 @@
 		F0628A5B2E2DC300005B907C /* CompetitionRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5A2E2DC300005B907C /* CompetitionRoutes.swift */; };
 		F0628A5D2E2DC30D005B907C /* ArtworkRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5C2E2DC30D005B907C /* ArtworkRoutes.swift */; };
 		F0628A5F2E2DC318005B907C /* ProfileRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */; };
+		F0628A632E2EC2C6005B907C /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A622E2EC2C6005B907C /* PixelGridView.swift */; };
+		F0628A672E2EC9EA005B907C /* GridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A662E2EC9EA005B907C /* GridTestView.swift */; };
+		F0628A692E2F24F8005B907C /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0628A682E2F24F8005B907C /* K.swift */; };
 		F06566582DD208C800C7D251 /* CompetitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06566572DD208C800C7D251 /* CompetitionView.swift */; };
 		F065665B2DD20A8500C7D251 /* Micro5-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F065665A2DD20A8400C7D251 /* Micro5-Regular.ttf */; };
 		F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065665D2DD20F6E00C7D251 /* PixelBackgroundModifier.swift */; };
@@ -151,7 +153,6 @@
 		F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreArtworkRepository.swift; sourceTree = "<group>"; };
 		F00ECF382DEF07BA006C650E /* ArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkRepository.swift; sourceTree = "<group>"; };
 		F00ECF3A2DEF1002006C650E /* ArtworksContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworksContentView.swift; sourceTree = "<group>"; };
-		F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewer.swift; sourceTree = "<group>"; };
 		F010F1D32E18456600A34D7B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F010F1D52E18457300A34D7B /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		F010F1D72E18476800A34D7B /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +182,9 @@
 		F0628A5A2E2DC300005B907C /* CompetitionRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionRoutes.swift; sourceTree = "<group>"; };
 		F0628A5C2E2DC30D005B907C /* ArtworkRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkRoutes.swift; sourceTree = "<group>"; };
 		F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRoutes.swift; sourceTree = "<group>"; };
+		F0628A622E2EC2C6005B907C /* PixelGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGridView.swift; sourceTree = "<group>"; };
+		F0628A662E2EC9EA005B907C /* GridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTestView.swift; sourceTree = "<group>"; };
+		F0628A682E2F24F8005B907C /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		F06566572DD208C800C7D251 /* CompetitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionView.swift; sourceTree = "<group>"; };
 		F065665A2DD20A8400C7D251 /* Micro5-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Micro5-Regular.ttf"; sourceTree = "<group>"; };
 		F065665D2DD20F6E00C7D251 /* PixelBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelBackgroundModifier.swift; sourceTree = "<group>"; };
@@ -325,11 +329,11 @@
 		F004D6F72DDBE71D009B1767 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F0628A612E2EC2AF005B907C /* PixelGrid */,
 				F065667D2DD2446000C7D251 /* CustomNavBar.swift */,
 				F06566692DD234B100C7D251 /* PixelButton.swift */,
 				F004D7032DDCAC27009B1767 /* CustomAlertView.swift */,
 				F004D7072DDCB47B009B1767 /* OverlayAlertView.swift */,
-				F00ECF3C2DF1C6E4006C650E /* ArtworkViewer.swift */,
 				F05681752E0C4730003D6C82 /* Notification.swift */,
 			);
 			path = UI;
@@ -339,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				F004D7012DDBEBF4009B1767 /* MockData.swift */,
+				F0628A682E2F24F8005B907C /* K.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -559,6 +564,15 @@
 				F0628A5E2E2DC318005B907C /* ProfileRoutes.swift */,
 			);
 			path = Routes;
+			sourceTree = "<group>";
+		};
+		F0628A612E2EC2AF005B907C /* PixelGrid */ = {
+			isa = PBXGroup;
+			children = (
+				F0628A622E2EC2C6005B907C /* PixelGridView.swift */,
+				F0628A662E2EC9EA005B907C /* GridTestView.swift */,
+			);
+			path = PixelGrid;
 			sourceTree = "<group>";
 		};
 		F06566562DD2089E00C7D251 /* Features */ = {
@@ -1101,7 +1115,6 @@
 				F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F0B735DE2E2AB22300BA021A /* DefaultArtworkService.swift in Sources */,
-				F00ECF3D2DF1C6E4006C650E /* ArtworkViewer.swift in Sources */,
 				F0B735E02E2AC8C900BA021A /* CompetitionService.swift in Sources */,
 				F0B735E22E2AC8D800BA021A /* DefaultCompetitionService.swift in Sources */,
 				F0B735AD2E27256D00BA021A /* ProfileContentView.swift in Sources */,
@@ -1109,6 +1122,7 @@
 				F055A5642E10324800611D1D /* PastCompetitionsViewModel.swift in Sources */,
 				F055A55C2E102FF800611D1D /* ScoringCompetitionsView.swift in Sources */,
 				F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */,
+				F0628A632E2EC2C6005B907C /* PixelGridView.swift in Sources */,
 				F05ADD852DD29768008E104C /* MainTabbedView.swift in Sources */,
 				F0B735D52E29C56200BA021A /* AppUserError.swift in Sources */,
 				F05681762E0C4730003D6C82 /* Notification.swift in Sources */,
@@ -1123,11 +1137,13 @@
 				F004D6E52DDBC093009B1767 /* LoadingState.swift in Sources */,
 				F0B735D22E29720200BA021A /* AppUser.swift in Sources */,
 				F075BF882E11665200CCB78A /* VotingView.swift in Sources */,
+				F0628A672E2EC9EA005B907C /* GridTestView.swift in Sources */,
 				F0F3AF342DD690F2008DB18C /* Competition.swift in Sources */,
 				F0B735B42E28997900BA021A /* UserRepository.swift in Sources */,
 				F0B735DB2E29CF2700BA021A /* SignupViewModel.swift in Sources */,
 				F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */,
 				F04E28FD2E2C68AC00E759F4 /* UserListView.swift in Sources */,
+				F0628A692E2F24F8005B907C /* K.swift in Sources */,
 				F0B735E42E2ACD8F00BA021A /* FirestoreCollection.swift in Sources */,
 				F06566622DD2199000C7D251 /* ColorGridView.swift in Sources */,
 				F065666A2DD234B100C7D251 /* PixelButton.swift in Sources */,

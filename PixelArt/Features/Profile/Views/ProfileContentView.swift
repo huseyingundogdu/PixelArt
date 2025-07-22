@@ -26,18 +26,13 @@ struct ProfileContentView: View {
         ScrollView {
             VStack {
                 VStack(alignment: .center) {
-                    ArtworkViewer(artwork: 
-                                    Artwork(id: "",
-                                            authorId: "",
-                                            authorUsername: "",
-                                            data: user.profilePictureData,
-                                            competitionId: nil,
-                                            size: [2, 2],
-                                            topic: nil,
-                                            status: .personal), viewSize: 200,
-                                  isFullScreenAvailable: true
+                    PixelGridView(
+                        data: user.profilePictureData,
+                        columns: K.Artwork.Grid.profileColumns,
+                        rows: K.Artwork.Grid.profileRows,
+                        availableWidth: K.Artwork.Size.profile.width,
+                        availableHeight: K.Artwork.Size.profile.height
                     )
-                        .scaleEffect(0.8)
                     
                     VStack(spacing: 20) {
                         HStack(alignment: .top) {
@@ -138,7 +133,15 @@ struct ProfileContentView: View {
 extension ProfileContentView {
     private func galleryRow(isCompetition: Bool, artwork: Artwork) -> some View {
         HStack(alignment: .top) {
-            ArtworkViewer(artwork: artwork, viewSize: 100, isFullScreenAvailable: true)
+            
+            PixelGridView(
+                data: artwork.data,
+                columns: artwork.size[0],
+                rows: artwork.size[1],
+                availableWidth: K.Artwork.Size.regular.width,
+                availableHeight: K.Artwork.Size.regular.height
+            )
+            
             VStack(alignment: .leading) {
                 Text("Competition: \(artwork.topic ?? "ERROR")")
                 Text("Topic: " + (artwork.topic ?? "ERROR"))
