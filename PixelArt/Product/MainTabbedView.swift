@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabbedView: View {
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     @StateObject private var router: NavigationRouter = NavigationRouter()
     
     let appState: AppState
@@ -20,32 +21,47 @@ struct MainTabbedView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                NavigationStack(path: $router.competitionRoutes) {
-                    CompetitionView(appState: appState)
-                        .navigationDestination(for: CompetitionRoutes.self) { route in
-                            route.destination(appState: appState)
-                        }
-                }
-                .environmentObject(router)
-                .tag(TabbedItems.competition)
-                .toolbarBackground(Color(hex: "3b3b3b"), for: .tabBar)
                 
-                NavigationStack(path: $router.artworksRoutes) {
-                    ArtworksView(appState: appState)
-                        .navigationDestination(for: ArtworksRoutes.self) { route in
-                            
-                        }
+                //MARK: Competition Tab
+                
+                NetworkConnectionView {
+                    NavigationStack(path: $router.competitionRoutes) {
+                        CompetitionView(appState: appState)
+                            .navigationDestination(for: CompetitionRoutes.self) { route in
+                                route.destination(appState: appState)
+                            }
+                    }
+                    .environmentObject(router)
                 }
-                .environmentObject(router)
+                .environmentObject(networkMonitor)
+                .tag(TabbedItems.competition)
+                
+                //MARK: Artworks Tab
+                
+                NetworkConnectionView {
+                    NavigationStack(path: $router.artworksRoutes) {
+                        ArtworksView(appState: appState)
+                            .navigationDestination(for: ArtworksRoutes.self) { route in
+                                
+                            }
+                    }
+                    .environmentObject(router)
+                }
+                .environmentObject(networkMonitor)
                 .tag(TabbedItems.artworks)
                 
-                NavigationStack(path: $router.profileRoutes) {
-                    CurrentUserProfileView(appState: appState)
-                        .navigationDestination(for: ProfileRoutes.self) { route in
-                            route.destination(appState: appState)
-                        }
+                //MARK: Profile Tab
+                
+                NetworkConnectionView {
+                    NavigationStack(path: $router.profileRoutes) {
+                        CurrentUserProfileView(appState: appState)
+                            .navigationDestination(for: ProfileRoutes.self) { route in
+                                route.destination(appState: appState)
+                            }
+                    }
+                    .environmentObject(router)
                 }
-                .environmentObject(router)
+                .environmentObject(networkMonitor)
                 .tag(TabbedItems.profile)
             }
             

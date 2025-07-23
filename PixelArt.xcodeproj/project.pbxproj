@@ -29,6 +29,8 @@
 		F010F1D42E18456600A34D7B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D32E18456600A34D7B /* ResultView.swift */; };
 		F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D52E18457300A34D7B /* ResultContentView.swift */; };
 		F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D72E18476800A34D7B /* ResultViewModel.swift */; };
+		F021E2712E311C8D0011C91F /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2702E311C8D0011C91F /* NetworkMonitor.swift */; };
+		F021E2732E3127D70011C91F /* NetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2722E3127D70011C91F /* NetworkConnectionView.swift */; };
 		F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */; };
 		F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */; };
 		F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */; };
@@ -156,6 +158,8 @@
 		F010F1D32E18456600A34D7B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F010F1D52E18457300A34D7B /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		F010F1D72E18476800A34D7B /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		F021E2702E311C8D0011C91F /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		F021E2722E3127D70011C91F /* NetworkConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionView.swift; sourceTree = "<group>"; };
 		F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileViewModel.swift; sourceTree = "<group>"; };
 		F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileView.swift; sourceTree = "<group>"; };
 		F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileContentView.swift; sourceTree = "<group>"; };
@@ -389,6 +393,15 @@
 				F010F1D72E18476800A34D7B /* ResultViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F021E26F2E311C730011C91F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2702E311C8D0011C91F /* NetworkMonitor.swift */,
+				F021E2722E3127D70011C91F /* NetworkConnectionView.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		F04E28F92E2C687400E759F4 /* UserListView */ = {
@@ -758,6 +771,7 @@
 		F0B735B52E29699600BA021A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F021E26F2E311C730011C91F /* Network */,
 				F0628A542E2DC112005B907C /* Navigation */,
 				F04E29062E2CA98B00E759F4 /* Follow */,
 				F0B735CC2E296ECA00BA021A /* Auth */,
@@ -1103,6 +1117,7 @@
 				F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */,
 				F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
+				F021E2732E3127D70011C91F /* NetworkConnectionView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
 				F08C592B2E1B4E620057DFEB /* CurrentUserProfileViewModel.swift in Sources */,
 				F004D7022DDBEBF4009B1767 /* MockData.swift in Sources */,
@@ -1143,6 +1158,7 @@
 				F0B735DB2E29CF2700BA021A /* SignupViewModel.swift in Sources */,
 				F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */,
 				F04E28FD2E2C68AC00E759F4 /* UserListView.swift in Sources */,
+				F021E2712E311C8D0011C91F /* NetworkMonitor.swift in Sources */,
 				F0628A692E2F24F8005B907C /* K.swift in Sources */,
 				F0B735E42E2ACD8F00BA021A /* FirestoreCollection.swift in Sources */,
 				F06566622DD2199000C7D251 /* ColorGridView.swift in Sources */,
