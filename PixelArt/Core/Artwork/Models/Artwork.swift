@@ -16,6 +16,7 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     let size: [Int]
     var topic: String?
     var status: ArtworkStatus
+    let lastUpdated: Date?
 }
 
 enum ArtworkStatus: String, Codable, CaseIterable, Hashable {

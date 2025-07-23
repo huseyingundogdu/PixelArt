@@ -30,6 +30,10 @@ struct PixelArtApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    init() {
+        ValueTransformer.setValueTransformer(StringArrayTransformer(), forName: NSValueTransformerName("StringArrayTransformer"))
+    }
+    
     var body: some Scene {
         WindowGroup {
             RootView()

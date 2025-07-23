@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="22H313" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="ArtworkEntity" representedClassName=".ArtworkEntity" syncable="YES">
+        <attribute name="authorId" attributeType="String"/>
+        <attribute name="authorUsername" attributeType="String"/>
+        <attribute name="competitionId" optional="YES" attributeType="String"/>
+        <attribute name="data" attributeType="Transformable" valueTransformerName="StringArrayTransformer"/>
+        <attribute name="height" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isSynced" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="topic" optional="YES" attributeType="String"/>
+        <attribute name="width" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

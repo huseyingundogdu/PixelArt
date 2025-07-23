@@ -30,7 +30,8 @@ struct MockData {
         competitionId: "competitionId",
         size: [2, 2],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
     
     static let artwork2 = Artwork(
@@ -50,7 +51,8 @@ struct MockData {
         competitionId: "competitionId",
         size: [8, 8],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
     
     static let artwork_heart = Artwork(
@@ -78,7 +80,8 @@ struct MockData {
         competitionId: "competitionId",
         size: [16, 16],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
     
     static let artwork_smileyface = Artwork(
@@ -111,7 +114,8 @@ struct MockData {
         competitionId: "smile32x32",
         size: [32, 32],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
     
     static let artwork_face_avatar = Artwork(
@@ -144,7 +148,8 @@ struct MockData {
         competitionId: "competitionId",
         size: [32, 32],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
 
     static let artwork_skull = Artwork(
@@ -177,7 +182,8 @@ struct MockData {
         competitionId: "competitionId",
         size: [32, 32],
         topic: nil,
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
 
 
@@ -210,7 +216,8 @@ struct MockData {
         ],
         competitionId: "mushroomTheme",
         size: [32, 32],
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
 
 
@@ -224,7 +231,8 @@ struct MockData {
             competitionId: "competitionId",
             size: [2, 2],
             topic: nil,
-            status: .personal
+            status: .personal,
+            lastUpdated: .now
         ),
         Artwork(
             id: "2",
@@ -239,7 +247,8 @@ struct MockData {
             competitionId: "competitionId",
             size: [4, 4],
             topic: nil,
-            status: .personal
+            status: .personal,
+            lastUpdated: .now
         ),
         Artwork(
             id: "3",
@@ -258,7 +267,8 @@ struct MockData {
             competitionId: "competitionId",
             size: [8, 8],
             topic: nil,
-            status: .personal
+            status: .personal,
+            lastUpdated: .now
         )
     ]
     
@@ -379,6 +389,7 @@ struct MockData {
         ],
         competitionId: nil,
         size: [33, 33],
-        status: .personal
+        status: .personal,
+        lastUpdated: .now
     )
 }

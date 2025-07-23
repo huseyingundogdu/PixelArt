@@ -24,14 +24,14 @@ final class ArtworkViewModel: ObservableObject {
     @Published var showCreateConfirmation: Bool = false
     
     private weak var appState: AppState?
-    private let artworkService: ArtworkService
+    private let artworkService: OfflineFirstArtworkService
     private var currentUserId: String? {
         appState?.currentUser?.uid
     }
     
     init(
         appState: AppState,
-        artworkService: ArtworkService = DefaultArtworkService()
+        artworkService: OfflineFirstArtworkService = OfflineFirstArtworkService()
     ) {
         self.appState = appState
         self.artworkService = artworkService
@@ -47,17 +47,19 @@ final class ArtworkViewModel: ObservableObject {
         isLoading = true
         error = nil
         
+        async let artworks = try await artworkService.fetchArtworks(authorId: currentUserId)
+        /*
         async let personal = try await artworkService.fetchPersonal(for: currentUserId)
         async let shared = try await artworkService.fetchShared(for: currentUserId)
         async let activeCompetition = try await artworkService.fetchActiveCompetition(for: currentUserId)
         async let archived = try await artworkService.fetchArchived(for: currentUserId)
-        
+        */
         
         do {
-            personalArtworks = try await personal
-            sharedArtworks = try await shared
-            activeCompetitionArtworks = try await activeCompetition
-            archivedArtworks = try await archived
+            personalArtworks = try await artworks.filter { $0.status == .personal }
+            sharedArtworks = try await artworks.filter { $0.status == .shared }
+            activeCompetitionArtworks = try await artworks.filter { $0.status == .activeCompetition }
+            archivedArtworks = try await artworks.filter { $0.status == .archived }
 
         } catch {
             self.error = error
@@ -95,7 +97,8 @@ final class ArtworkViewModel: ObservableObject {
             competitionId: nil,
             size: [width, height],
             topic: freeformArtworkTopic == "" ? "Empty Title" : freeformArtworkTopic,
-            status: .personal
+            status: .personal,
+            lastUpdated: .now
         )
         
         do {
