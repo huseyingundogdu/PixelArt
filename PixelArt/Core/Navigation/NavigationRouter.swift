@@ -15,7 +15,6 @@ enum RouteContext {
 final class NavigationRouter: ObservableObject {
     
     @Published var competitionRoutes: [CompetitionRoutes] = []
-    @Published var artworksRoutes: [ArtworksRoutes] = []
     @Published var profileRoutes: [ProfileRoutes] = []
     
     
@@ -24,7 +23,7 @@ final class NavigationRouter: ObservableObject {
         case .competition:
             competitionRoutes.removeAll()
         case .artworks:
-            artworksRoutes.removeAll()
+            break
         case .profile:
             profileRoutes.removeAll()
         }

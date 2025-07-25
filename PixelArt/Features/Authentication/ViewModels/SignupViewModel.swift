@@ -35,6 +35,7 @@ final class SignupViewModel: ObservableObject {
             try await userService.registerNewUser(firebaseUid: user.uid, email: email, username: username)
             await MainActor.run {
                 appState.currentUser = user
+                UserDefaultsManager.shared.setUser(id: user.uid, username: username)
                 appState.isLoggedIn = true
                 appState.authError = nil
                 appState.isLoading = false

@@ -21,6 +21,14 @@ struct NetworkConnectionView<Content: View>: View {
                     Text("There is no internet connection.\nPlease connect and try again.")
                         .multilineTextAlignment(.center)
                         .padding()
+                    
+                    Button {
+                        networkMonitor.checkConnection()
+                    } label: {
+                        Text("Try Again")
+                            .pixelBackground(paddingValue: 10)
+                    }
+                    
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

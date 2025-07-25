@@ -27,6 +27,19 @@ final class CoreDataManager {
         container.viewContext
     }
     
+    func fetchArtworkById(id: String) -> ArtworkEntity? {
+        let request: NSFetchRequest<ArtworkEntity> = ArtworkEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id)
+        request.fetchLimit = 1
+
+        do {
+            return try context.fetch(request).first
+        } catch {
+            print("❌ Error fetching artwork by id: \(error)")
+            return nil
+        }
+    }
+    
     func save() {
         if context.hasChanges {
             do {

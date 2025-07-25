@@ -10,7 +10,6 @@ import SwiftUI
 struct MainTabbedView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
     @StateObject private var router: NavigationRouter = NavigationRouter()
-    
     let appState: AppState
     @State private var selectedTab: TabbedItems = .artworks
     
@@ -38,17 +37,9 @@ struct MainTabbedView: View {
                 
                 //MARK: Artworks Tab
                 
-                NetworkConnectionView {
-                    NavigationStack(path: $router.artworksRoutes) {
-                        ArtworksView(appState: appState)
-                            .navigationDestination(for: ArtworksRoutes.self) { route in
-                                
-                            }
-                    }
-                    .environmentObject(router)
-                }
-                .environmentObject(networkMonitor)
-                .tag(TabbedItems.artworks)
+                ArtworksView(appState: appState)
+                    .environmentObject(networkMonitor)
+                    .tag(TabbedItems.artworks)
                 
                 //MARK: Profile Tab
                 

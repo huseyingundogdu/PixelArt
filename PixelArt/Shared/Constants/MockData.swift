@@ -29,7 +29,7 @@ struct MockData {
         data: ["870058", "a4303f", "f2d0a4", "c8d6af"],
         competitionId: "competitionId",
         size: [2, 2],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -50,7 +50,7 @@ struct MockData {
         ],
         competitionId: "competitionId",
         size: [8, 8],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -79,7 +79,7 @@ struct MockData {
         ],
         competitionId: "competitionId",
         size: [16, 16],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -113,7 +113,7 @@ struct MockData {
         ],
         competitionId: "smile32x32",
         size: [32, 32],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -147,7 +147,7 @@ struct MockData {
         ],
         competitionId: "competitionId",
         size: [32, 32],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -181,7 +181,7 @@ struct MockData {
         ],
         competitionId: "competitionId",
         size: [32, 32],
-        topic: nil,
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -216,6 +216,7 @@ struct MockData {
         ],
         competitionId: "mushroomTheme",
         size: [32, 32],
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )
@@ -230,7 +231,7 @@ struct MockData {
             data: ["870058", "a4303f", "f2d0a4", "c8d6af"],
             competitionId: "competitionId",
             size: [2, 2],
-            topic: nil,
+            topic: "Empty Title",
             status: .personal,
             lastUpdated: .now
         ),
@@ -246,7 +247,7 @@ struct MockData {
             ],
             competitionId: "competitionId",
             size: [4, 4],
-            topic: nil,
+            topic: "Empty Title",
             status: .personal,
             lastUpdated: .now
         ),
@@ -266,7 +267,7 @@ struct MockData {
             ],
             competitionId: "competitionId",
             size: [8, 8],
-            topic: nil,
+            topic: "Empty Title",
             status: .personal,
             lastUpdated: .now
         )
@@ -389,6 +390,7 @@ struct MockData {
         ],
         competitionId: nil,
         size: [33, 33],
+        topic: "Empty Title",
         status: .personal,
         lastUpdated: .now
     )

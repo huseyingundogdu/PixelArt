@@ -9,7 +9,7 @@ import CoreData
 
 extension ArtworkEntity {
     
-    /// Entity -> Domain Model ( for UI)
+    /// Entity -> Domain Model
     func toModel() -> Artwork {
         return Artwork(
             id: id,
@@ -25,24 +25,38 @@ extension ArtworkEntity {
     }
     
     /// Domain Model -> Entity (for Firestore or UI)
-    func populate(with model: Artwork, context: NSManagedObjectContext) {
+    func populateFromUI(with model: Artwork, context: NSManagedObjectContext) {
         self.id = model.id
         self.authorId = model.authorId
         self.authorUsername = model.authorUsername
         self.data = model.data
         self.competitionId = model.competitionId
-        self.topic = model.topic ?? "emmmppyyyt"
+        self.topic = model.topic
         self.status = model.status.rawValue
         self.width = Int32(model.size.first ?? 0)
         self.height = Int32(model.size.last ?? 0)
-        self.lastUpdated = model.lastUpdated ?? .now
+        self.lastUpdated = model.lastUpdated
         self.isSynced = false
     }
     
-    /// Create new entity
-    static func from(model: Artwork, context: NSManagedObjectContext) -> ArtworkEntity {
-        let entity = ArtworkEntity(context: context)
-        entity.populate(with: model, context: context)
-        return entity
+    func populateFromFirebase(with model: Artwork, context: NSManagedObjectContext) {
+        self.id = model.id
+        self.authorId = model.authorId
+        self.authorUsername = model.authorUsername
+        self.data = model.data
+        self.competitionId = model.competitionId
+        self.topic = model.topic
+        self.status = model.status.rawValue
+        self.width = Int32(model.size.first ?? 0)
+        self.height = Int32(model.size.last ?? 0)
+        self.lastUpdated = model.lastUpdated
+        self.isSynced = true
     }
+    
+    /// Create new entity
+//    static func from(model: Artwork, context: NSManagedObjectContext) -> ArtworkEntity {
+//        let entity = ArtworkEntity(context: context)
+//        entity.populate(with: model, context: context)
+//        return entity
+//    }
 }

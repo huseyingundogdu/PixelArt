@@ -21,6 +21,11 @@
 		F004D7042DDCAC27009B1767 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7032DDCAC27009B1767 /* CustomAlertView.swift */; };
 		F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7052DDCAD00009B1767 /* View+Extension.swift */; };
 		F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7072DDCB47B009B1767 /* OverlayAlertView.swift */; };
+		F008C27A2E32A892006AEBC2 /* PixelCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */; };
+		F008C27C2E32A8A8006AEBC2 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */; };
+		F008C27E2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */; };
+		F008C2802E33260B006AEBC2 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27F2E33260B006AEBC2 /* TestView.swift */; };
+		F008C2832E333564006AEBC2 /* DrawingCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */; };
 		F00ECF312DEF05EE006C650E /* ArtworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF302DEF05EE006C650E /* ArtworkViewModel.swift */; };
 		F00ECF342DEF0629006C650E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF332DEF0629006C650E /* Artwork.swift */; };
 		F00ECF372DEF07A2006C650E /* FirestoreArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */; };
@@ -42,6 +47,7 @@
 		F021E2942E3171130011C91F /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2932E3171130011C91F /* UserDefaultsKeys.swift */; };
 		F021E2962E3171240011C91F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2952E3171240011C91F /* UserDefaultsManager.swift */; };
 		F021E2992E3188980011C91F /* StringArrayTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2982E3188980011C91F /* StringArrayTransformer.swift */; };
+		F021E2A32E31CAD10011C91F /* ArtworkUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */; };
 		F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */; };
 		F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */; };
 		F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */; };
@@ -161,6 +167,11 @@
 		F004D7032DDCAC27009B1767 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		F004D7052DDCAD00009B1767 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		F004D7072DDCB47B009B1767 /* OverlayAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayAlertView.swift; sourceTree = "<group>"; };
+		F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelCanvasView.swift; sourceTree = "<group>"; };
+		F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
+		F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewWrapper.swift; sourceTree = "<group>"; };
+		F008C27F2E33260B006AEBC2 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewModel.swift; sourceTree = "<group>"; };
 		F00ECF302DEF05EE006C650E /* ArtworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewModel.swift; sourceTree = "<group>"; };
 		F00ECF332DEF0629006C650E /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreArtworkRepository.swift; sourceTree = "<group>"; };
@@ -182,6 +193,7 @@
 		F021E2932E3171130011C91F /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		F021E2952E3171240011C91F /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		F021E2982E3188980011C91F /* StringArrayTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringArrayTransformer.swift; sourceTree = "<group>"; };
+		F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkUIModel.swift; sourceTree = "<group>"; };
 		F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileViewModel.swift; sourceTree = "<group>"; };
 		F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileView.swift; sourceTree = "<group>"; };
 		F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileContentView.swift; sourceTree = "<group>"; };
@@ -372,6 +384,25 @@
 				F0628A682E2F24F8005B907C /* K.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		F008C2782E32A815006AEBC2 /* DrawingCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				F008C2812E33354F006AEBC2 /* ViewModel */,
+				F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */,
+				F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */,
+				F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */,
+			);
+			path = DrawingCanvas;
+			sourceTree = "<group>";
+		};
+		F008C2812E33354F006AEBC2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F00ECF2E2DEF05CF006C650E /* Views */ = {
@@ -666,6 +697,7 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F008C2782E32A815006AEBC2 /* DrawingCanvas */,
 				F010F1D02E18453E00A34D7B /* Result */,
 				F055A5682E1129E200611D1D /* Voting */,
 				F055A5562E102F9B00611D1D /* PastCompetitions */,
@@ -734,6 +766,7 @@
 				F0B120592D51A634009E8835 /* RootView.swift */,
 				F05ADD842DD29768008E104C /* MainTabbedView.swift */,
 				F004D6F02DDBE520009B1767 /* AppState.swift */,
+				F008C27F2E33260B006AEBC2 /* TestView.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -960,6 +993,7 @@
 			isa = PBXGroup;
 			children = (
 				F00ECF332DEF0629006C650E /* Artwork.swift */,
+				F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1186,6 +1220,7 @@
 				F0B735CE2E29700D00BA021A /* UserService.swift in Sources */,
 				F021E28A2E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift in Sources */,
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
+				F008C2832E333564006AEBC2 /* DrawingCanvasViewModel.swift in Sources */,
 				F0B735D92E29CE6500BA021A /* LoginViewModel.swift in Sources */,
 				F04E29012E2C691D00E759F4 /* UserListViewModel.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
@@ -1199,17 +1234,20 @@
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
 				F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */,
+				F021E2A32E31CAD10011C91F /* ArtworkUIModel.swift in Sources */,
 				F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
 				F021E2732E3127D70011C91F /* NetworkConnectionView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
 				F08C592B2E1B4E620057DFEB /* CurrentUserProfileViewModel.swift in Sources */,
+				F008C2802E33260B006AEBC2 /* TestView.swift in Sources */,
 				F021E27B2E313B910011C91F /* PixelArtModel.xcdatamodeld in Sources */,
 				F004D7022DDBEBF4009B1767 /* MockData.swift in Sources */,
 				F004D6FA2DDBEA56009B1767 /* AuthFlowView.swift in Sources */,
 				F021E2962E3171240011C91F /* UserDefaultsManager.swift in Sources */,
 				F06566652DD219D000C7D251 /* Color+Extension.swift in Sources */,
 				F00ECF342DEF0629006C650E /* Artwork.swift in Sources */,
+				F008C27C2E32A8A8006AEBC2 /* DrawingCanvas.swift in Sources */,
 				F04E290C2E2CAA2500E759F4 /* AppUserBasedFollowService.swift in Sources */,
 				F004D6EF2DDBDC54009B1767 /* CompetitionContentView.swift in Sources */,
 				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
@@ -1246,6 +1284,8 @@
 				F0F3AF342DD690F2008DB18C /* Competition.swift in Sources */,
 				F0B735B42E28997900BA021A /* UserRepository.swift in Sources */,
 				F021E2992E3188980011C91F /* StringArrayTransformer.swift in Sources */,
+				F008C27A2E32A892006AEBC2 /* PixelCanvasView.swift in Sources */,
+				F008C27E2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift in Sources */,
 				F0B735DB2E29CF2700BA021A /* SignupViewModel.swift in Sources */,
 				F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */,
 				F04E28FD2E2C68AC00E759F4 /* UserListView.swift in Sources */,

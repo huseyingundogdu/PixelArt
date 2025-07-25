@@ -9,23 +9,25 @@ import Foundation
 
 final class UserDefaultsManager {
     static let shared = UserDefaultsManager()
+    private let defaults = UserDefaults.standard
+
     private init() {}
     
-    func saveUser(id: String, username: String) {
-        UserDefaults.standard.set(id, forKey: UserDefaultsKeys.currentUserId)
-        UserDefaults.standard.set(username, forKey: UserDefaultsKeys.currentUserUsername)
-    }
-    
     var currentUserId: String? {
-        UserDefaults.standard.string(forKey: UserDefaultsKeys.currentUserId)
+        defaults.string(forKey: UserDefaultsKeys.currentUserId)
     }
     
     var currentUserUsername: String? {
-        UserDefaults.standard.string(forKey: UserDefaultsKeys.currentUserUsername)
+        defaults.string(forKey: UserDefaultsKeys.currentUserUsername)
+    }
+    
+    func setUser(id: String, username: String) {
+        defaults.set(id, forKey: UserDefaultsKeys.currentUserId)
+        defaults.set(username, forKey: UserDefaultsKeys.currentUserUsername)
     }
     
     func clear() {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUserId)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUserUsername)
+        defaults.removeObject(forKey: UserDefaultsKeys.currentUserId)
+        defaults.removeObject(forKey: UserDefaultsKeys.currentUserUsername)
     }
 }

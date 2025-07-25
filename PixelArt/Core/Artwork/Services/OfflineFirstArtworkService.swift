@@ -26,20 +26,31 @@ final class OfflineFirstArtworkService {
         self.networkMonitor = networkMonitor
     }
     
-    func fetchArtworks(authorId: String) async throws -> [Artwork] {
+    func fetchArtworks(authorId: String) async throws -> [ArtworkUIModel] {
         let hasUnsynced = try await coreDataRepository.hasUnsyncedArtworks(authorId: authorId)
         
-        if !hasUnsynced, let local = try? await coreDataRepository.fetch(by: .authorId(authorId)) {
-            return local
+        if !hasUnsynced {
+            let local = try await coreDataRepository.fetch(by: .authorId(authorId))
+            let unsyncedIds = try await coreDataRepository.fetchUnsyncedIds(authorId: authorId)
+            
+            
+            return local.map { $0.toUIModel(isSynced: !unsyncedIds.contains($0.id)) }
         }
         
+        await syncIfNeeded()
+        
         let remote = try await firestoreRepository.fetchArtworks(matching: [.authorId(authorId)])
+        
         try await coreDataRepository.saveAll(artworks: remote)
-        return remote
+        
+        let updatedLocal = try await coreDataRepository.fetch(by: .authorId(authorId))
+        
+        
+        return updatedLocal.map { $0.toUIModel(isSynced: true) }
     }
     
     func createArtwork(_ artwork: Artwork) async throws {
-        try await coreDataRepository.save(artwork: artwork)
+        try await coreDataRepository.save(artwork: artwork, source: .ui)
         
         if networkMonitor.isConnected {
             try await firestoreRepository.createArtwork(artwork)
@@ -50,7 +61,7 @@ final class OfflineFirstArtworkService {
     func syncIfNeeded() async {
         if networkMonitor.isConnected {
             await syncManager.syncToRemote()
-//            await syncManager.syncFromRemote(authorId: "xKl9T1P7KARnBKme4DsVU1YlaNU2")
+            await syncManager.syncFromRemote(authorId: "xKl9T1P7KARnBKme4DsVU1YlaNU2")
         }
     }
 }

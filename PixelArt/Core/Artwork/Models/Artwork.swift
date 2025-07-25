@@ -14,9 +14,9 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     let data: [String]
     let competitionId: String?
     let size: [Int]
-    var topic: String?
+    var topic: String
     var status: ArtworkStatus
-    let lastUpdated: Date?
+    var lastUpdated: Date
 }
 
 enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
@@ -45,5 +45,23 @@ enum ArtworkFilter {
         case .status(let value): return value.rawValue
         case .competitionId(let value): return value
         }
+    }
+}
+
+
+extension Artwork {
+    func toUIModel(isSynced: Bool) -> ArtworkUIModel {
+        ArtworkUIModel(
+            id: id,
+            authorId: authorId,
+            authorUsername: authorUsername,
+            data: data,
+            competitionId: competitionId,
+            size: size,
+            topic: topic,
+            status: status,
+            lastUpdated: lastUpdated,
+            isSynced: isSynced
+        )
     }
 }

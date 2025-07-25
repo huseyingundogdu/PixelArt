@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-// Artwok repo needs refactoring
+// Artwok repo protocol needs refactoring
 final class CoreDataArtworkRepository {
     
     private let context: NSManagedObjectContext
@@ -33,13 +33,19 @@ final class CoreDataArtworkRepository {
         return entities.map { $0.toModel() }
     }
     
-    func save(artwork: Artwork) async throws {
+    func save(artwork: Artwork, source: ArtworkSource) async throws {
         let request: NSFetchRequest<ArtworkEntity> = ArtworkEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", artwork.id)
         
         let results = try context.fetch(request)
         let entity = results.first ?? ArtworkEntity(context: context)
-        entity.populate(with: artwork, context: context)
+        
+        switch source {
+        case .ui:
+            entity.populateFromUI(with: artwork, context: context)
+        case .firebase:
+            entity.populateFromFirebase(with: artwork, context: context)
+        }
         
         try context.save()
     }
@@ -51,7 +57,7 @@ final class CoreDataArtworkRepository {
             
             let results = try context.fetch(request)
             let entity = results.first ?? ArtworkEntity(context: context)
-            entity.populate(with: artwork, context: context)
+            entity.populateFromFirebase(with: artwork, context: context)
         }
         try context.save()
     }
@@ -73,6 +79,14 @@ final class CoreDataArtworkRepository {
         return entities.map { $0.toModel() }
     }
     
+    func fetchUnsyncedIds(authorId: String) async throws -> Set<String> {
+        let request: NSFetchRequest<ArtworkEntity> = ArtworkEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "authorId == %@ AND isSynced == NO", authorId)
+        let entities = try context.fetch(request)
+        return Set(entities.map { $0.id })
+    }
+
+    
     func markAsSynced(id: String) async throws {
         let request: NSFetchRequest<ArtworkEntity> = ArtworkEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
@@ -90,4 +104,10 @@ final class CoreDataArtworkRepository {
         return count > 0
     }
     
+}
+
+
+enum ArtworkSource {
+    case ui
+    case firebase
 }
