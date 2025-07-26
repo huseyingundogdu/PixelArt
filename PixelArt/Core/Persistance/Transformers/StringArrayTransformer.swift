@@ -8,36 +8,17 @@
 import Foundation
 
 @objc(StringArrayTransformer)
-final class StringArrayTransformer: ValueTransformer {
-    
-    override func transformedValue(_ value: Any?) -> Any? {
-        guard let array = value as? [String] else { return nil }
-        do {
-            let data = try JSONEncoder().encode(array)
-            return data
-        } catch {
-            print("Encoding error: \(error)")
-            return nil
-        }
+final class StringArrayTransformer: NSSecureUnarchiveFromDataTransformer {
+
+    override class var allowedTopLevelClasses: [AnyClass] {
+        return [NSArray.self, NSString.self]
     }
-    
-    override func reverseTransformedValue(_ value: Any?) -> Any? {
-        guard let data = value as? Data else { return nil }
-        do {
-            let array = try JSONDecoder().decode([String].self, from: data)
-            return array
-        } catch {
-            print("Decoding error: \(error)")
-            return nil
-        }
-    }
-    
-    override class func allowsReverseTransformation() -> Bool {
-        true
-    }
-    
-    override class func transformedValueClass() -> AnyClass {
-        NSData.self
+
+    static func register() {
+        let transformer = StringArrayTransformer()
+        ValueTransformer.setValueTransformer(transformer, forName: NSValueTransformerName("StringArrayTransformer"))
     }
 }
+
+
 

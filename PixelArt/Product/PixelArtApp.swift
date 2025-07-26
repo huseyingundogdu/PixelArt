@@ -31,7 +31,7 @@ struct PixelArtApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     init() {
-        ValueTransformer.setValueTransformer(StringArrayTransformer(), forName: NSValueTransformerName("StringArrayTransformer"))
+        StringArrayTransformer.register()
     }
     
     var body: some Scene {

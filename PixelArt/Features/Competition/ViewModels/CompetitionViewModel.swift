@@ -37,7 +37,6 @@ final class CompetitionViewModel: ObservableObject {
         state = .loading
         do {
             let competitions = try await competitionService.fetchActiveCompetitions()
-            print(competitions)
             //FIXME: Simdilik 1. item i alicaz
             state = .success(competitions[0])
             
