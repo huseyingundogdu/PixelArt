@@ -18,7 +18,7 @@ struct DrawingCanvas: View {
     @Binding var data: [String]
     @Binding var selectedColor: String
     @Binding var operation: Operation
-    @State private var showGrid: Bool = true
+    @Binding private var showGrid: Bool
     
     // State to trigger clearing the canvas
     @State private var clearCanvas: Bool = false
@@ -26,13 +26,14 @@ struct DrawingCanvas: View {
     
     let onPixelIndex: (Int) -> (Void)
     
-    init(data: Binding<[String]>, selectedColor: Binding<String>, operation: Binding<Operation>, columns: Int, rows: Int, onPixelIndex: @escaping (Int) -> Void) {
+    init(data: Binding<[String]>, selectedColor: Binding<String>, operation: Binding<Operation>, showGrid: Binding<Bool>, columns: Int, rows: Int, onPixelIndex: @escaping (Int) -> Void) {
         // Initialize the data array with the correct size based on the grid dimensions
         self._data = data
         self.columns = columns
         self.rows = rows
         _selectedColor = selectedColor
         _operation = operation
+        _showGrid = showGrid
         self.onPixelIndex = onPixelIndex
     }
 

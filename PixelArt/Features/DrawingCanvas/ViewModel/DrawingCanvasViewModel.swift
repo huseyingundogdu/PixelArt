@@ -5,7 +5,7 @@
 //  Created by Hüseyin Gündoğdu on 25/07/2025.
 //
 
-import Foundation
+import SwiftUI
 
 enum Operation {
     case draw
@@ -15,8 +15,10 @@ enum Operation {
 final class DrawingCanvasViewModel: ObservableObject {
     @Published var hexData: [String] = []
     @Published var selectedColor: String = "#FFFFFF"
+    @Published var selectedColorFreeform: Color = .white
     @Published var selectedOperation: Operation = .draw
     @Published var isColorSheetPresenting: Bool = false
+    @Published var isGridActive: Bool = true
     
     var entity: ArtworkEntity?
 

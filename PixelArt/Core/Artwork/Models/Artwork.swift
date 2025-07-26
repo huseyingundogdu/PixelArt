@@ -12,6 +12,7 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     let authorId: String
     let authorUsername: String
     let data: [String]
+    var colorPalette: [String]? = nil
     let competitionId: String?
     let size: [Int]
     var topic: String

@@ -16,6 +16,7 @@ extension ArtworkEntity {
             authorId: authorId,
             authorUsername: authorUsername,
             data: data,
+            colorPalette: colorPalette,
             competitionId: competitionId,
             size: [Int(width), Int(height)],
             topic: topic,
@@ -30,6 +31,7 @@ extension ArtworkEntity {
         self.authorId = model.authorId
         self.authorUsername = model.authorUsername
         self.data = model.data
+        self.colorPalette = model.colorPalette
         self.competitionId = model.competitionId
         self.topic = model.topic
         self.status = model.status.rawValue
@@ -44,6 +46,7 @@ extension ArtworkEntity {
         self.authorId = model.authorId
         self.authorUsername = model.authorUsername
         self.data = model.data
+        self.colorPalette = model.colorPalette
         self.competitionId = model.competitionId
         self.topic = model.topic
         self.status = model.status.rawValue

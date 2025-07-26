@@ -3,6 +3,7 @@
     <entity name="ArtworkEntity" representedClassName=".ArtworkEntity" syncable="YES">
         <attribute name="authorId" attributeType="String"/>
         <attribute name="authorUsername" attributeType="String"/>
+        <attribute name="colorPalette" optional="YES" attributeType="Transformable"/>
         <attribute name="competitionId" optional="YES" attributeType="String"/>
         <attribute name="data" attributeType="Transformable" valueTransformerName="StringArrayTransformer"/>
         <attribute name="height" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>

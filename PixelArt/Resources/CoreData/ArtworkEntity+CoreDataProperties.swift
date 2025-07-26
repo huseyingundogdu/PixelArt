@@ -18,6 +18,7 @@ extension ArtworkEntity {
     @NSManaged public var authorId: String
     @NSManaged public var authorUsername: String
     @NSManaged public var data: [String]
+    @NSManaged public var colorPalette: [String]?
     @NSManaged public var competitionId: String?
     @NSManaged public var topic: String
     @NSManaged public var status: String
