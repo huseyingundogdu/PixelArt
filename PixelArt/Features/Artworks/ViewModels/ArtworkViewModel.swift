@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 
+@MainActor
 final class ArtworkViewModel: ObservableObject {
     
     @Published var isLoading: Bool = true

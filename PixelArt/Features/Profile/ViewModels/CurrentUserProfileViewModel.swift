@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+@MainActor
 final class CurrentUserProfileViewModel: ObservableObject {
     
     @Published var state: LoadingState<ProfileViewData> = .none

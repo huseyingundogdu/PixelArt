@@ -43,7 +43,7 @@ struct CurrentUserProfileView: View {
     private var contentView: some View {
         switch viewModel.state {
         case .none, .loading:
-            ProgressView("Loading...")
+            ProgressView("Loading Profile...")
         case .success(let data):
             ProfileContentView(
                 user: data.user,

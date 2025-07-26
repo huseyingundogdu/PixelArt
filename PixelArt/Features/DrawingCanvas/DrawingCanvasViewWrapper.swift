@@ -68,7 +68,6 @@ struct DrawingCanvasViewWrapper: View {
                                     DrawingCanvasColorPickerFreeform(
                                         selectedColor: $viewModel.selectedColor
                                     )
-                                    .font(.custom("Micro5-Regular", size: 20))
                                     Spacer()
                                 }
                             }
@@ -239,7 +238,6 @@ struct DrawingCanvasColorPickerFreeform: View {
                     }
                 
                 Text("Hex: \(hexColor)")
-                    .font(.custom("Micro5-Regular", size: 30))
                     .foregroundStyle(borderColor)
             }
             

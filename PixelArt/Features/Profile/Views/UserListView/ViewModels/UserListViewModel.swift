@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class UserListViewModel: ObservableObject {
     @Published var state: LoadingState<[AppUser]> = .none
     

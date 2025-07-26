@@ -8,50 +8,75 @@
 import SwiftUI
 
 struct VotingContentView: View {
+    @EnvironmentObject private var router: NavigationRouter
+
     let competition: Competition
     let artworks: [Artwork]
     
     var body: some View {
-        ScrollView {
-
+        VStack(spacing: 0) {
+            Text(competition.topic)
+                .font(.Micro5.xxLarge)
             Text("\(competition.size[0]) x \(competition.size[1])")
+                .font(.Micro5.large)
             
-            Text("Artworks")
-                .font(.custom("Micro5-Regular", size: 35))
-            
-            
-            ForEach(artworks, id: \.self) { artwork in
-                HStack {
-                    PixelGridView(
-                        data: artwork.data,
-                        columns: artwork.size[0],
-                        rows: artwork.size[1],
-                        availableWidth: K.Artwork.Size.regular.width,
-                        availableHeight: K.Artwork.Size.regular.height
-                    )
-                    
-                    VStack(alignment: .leading) {
-                        Text(artwork.authorId)
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "heart")
-                        }
-                    }
-                    
-                    Spacer()
-            
-                }
-                .padding(.horizontal)
+            HStack {
+                Text("Artworks")
+                    .font(.Micro5.medium)
+                    .lineLimit(1)
+                    .layoutPriority(1)
+                
+                Rectangle()
+                    .frame(height: 2)
             }
+            .padding()
+            
+            ScrollView {
+                ForEach(artworks, id: \.self) { artwork in
+                    HStack(alignment: .center) {
+                        PixelGridView(
+                            data: artwork.data,
+                            columns: artwork.size[0],
+                            rows: artwork.size[1],
+                            availableWidth: K.Artwork.Size.regular.width,
+                            availableHeight: K.Artwork.Size.regular.height
+                        )
+                        
+                        HStack {
+                            Button {
+                                router.competitionRoutes.append(.userProfile(userId: artwork.authorId))
+                            } label: {
+                                Text(artwork.authorUsername)
+                            }
+                            .foregroundStyle(.black)
+                            
+                            Spacer()
+                            
+                            Button {
+                                
+                            } label: {
+                                Image("ic_heart")
+                                    .interpolation(.none)
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                            }
+                            .foregroundStyle(.black)
+                        }
+                        
+                        Spacer()
+                        
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            .scrollIndicators(.hidden)
+            .frame(maxWidth: .infinity)
         }
-        .scrollIndicators(.hidden)
-        .frame(maxWidth: .infinity)
-        .font(.custom("Micro5-Regular", size: 25))
         .background(Color(hex: "d4d4d4"))
     }
 }
 
 #Preview {
     VotingContentView(competition: MockData.competition, artworks: MockData.artworks)
+        .font(.Micro5.small)
 }

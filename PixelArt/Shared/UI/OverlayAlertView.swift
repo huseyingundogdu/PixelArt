@@ -17,22 +17,22 @@ struct OverlayAlertView<M: View>: View {
     var body: some View {
         VStack(spacing: 20) {
             Text(title)
-                .font(.custom("Micro5-Regular", size: 40))
+                
                 .foregroundColor(.black)
             
             message()
-                .font(.custom("Micro5-Regular", size: 30))
+                
                 .multilineTextAlignment(.center)
             
             HStack {
                 Button("Cancel", role: .cancel, action: onCancel)
-                    .font(.custom("Micro5-Regular", size: 30))
+                
                     .frame(maxWidth: .infinity)
                     .pixelBackground(paddingValue: 10)
                     .foregroundStyle(Color.init(hex: "ad3636"))
                 
                 Button(confirmText, action: onConfirm)
-                    .font(.custom("Micro5-Regular", size: 30))
+                
                     .frame(maxWidth: .infinity)
                     .pixelBackground(paddingValue: 10)
                     .foregroundStyle(Color.init(hex: "315c2e"))

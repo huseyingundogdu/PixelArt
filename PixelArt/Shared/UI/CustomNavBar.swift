@@ -18,14 +18,14 @@ struct CustomNavBar: View {
     
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .center) {
             
             // Title Section
             VStack(spacing: 0) {
                 Text(title)
-                    .font(.custom("Micro5-Regular", size: 45))
+                    .font(.Micro5.large)
                 Text(subtitle ?? "")
-                    .font(.custom("Micro5-Regular", size: 25))
+                    .font(.Micro5.xSmall)
             }
             
 

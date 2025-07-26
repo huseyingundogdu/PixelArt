@@ -23,18 +23,21 @@ struct ResultContentView: View {
             
             VStack {
                 Text(StringItems.colorsTitle)
-                    .font(.custom("Micro5-Regular", size: 35))
+                    .font(.Micro5.medium)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ColorGridView(colorPalette: competition.colorPalette)
                 
                 
                 Text(StringItems.winnersTitle)
-                    .font(.custom("Micro5-Regular", size: 35))
+                    .font(.Micro5.medium)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ForEach(artworks, id: \.self) { artwork in
                     HStack {
+                        Text("#1")
+                            .font(.Micro5.xxLarge)
+                        
                         
                         PixelGridView(
                             data: artwork.data,
@@ -49,9 +52,15 @@ struct ResultContentView: View {
                         } label: {
                             Text(artwork.authorUsername)
                         }
+                        .foregroundStyle(.black)
                         
                         Spacer()
                         
+                        Text("25")
+                        Image("ic_heart_fill")
+                            .interpolation(.none)
+                            .resizable()
+                            .frame(width: 25, height: 25)
                     }
                 }
             }
@@ -59,7 +68,7 @@ struct ResultContentView: View {
         }
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity)
-        .font(.custom("Micro5-Regular", size: 25))
+        
         .background(Color(hex: "d4d4d4"))
     }
 }

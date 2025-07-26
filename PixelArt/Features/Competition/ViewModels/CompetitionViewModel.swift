@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@MainActor
 final class CompetitionViewModel: ObservableObject {
     
     @Published var state: LoadingState<Competition> = .none
@@ -85,6 +85,7 @@ final class CompetitionViewModel: ObservableObject {
             authorId: appUser.id,
             authorUsername: appUser.username,
             data: Array(repeating: "ffffff", count: competition.size[0] * competition.size[1]),
+            colorPalette: competition.colorPalette,
             competitionId: competition.id,
             size: competition.size,
             topic: competition.topic,

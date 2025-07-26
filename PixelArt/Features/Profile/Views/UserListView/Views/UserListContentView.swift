@@ -37,7 +37,7 @@ struct UserListContentView: View {
                         
                         
                         Text(user.username)
-                            .font(.custom("Micro5-Regular", size: 25))
+                            
                         Spacer()
                     }
                     
@@ -50,6 +50,7 @@ struct UserListContentView: View {
             }
             .padding()
         }
+        .background(Color(hex: "d4d4d4"))
     }
 }
 

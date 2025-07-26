@@ -97,7 +97,6 @@ extension MainTabbedView{
                 .frame(width: 25, height: 25)
             if isActive{
                 Text(title)
-                    .font(.custom("Micro5-Regular", size: 20))
                     .foregroundColor(isActive ? .black : .gray)
             }
             
