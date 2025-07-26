@@ -59,7 +59,6 @@ struct PixelGridView: View {
                 rows: rows
             )
         }
-//        .background(.blue)
     }
 }
 
@@ -105,14 +104,14 @@ struct FullScreenGridView: View {
             data: PreviewHelpers.data2x2,
             columns: 2,
             rows: 2,
-            availableWidth: 175,
+            availableWidth: 125,
             availableHeight: 125
         )
         PixelGridView(
             data: PreviewHelpers.data4x2,
             columns: 4,
             rows: 2,
-            availableWidth: 175,
+            availableWidth: 125,
             availableHeight: 125
         )
         

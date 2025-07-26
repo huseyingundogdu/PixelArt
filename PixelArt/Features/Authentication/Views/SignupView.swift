@@ -62,7 +62,7 @@ struct SignupView: View {
                 }
                 .foregroundStyle(.black)
             }
-            .font(.custom("Micro5-Regular", size: 30))
+            
             .pixelBackground()
             .padding()
             

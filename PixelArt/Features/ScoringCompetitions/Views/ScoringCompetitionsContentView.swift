@@ -18,23 +18,27 @@ struct ScoringCompetitionsContentView: View {
     let scoringCompetitions: [Competition]
     
     var body: some View {
-        VStack(alignment: .center, spacing: 15) {
+        VStack(alignment: .center, spacing: 0) {
             
-            informationMessage()
+            Text(StringItems.informationMessage.rawValue)
+                .font(.Micro5.medium)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
             
             TabView(selection: $currentIndex.animation()) {
                 ForEach(scoringCompetitions.indices, id: \.self) { index in
                     let competition = scoringCompetitions[index]
                     VStack(spacing: 5) {
                         Text(competition.topic)
-                            .font(.custom("Micro5-Regular", size: 55))
+                            .font(.Micro5.xxLarge)
                         
                         Rectangle()
                             .frame(height: 2)
                             .opacity(0.8)
                         
                         Text("\(competition.size[0]) x \(competition.size[1])")
-                            .font(.custom("Micro5-Regular", size: 30))
+                            .font(.Micro5.medium)
+                        
                         
                         TimerView(scoringAt: competition.finishAt)
                         
@@ -48,30 +52,25 @@ struct ScoringCompetitionsContentView: View {
                             router.competitionRoutes.append(.voting(competition: competition))
                         }
                         .pixelBackground()
+                        .foregroundStyle(.black)
                     }
                     .tag(index)
                     .pixelBackground()
                     .padding(.horizontal)
-                    
+                    .padding(.top)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(height: 525)
-                        
-            SquareIndexView(numberOfItems: scoringCompetitions.count, currentIndex: currentIndex)
+            .padding(.vertical, 0)
+//            .frame(height: 525)
             
+            SquareIndexView(numberOfItems: scoringCompetitions.count, currentIndex: currentIndex)
+                .padding(.bottom)
+
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(hex: "d4d4d4"))
-    }
-    
-    private func informationMessage() -> some View {
-        VStack(spacing: 20) {
-            Text(StringItems.informationMessage.rawValue)
-                .font(.custom("Micro5-Regular", size: 30))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-        }
     }
 }
 
@@ -85,7 +84,7 @@ struct SquareIndexView: View {
     
     let numberOfItems: Int
     let currentIndex: Int
-        
+    
     // MARK: - Drawing Constants
     
     private let squareSize: CGFloat = 20

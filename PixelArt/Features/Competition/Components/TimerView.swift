@@ -17,6 +17,7 @@ struct TimerView: View {
     
     var body: some View {
         Text(formattedTime(from: remainingTime))
+            .font(.Micro5.xxLarge)
             .onAppear {
                 updateRemainingTime()
             }
@@ -25,7 +26,6 @@ struct TimerView: View {
             }
             .frame(maxWidth: .infinity)
             .pixelBackground()
-            .font(.custom("Micro5-Regular", size: 40))
             .foregroundColor(.black)
     }
     

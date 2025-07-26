@@ -47,7 +47,7 @@ struct ResultView: View {
         case .none, .loading:
             ProgressView("Loading Artworks...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .font(.custom("Micro5-Regular", size: 32))
+                
         case .success(let artworks):
             
             ResultContentView(competition: competition, artworks: artworks)
@@ -62,7 +62,7 @@ struct ResultView: View {
                 }
                 .pixelBackground(paddingValue: 12)
             }
-            .font(.custom("Micro5-Regular", size: 32))
+
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .padding()

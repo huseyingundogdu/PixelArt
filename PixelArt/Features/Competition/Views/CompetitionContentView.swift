@@ -37,7 +37,7 @@ struct CompetitionContentView: View {
                 
             }
             .padding()
-            .font(.custom("Micro5-Regular", size: 30))
+            
         }
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity)
@@ -62,8 +62,9 @@ struct CompetitionContentView: View {
     private func remainingTime(_ scoringAt: Timestamp) -> some View {
         VStack(spacing: 20) {
             Text(StringItems.time.rawValue)
+                .font(.Micro5.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+                
             TimerView(scoringAt: scoringAt)
         }
     }
@@ -71,17 +72,20 @@ struct CompetitionContentView: View {
     private func competitionTopic(_ topic: String) -> some View {
         VStack(spacing: 20) {
             Text(StringItems.topic.rawValue)
+                .font(.Micro5.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Text("\"\(topic)\"")
+                .font(.Micro5.xxLarge)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .font(.custom("Micro5-Regular", size: 45))
+                
         }
     }
     
     private func colorsOfCompetition(_ palette: [String]) -> some View {
         VStack(spacing: 20) {
             Text(StringItems.colors.rawValue)
+                .font(.Micro5.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             ColorGridView(colorPalette: palette)

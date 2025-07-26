@@ -31,7 +31,7 @@ struct ArtworksContentView: View {
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity)
         .background(Color(hex: "d4d4d4"))
-        .font(.custom("Micro5-Regular", size: 25))
+        
     }
 }
 
@@ -53,8 +53,16 @@ struct SectionView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.custom("Micro5-Regular", size: 30))
+            HStack {
+                Text(title)
+                    .font(.Micro5.medium)
+                    .lineLimit(1)
+                    .layoutPriority(1)
+                Rectangle()
+                    .frame(height: 2)
+                    .frame(maxWidth: .infinity)
+                
+            }
             
             if artworks.isEmpty {
                 Text("No artworks available.")
@@ -74,9 +82,16 @@ struct SectionView: View {
                             )
                             VStack(alignment: .leading) {
                                 Text(artwork.topic)
-                                Text("Size: \(artwork.size[0]) x \(artwork.size[1])")
-                                Text("\(artwork.lastUpdated)")
-                                Text("IsSynced: \(artwork.isSynced.description)")
+                                    .font(.Micro5.medium)
+                                VStack(alignment: .leading) {
+                                    Text("Size: \(artwork.size[0]) x \(artwork.size[1])")
+                                    Text("\(artwork.lastUpdated.formatted())")
+                                    
+                                    Text(artwork.competitionId ?? "")
+                                    
+                                    Text("IsSynced: \(artwork.isSynced.description)")
+                                }
+                                .foregroundStyle(.gray)
                             }
                             Spacer()
                         }

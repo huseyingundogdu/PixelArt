@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class OtherUserProfileViewModel: ObservableObject {
     
     @Published var state: LoadingState<ProfileViewData> = .none

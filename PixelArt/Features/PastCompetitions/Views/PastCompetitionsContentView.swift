@@ -26,7 +26,7 @@ struct PastCompetitionsContentView: View {
             }
             .padding()
         }
-        .font(.custom("Micro5-Regular", size: 25))
+        
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity)
         .background(Color(hex: "d4d4d4"))
@@ -45,8 +45,9 @@ private struct RowView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text("\(competition.topic) - \(competition.size[0])x\(competition.size[1])")
-                    .font(.custom("Micro5-Regular", size: 40))
-                Text("\(competition.activatedAt.dateValue().formatted(date: .abbreviated, time: .complete))")
+                    .font(.Micro5.medium)
+                    
+                Text("\(competition.activatedAt.dateValue().formatted(date: .abbreviated, time: .omitted))")
             }
             Spacer()
             Image("ic_chevron")

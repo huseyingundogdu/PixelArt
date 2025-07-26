@@ -38,6 +38,7 @@ struct ProfileContentView: View {
                         HStack(alignment: .top) {
                             VStack(alignment: .leading) {
                                 Text(user.username)
+                                    .font(.Micro5.medium)
                                 Text(user.email)
                                     .foregroundStyle(.gray)
                             }
@@ -55,7 +56,7 @@ struct ProfileContentView: View {
                                 }
                             }
                         }
-                        .font(.custom("Micro5-Regular", size: 25))
+                        
                         
                         HStack {
                             Button {
@@ -88,7 +89,7 @@ struct ProfileContentView: View {
 
                             Spacer()
                         }
-                        .font(.custom("Micro5-Regular", size: 25))
+                        
                         
                     }
                 }
@@ -98,7 +99,8 @@ struct ProfileContentView: View {
                 
                 VStack(spacing: 10) {
                     Text("Gallery of \(user.username)")
-                        .font(.custom("Micro5-Regular", size: 35))
+                        .font(.Micro5.xLarge)
+                        
                     
                     CustomSegmentedControl(
                         options: ["Competition", "Shared"],
@@ -132,7 +134,7 @@ struct ProfileContentView: View {
 
 extension ProfileContentView {
     private func galleryRow(isCompetition: Bool, artwork: Artwork) -> some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             
             PixelGridView(
                 data: artwork.data,
@@ -142,9 +144,24 @@ extension ProfileContentView {
                 availableHeight: K.Artwork.Size.regular.height
             )
             
+            
             VStack(alignment: .leading) {
-                Text("Competition: \(artwork.topic ?? "ERROR")")
-                Text("Topic: " + (artwork.topic ?? "ERROR"))
+                
+                Text("\(artwork.topic)")
+                    .font(.Micro5.medium)
+                
+                if let compId = artwork.competitionId {
+                    Button {
+                        //router.profileRoutes.append(.result(competition: artwork.competitionId)) //FIXME: - Add needed route
+                    } label: {
+                        Text("\(compId)")
+                    }
+                    .foregroundStyle(.black)
+                }
+                
+                Text("Size: \(artwork.size[0]) x \(artwork.size[1])")
+                    .foregroundStyle(.gray)
+                
                 Spacer()
                 if isCompetition {
                     HStack {
@@ -189,7 +206,7 @@ struct CustomSegmentedControl: View {
                 }
             }
         }
-        .font(.custom("Micro5-Regular", size: 25))
+        
     }
     
 }

@@ -26,6 +26,7 @@ struct CompetitionView: View {
                 
                 CustomNavBar(
                     title: "Competition",
+                    subtitle: "Active",
                     leadingButtonIcon: "ic_comp",
                     leadingButtonAction: {
                         router.competitionRoutes.append(.scoringCompetitions)
@@ -51,7 +52,7 @@ struct CompetitionView: View {
         case .none, .loading:
             ProgressView("Loading...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .font(.custom("Micro5-Regular", size: 32))
+                
         case .success(let competition):
             
             CompetitionContentView(
@@ -69,7 +70,7 @@ struct CompetitionView: View {
                 }
                 .pixelBackground(paddingValue: 12)
             }
-            .font(.custom("Micro5-Regular", size: 32))
+            
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .padding()

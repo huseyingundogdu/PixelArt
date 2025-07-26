@@ -17,6 +17,7 @@ struct RootView: View {
         if appState.isLoggedIn {
             MainTabbedView(appState: appState)
                 .environmentObject(networkMonitor)
+                .font(.Micro5.small)
         } else {
             AuthFlowView(appState: appState)
         }

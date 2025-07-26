@@ -32,7 +32,7 @@ struct ArtworksView: View {
             ZStack {
                 if viewModel.isLoading {
                     ProgressView("Loading Artworks...")
-                        .font(.custom("Micro5-Regular", size: 32))
+                        
                 } else if let error = viewModel.error {
                     VStack(spacing: 16) {
                         Text("Error: \(error.localizedDescription)")

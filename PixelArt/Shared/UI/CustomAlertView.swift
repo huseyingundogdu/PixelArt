@@ -58,7 +58,7 @@ struct CustomAlertView<T: Hashable, M: View>: View {
                     VStack {
                         /// Title
                         Text(titleKey)
-                            .font(.custom("Micro5-Regular", size: 40))
+                            
                             .foregroundStyle(.black)
                             .padding(8)
                         
@@ -101,7 +101,7 @@ struct CustomAlertView<T: Hashable, M: View>: View {
             dismiss()
         } label: {
             Text("Cancel")
-                .font(.custom("Micro5-Regular", size: 30))
+                
                 .foregroundStyle(.red)
                 .frame(maxWidth: .infinity)
                 .pixelBackground(paddingValue: 10)
@@ -119,7 +119,7 @@ struct CustomAlertView<T: Hashable, M: View>: View {
             }
         } label: {
             Text(actionTextKey)
-                .font(.custom("Micro5-Regular", size: 30))
+                
                 .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -181,7 +181,7 @@ struct CustomAlertPreview: View {
                 // Action...
             } message: { value in
                 Text("Showing alert for \(value)… And adding a long text for preview.")
-                    .font(.custom("Micro5-Regular", size: 30))
+                    
             }
         }
     }

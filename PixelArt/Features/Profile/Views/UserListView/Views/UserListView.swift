@@ -52,6 +52,7 @@ struct UserListView: View {
             contentView
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .background(Color(hex: "d4d4d4"))
         .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             Task { await viewModel.loadAppUsers() }

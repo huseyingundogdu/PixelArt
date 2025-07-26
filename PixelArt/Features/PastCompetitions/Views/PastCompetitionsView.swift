@@ -48,7 +48,7 @@ struct PastCompetitionsView: View {
         case .none, .loading:
             ProgressView("Loading past competitions...")
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .font(.custom("Micro5-Regular", size: 32))
+                
         case .success(let pastCompetitions):
             PastCompetitionsContentView(pastCompetitions: pastCompetitions)
         case .error(let error):
@@ -61,7 +61,7 @@ struct PastCompetitionsView: View {
                 }
                 .pixelBackground(paddingValue: 12)
             }
-            .font(.custom("Micro5-Regular", size: 32))
+            
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .padding()

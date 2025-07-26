@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class PastCompetitionsViewModel: ObservableObject {
     
     @Published var state: LoadingState<[Competition]> = .none
