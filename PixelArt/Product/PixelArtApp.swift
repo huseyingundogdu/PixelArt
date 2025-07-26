@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
-import FirebaseCore
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    
+        FirebaseApp.configure()
+        
+        let settings = FirestoreSettings()
+        settings.cacheSettings = MemoryCacheSettings(
+            garbageCollectorSettings: MemoryLRUGCSettings()
+        )
+        
+        Firestore.firestore().settings = settings
+        
+        return true
+    }
 }
 
 @main
@@ -22,9 +30,13 @@ struct PixelArtApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    init() {
+        ValueTransformer.setValueTransformer(StringArrayTransformer(), forName: NSValueTransformerName("StringArrayTransformer"))
+    }
+    
     var body: some Scene {
         WindowGroup {
-//            ContentView()
+            RootView()
         }
     }
 }

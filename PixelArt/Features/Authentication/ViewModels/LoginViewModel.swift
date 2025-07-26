@@ -31,6 +31,10 @@ final class LoginViewModel: ObservableObject {
                 self.appState.currentUser = user
                 self.appState.isLoggedIn = true
                 authError = nil
+            
+            appState.userService = DefaultUserService(currentUserId: user.uid)
+            await appState.fetchCurrentAppUser()
+            
                 isLoading = false
         } catch {
             authError = error.localizedDescription

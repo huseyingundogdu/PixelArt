@@ -21,6 +21,11 @@
 		F004D7042DDCAC27009B1767 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7032DDCAC27009B1767 /* CustomAlertView.swift */; };
 		F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7052DDCAD00009B1767 /* View+Extension.swift */; };
 		F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004D7072DDCB47B009B1767 /* OverlayAlertView.swift */; };
+		F008C27A2E32A892006AEBC2 /* PixelCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */; };
+		F008C27C2E32A8A8006AEBC2 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */; };
+		F008C27E2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */; };
+		F008C2802E33260B006AEBC2 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C27F2E33260B006AEBC2 /* TestView.swift */; };
+		F008C2832E333564006AEBC2 /* DrawingCanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */; };
 		F00ECF312DEF05EE006C650E /* ArtworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF302DEF05EE006C650E /* ArtworkViewModel.swift */; };
 		F00ECF342DEF0629006C650E /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF332DEF0629006C650E /* Artwork.swift */; };
 		F00ECF372DEF07A2006C650E /* FirestoreArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */; };
@@ -29,6 +34,20 @@
 		F010F1D42E18456600A34D7B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D32E18456600A34D7B /* ResultView.swift */; };
 		F010F1D62E18457300A34D7B /* ResultContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D52E18457300A34D7B /* ResultContentView.swift */; };
 		F010F1D82E18476800A34D7B /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010F1D72E18476800A34D7B /* ResultViewModel.swift */; };
+		F021E2712E311C8D0011C91F /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2702E311C8D0011C91F /* NetworkMonitor.swift */; };
+		F021E2732E3127D70011C91F /* NetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2722E3127D70011C91F /* NetworkConnectionView.swift */; };
+		F021E2772E313A3C0011C91F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2762E313A3C0011C91F /* CoreDataManager.swift */; };
+		F021E27B2E313B910011C91F /* PixelArtModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F021E2792E313B900011C91F /* PixelArtModel.xcdatamodeld */; };
+		F021E27E2E313D9C0011C91F /* ArtworkEntity+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E27D2E313D9C0011C91F /* ArtworkEntity+Mapping.swift */; };
+		F021E2882E31420E0011C91F /* ArtworkEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2872E31420E0011C91F /* ArtworkEntity+CoreDataClass.swift */; };
+		F021E28A2E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2892E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift */; };
+		F021E28C2E314B2E0011C91F /* CoreDataArtworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E28B2E314B2E0011C91F /* CoreDataArtworkRepository.swift */; };
+		F021E28F2E31628E0011C91F /* ArtworkSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E28E2E31628E0011C91F /* ArtworkSyncManager.swift */; };
+		F021E2912E3167CF0011C91F /* OfflineFirstArtworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2902E3167CF0011C91F /* OfflineFirstArtworkService.swift */; };
+		F021E2942E3171130011C91F /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2932E3171130011C91F /* UserDefaultsKeys.swift */; };
+		F021E2962E3171240011C91F /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2952E3171240011C91F /* UserDefaultsManager.swift */; };
+		F021E2992E3188980011C91F /* StringArrayTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2982E3188980011C91F /* StringArrayTransformer.swift */; };
+		F021E2A32E31CAD10011C91F /* ArtworkUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */; };
 		F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */; };
 		F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */; };
 		F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */; };
@@ -148,6 +167,11 @@
 		F004D7032DDCAC27009B1767 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		F004D7052DDCAD00009B1767 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		F004D7072DDCB47B009B1767 /* OverlayAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayAlertView.swift; sourceTree = "<group>"; };
+		F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelCanvasView.swift; sourceTree = "<group>"; };
+		F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
+		F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewWrapper.swift; sourceTree = "<group>"; };
+		F008C27F2E33260B006AEBC2 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewModel.swift; sourceTree = "<group>"; };
 		F00ECF302DEF05EE006C650E /* ArtworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewModel.swift; sourceTree = "<group>"; };
 		F00ECF332DEF0629006C650E /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreArtworkRepository.swift; sourceTree = "<group>"; };
@@ -156,6 +180,20 @@
 		F010F1D32E18456600A34D7B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F010F1D52E18457300A34D7B /* ResultContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultContentView.swift; sourceTree = "<group>"; };
 		F010F1D72E18476800A34D7B /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		F021E2702E311C8D0011C91F /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		F021E2722E3127D70011C91F /* NetworkConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionView.swift; sourceTree = "<group>"; };
+		F021E2762E313A3C0011C91F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F021E27A2E313B910011C91F /* PixelArtModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PixelArtModel.xcdatamodel; sourceTree = "<group>"; };
+		F021E27D2E313D9C0011C91F /* ArtworkEntity+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArtworkEntity+Mapping.swift"; sourceTree = "<group>"; };
+		F021E2872E31420E0011C91F /* ArtworkEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArtworkEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F021E2892E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArtworkEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F021E28B2E314B2E0011C91F /* CoreDataArtworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataArtworkRepository.swift; sourceTree = "<group>"; };
+		F021E28E2E31628E0011C91F /* ArtworkSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkSyncManager.swift; sourceTree = "<group>"; };
+		F021E2902E3167CF0011C91F /* OfflineFirstArtworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFirstArtworkService.swift; sourceTree = "<group>"; };
+		F021E2932E3171130011C91F /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		F021E2952E3171240011C91F /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		F021E2982E3188980011C91F /* StringArrayTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringArrayTransformer.swift; sourceTree = "<group>"; };
+		F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkUIModel.swift; sourceTree = "<group>"; };
 		F04E28F32E2C024400E759F4 /* OtherUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileViewModel.swift; sourceTree = "<group>"; };
 		F04E28F52E2C09D200E759F4 /* OtherUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileView.swift; sourceTree = "<group>"; };
 		F04E28F72E2C09E400E759F4 /* OtherUserProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileContentView.swift; sourceTree = "<group>"; };
@@ -348,6 +386,25 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		F008C2782E32A815006AEBC2 /* DrawingCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				F008C2812E33354F006AEBC2 /* ViewModel */,
+				F008C27D2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift */,
+				F008C27B2E32A8A8006AEBC2 /* DrawingCanvas.swift */,
+				F008C2792E32A892006AEBC2 /* PixelCanvasView.swift */,
+			);
+			path = DrawingCanvas;
+			sourceTree = "<group>";
+		};
+		F008C2812E33354F006AEBC2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F008C2822E333564006AEBC2 /* DrawingCanvasViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		F00ECF2E2DEF05CF006C650E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +446,68 @@
 				F010F1D72E18476800A34D7B /* ResultViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F021E26F2E311C730011C91F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2702E311C8D0011C91F /* NetworkMonitor.swift */,
+				F021E2722E3127D70011C91F /* NetworkConnectionView.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F021E2752E313A120011C91F /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2972E3188640011C91F /* Transformers */,
+				F021E27C2E313D840011C91F /* Entities */,
+				F021E2762E313A3C0011C91F /* CoreDataManager.swift */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		F021E2782E313B180011C91F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2792E313B900011C91F /* PixelArtModel.xcdatamodeld */,
+				F021E2872E31420E0011C91F /* ArtworkEntity+CoreDataClass.swift */,
+				F021E2892E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F021E27C2E313D840011C91F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F021E27D2E313D9C0011C91F /* ArtworkEntity+Mapping.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		F021E28D2E31625C0011C91F /* DataSync */ = {
+			isa = PBXGroup;
+			children = (
+				F021E28E2E31628E0011C91F /* ArtworkSyncManager.swift */,
+			);
+			path = DataSync;
+			sourceTree = "<group>";
+		};
+		F021E2922E3170F70011C91F /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2932E3171130011C91F /* UserDefaultsKeys.swift */,
+				F021E2952E3171240011C91F /* UserDefaultsManager.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		F021E2972E3188640011C91F /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				F021E2982E3188980011C91F /* StringArrayTransformer.swift */,
+			);
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 		F04E28F92E2C687400E759F4 /* UserListView */ = {
@@ -578,6 +697,7 @@
 		F06566562DD2089E00C7D251 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F008C2782E32A815006AEBC2 /* DrawingCanvas */,
 				F010F1D02E18453E00A34D7B /* Result */,
 				F055A5682E1129E200611D1D /* Voting */,
 				F055A5562E102F9B00611D1D /* PastCompetitions */,
@@ -646,6 +766,7 @@
 				F0B120592D51A634009E8835 /* RootView.swift */,
 				F05ADD842DD29768008E104C /* MainTabbedView.swift */,
 				F004D6F02DDBE520009B1767 /* AppState.swift */,
+				F008C27F2E33260B006AEBC2 /* TestView.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -653,6 +774,7 @@
 		F065666F2DD2394C00C7D251 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F021E2782E313B180011C91F /* CoreData */,
 				F06566712DD2397300C7D251 /* Fonts */,
 				F06566702DD2396800C7D251 /* Assets */,
 			);
@@ -758,6 +880,10 @@
 		F0B735B52E29699600BA021A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F021E2922E3170F70011C91F /* UserDefaults */,
+				F021E28D2E31625C0011C91F /* DataSync */,
+				F021E2752E313A120011C91F /* Persistance */,
+				F021E26F2E311C730011C91F /* Network */,
 				F0628A542E2DC112005B907C /* Navigation */,
 				F04E29062E2CA98B00E759F4 /* Follow */,
 				F0B735CC2E296ECA00BA021A /* Auth */,
@@ -840,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				F00ECF362DEF07A2006C650E /* FirestoreArtworkRepository.swift */,
+				F021E28B2E314B2E0011C91F /* CoreDataArtworkRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -848,6 +975,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B735DD2E2AB22300BA021A /* DefaultArtworkService.swift */,
+				F021E2902E3167CF0011C91F /* OfflineFirstArtworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -865,6 +993,7 @@
 			isa = PBXGroup;
 			children = (
 				F00ECF332DEF0629006C650E /* Artwork.swift */,
+				F021E2A22E31CAD10011C91F /* ArtworkUIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1089,30 +1218,41 @@
 				F06566582DD208C800C7D251 /* CompetitionView.swift in Sources */,
 				F075BF8B2E11666B00CCB78A /* VotingContentView.swift in Sources */,
 				F0B735CE2E29700D00BA021A /* UserService.swift in Sources */,
+				F021E28A2E31426C0011C91F /* ArtworkEntity+CoreDataProperties.swift in Sources */,
 				F065667E2DD2446000C7D251 /* CustomNavBar.swift in Sources */,
+				F008C2832E333564006AEBC2 /* DrawingCanvasViewModel.swift in Sources */,
 				F0B735D92E29CE6500BA021A /* LoginViewModel.swift in Sources */,
 				F04E29012E2C691D00E759F4 /* UserListViewModel.swift in Sources */,
 				F05681722E0C1499003D6C82 /* JoinButtonView.swift in Sources */,
 				F08C59272E1B14310057DFEB /* FirebaseAuthService.swift in Sources */,
 				F0628A562E2DC129005B907C /* NavigationRouter.swift in Sources */,
 				F0B735B22E288F1000BA021A /* DefaultUserService.swift in Sources */,
+				F021E2942E3171130011C91F /* UserDefaultsKeys.swift in Sources */,
 				F04E29042E2C954100E759F4 /* ProfileViewData.swift in Sources */,
+				F021E28F2E31628E0011C91F /* ArtworkSyncManager.swift in Sources */,
 				F0628A5B2E2DC300005B907C /* CompetitionRoutes.swift in Sources */,
 				F004D6E12DDBBCCC009B1767 /* CompetitionViewModel.swift in Sources */,
 				F055A55E2E10300A00611D1D /* PastCompetitionsContentView.swift in Sources */,
 				F04E28F82E2C09E400E759F4 /* OtherUserProfileContentView.swift in Sources */,
+				F021E2A32E31CAD10011C91F /* ArtworkUIModel.swift in Sources */,
 				F04E28F42E2C024400E759F4 /* OtherUserProfileViewModel.swift in Sources */,
 				F055A55A2E102FE900611D1D /* ScoringCompetitionsContentView.swift in Sources */,
+				F021E2732E3127D70011C91F /* NetworkConnectionView.swift in Sources */,
 				F004D7082DDCB47B009B1767 /* OverlayAlertView.swift in Sources */,
 				F08C592B2E1B4E620057DFEB /* CurrentUserProfileViewModel.swift in Sources */,
+				F008C2802E33260B006AEBC2 /* TestView.swift in Sources */,
+				F021E27B2E313B910011C91F /* PixelArtModel.xcdatamodeld in Sources */,
 				F004D7022DDBEBF4009B1767 /* MockData.swift in Sources */,
 				F004D6FA2DDBEA56009B1767 /* AuthFlowView.swift in Sources */,
+				F021E2962E3171240011C91F /* UserDefaultsManager.swift in Sources */,
 				F06566652DD219D000C7D251 /* Color+Extension.swift in Sources */,
 				F00ECF342DEF0629006C650E /* Artwork.swift in Sources */,
+				F008C27C2E32A8A8006AEBC2 /* DrawingCanvas.swift in Sources */,
 				F04E290C2E2CAA2500E759F4 /* AppUserBasedFollowService.swift in Sources */,
 				F004D6EF2DDBDC54009B1767 /* CompetitionContentView.swift in Sources */,
 				F075BF8D2E11667C00CCB78A /* VotingViewModel.swift in Sources */,
 				F04E28F62E2C09D200E759F4 /* OtherUserProfileView.swift in Sources */,
+				F021E2772E313A3C0011C91F /* CoreDataManager.swift in Sources */,
 				F0B1205A2D51A634009E8835 /* RootView.swift in Sources */,
 				F0B735DE2E2AB22300BA021A /* DefaultArtworkService.swift in Sources */,
 				F0B735E02E2AC8C900BA021A /* CompetitionService.swift in Sources */,
@@ -1128,10 +1268,13 @@
 				F05681762E0C4730003D6C82 /* Notification.swift in Sources */,
 				F065665E2DD20F6E00C7D251 /* PixelBackgroundModifier.swift in Sources */,
 				F004D6ED2DDBDB15009B1767 /* FirestoreCompetitionRepository.swift in Sources */,
+				F021E2882E31420E0011C91F /* ArtworkEntity+CoreDataClass.swift in Sources */,
 				F0628A582E2DC132005B907C /* Route.swift in Sources */,
 				F004D7042DDCAC27009B1767 /* CustomAlertView.swift in Sources */,
+				F021E2912E3167CF0011C91F /* OfflineFirstArtworkService.swift in Sources */,
 				F055A5662E1036B000611D1D /* ScoringCompetitionsViewModel.swift in Sources */,
 				F0628A5D2E2DC30D005B907C /* ArtworkRoutes.swift in Sources */,
+				F021E27E2E313D9C0011C91F /* ArtworkEntity+Mapping.swift in Sources */,
 				F004D7002DDBEBD6009B1767 /* MockCompetition.swift in Sources */,
 				F004D7062DDCAD00009B1767 /* View+Extension.swift in Sources */,
 				F004D6E52DDBC093009B1767 /* LoadingState.swift in Sources */,
@@ -1140,9 +1283,13 @@
 				F0628A672E2EC9EA005B907C /* GridTestView.swift in Sources */,
 				F0F3AF342DD690F2008DB18C /* Competition.swift in Sources */,
 				F0B735B42E28997900BA021A /* UserRepository.swift in Sources */,
+				F021E2992E3188980011C91F /* StringArrayTransformer.swift in Sources */,
+				F008C27A2E32A892006AEBC2 /* PixelCanvasView.swift in Sources */,
+				F008C27E2E32AC3E006AEBC2 /* DrawingCanvasViewWrapper.swift in Sources */,
 				F0B735DB2E29CF2700BA021A /* SignupViewModel.swift in Sources */,
 				F0B120582D51A634009E8835 /* PixelArtApp.swift in Sources */,
 				F04E28FD2E2C68AC00E759F4 /* UserListView.swift in Sources */,
+				F021E2712E311C8D0011C91F /* NetworkMonitor.swift in Sources */,
 				F0628A692E2F24F8005B907C /* K.swift in Sources */,
 				F0B735E42E2ACD8F00BA021A /* FirestoreCollection.swift in Sources */,
 				F06566622DD2199000C7D251 /* ColorGridView.swift in Sources */,
@@ -1162,6 +1309,7 @@
 				F00ECF312DEF05EE006C650E /* ArtworkViewModel.swift in Sources */,
 				F05ADD812DD285E0008E104C /* ArtworksView.swift in Sources */,
 				F004D6FE2DDBEA96009B1767 /* SignupView.swift in Sources */,
+				F021E28C2E314B2E0011C91F /* CoreDataArtworkRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1556,6 +1704,19 @@
 			productName = FirebaseVertexAI;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F021E2792E313B900011C91F /* PixelArtModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F021E27A2E313B910011C91F /* PixelArtModel.xcdatamodel */,
+			);
+			currentVersion = F021E27A2E313B910011C91F /* PixelArtModel.xcdatamodel */;
+			path = PixelArtModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F0B1204C2D51A634009E8835 /* Project object */;
 }
