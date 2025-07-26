@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ArtworksView: View {
+    @EnvironmentObject private var networkMonitor: NetworkMonitor
     let appState: AppState
     @StateObject private var viewModel: ArtworkViewModel
+    @State private var selectedArtwork: ArtworkUIModel? = nil
     
     init(appState: AppState) {
         self.appState = appState
@@ -20,12 +22,13 @@ struct ArtworksView: View {
         VStack(alignment: .center, spacing: 0) {
             CustomNavBar(
                 title: "Artworks",
+                subtitle: networkMonitor.isConnected ? "Online mode" : "Offline Mode",
                 trailingButtonIcon: "ic_plus",
                 trailingButtonAction: {
                     viewModel.showCreateConfirmation = true
                 }
             )
-            
+                        
             ZStack {
                 if viewModel.isLoading {
                     ProgressView("Loading Artworks...")
@@ -45,7 +48,8 @@ struct ArtworksView: View {
                         personal: viewModel.personalArtworks,
                         shared: viewModel.sharedArtworks,
                         active: viewModel.activeCompetitionArtworks,
-                        archived: viewModel.archivedArtworks
+                        archived: viewModel.archivedArtworks,
+                        selectedArtwork: $selectedArtwork
                     )
                 }
             }
@@ -55,6 +59,13 @@ struct ArtworksView: View {
         .onAppear {
             Task { await viewModel.loadUserArtworks() }
         }
+        .fullScreenCover(item: $selectedArtwork, onDismiss: {
+            Task { await viewModel.refreshArtworks() }
+        }, content: { artwork in
+            
+            DrawingCanvasViewWrapper(artwork: artwork)
+            
+        })
         .overlayAlert(
             isPresented: $viewModel.showCreateConfirmation,
             title: "Freeform artwork",
@@ -100,9 +111,9 @@ struct ArtworksView: View {
                 Task {
                     //FIXME: Buradaki logic i view model ayarlasin
                     if viewModel.isSizeLocked {
-                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.width)
+                        await viewModel.createArtwork(width: viewModel.width, height: viewModel.width)
                     } else {
-                        await viewModel.createPersonalArtwork(width: viewModel.width, height: viewModel.height)
+                        await viewModel.createArtwork(width: viewModel.width, height: viewModel.height)
                     }
                 }
             }

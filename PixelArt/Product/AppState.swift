@@ -16,12 +16,15 @@ final class AppState: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let authService: FirebaseAuthService
-    private var userService: UserService? = nil
+    var userService: UserService? = nil
+    private let artworkService: OfflineFirstArtworkService
     
     init(
-        authService: FirebaseAuthService = FirebaseAuthService()
+        authService: FirebaseAuthService = FirebaseAuthService(),
+        artworkService: OfflineFirstArtworkService = OfflineFirstArtworkService()
     ) {
         self.authService = authService
+        self.artworkService = artworkService
         checkAuthStatus()
     }
     
@@ -33,7 +36,10 @@ final class AppState: ObservableObject {
             
             Task { await fetchCurrentAppUser() }
         } else {
-            
+            isLoggedIn = false
+            currentUser = nil
+            currentAppUser = nil
+            UserDefaultsManager.shared.clear()
         }
     }
     
@@ -43,6 +49,12 @@ final class AppState: ObservableObject {
         do {
             let appUser = try await userService.getAppUser(uid: currentUser!.uid)
             self.currentAppUser = appUser
+            
+            //UserDefaults
+            UserDefaultsManager.shared.setUser(id: appUser.id, username: appUser.username)
+            
+            await artworkService.syncIfNeeded()
+            
         } catch {
             self.authError = error.localizedDescription
         }
@@ -53,6 +65,7 @@ final class AppState: ObservableObject {
         do {
             try authService.signOut()
             self.currentUser = nil
+            UserDefaultsManager.shared.clear()
             self.isLoggedIn = false
             self.authError = nil
         } catch {

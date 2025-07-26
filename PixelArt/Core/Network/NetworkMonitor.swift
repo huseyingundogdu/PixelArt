@@ -24,4 +24,11 @@ final class NetworkMonitor: ObservableObject {
         }
         monitor.start(queue: queue)
     }
+    
+    func checkConnection() {
+        let currentStatus = monitor.currentPath.status
+        DispatchQueue.main.async {
+            self.isConnected = currentStatus == .satisfied
+        }
+    }
 }

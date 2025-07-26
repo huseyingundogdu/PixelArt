@@ -88,7 +88,8 @@ final class CompetitionViewModel: ObservableObject {
             competitionId: competition.id,
             size: competition.size,
             topic: competition.topic,
-            status: .activeCompetition
+            status: .activeCompetition,
+            lastUpdated: .now
         )
         
         do {

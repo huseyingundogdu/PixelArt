@@ -11,10 +11,10 @@ import FirebaseAuth
 final class ArtworkViewModel: ObservableObject {
     
     @Published var isLoading: Bool = true
-    @Published var personalArtworks: [Artwork] = []
-    @Published var sharedArtworks: [Artwork] = []
-    @Published var activeCompetitionArtworks: [Artwork] = []
-    @Published var archivedArtworks: [Artwork] = []
+    @Published var personalArtworks: [ArtworkUIModel] = []
+    @Published var sharedArtworks: [ArtworkUIModel] = []
+    @Published var activeCompetitionArtworks: [ArtworkUIModel] = []
+    @Published var archivedArtworks: [ArtworkUIModel] = []
     @Published var error: Error?
     @Published var hasSizeError: Bool = false
     @Published var freeformArtworkTopic: String = ""
@@ -24,14 +24,14 @@ final class ArtworkViewModel: ObservableObject {
     @Published var showCreateConfirmation: Bool = false
     
     private weak var appState: AppState?
-    private let artworkService: ArtworkService
+    private let artworkService: OfflineFirstArtworkService
     private var currentUserId: String? {
         appState?.currentUser?.uid
     }
     
     init(
         appState: AppState,
-        artworkService: ArtworkService = DefaultArtworkService()
+        artworkService: OfflineFirstArtworkService = OfflineFirstArtworkService()
     ) {
         self.appState = appState
         self.artworkService = artworkService
@@ -39,7 +39,7 @@ final class ArtworkViewModel: ObservableObject {
     
     
     func loadUserArtworks() async {
-        guard let currentUserId else {
+        guard let userId = UserDefaultsManager.shared.currentUserId else {
             self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
             return
         }
@@ -47,17 +47,20 @@ final class ArtworkViewModel: ObservableObject {
         isLoading = true
         error = nil
         
+//        await syncIfNeeded()
+        async let artworks = try await artworkService.fetchArtworks(authorId: userId)
+        /*
         async let personal = try await artworkService.fetchPersonal(for: currentUserId)
         async let shared = try await artworkService.fetchShared(for: currentUserId)
         async let activeCompetition = try await artworkService.fetchActiveCompetition(for: currentUserId)
         async let archived = try await artworkService.fetchArchived(for: currentUserId)
-        
+        */
         
         do {
-            personalArtworks = try await personal
-            sharedArtworks = try await shared
-            activeCompetitionArtworks = try await activeCompetition
-            archivedArtworks = try await archived
+            personalArtworks = try await artworks.filter { $0.status == .personal }
+            sharedArtworks = try await artworks.filter { $0.status == .shared }
+            activeCompetitionArtworks = try await artworks.filter { $0.status == .activeCompetition }
+            archivedArtworks = try await artworks.filter { $0.status == .archived }
 
         } catch {
             self.error = error
@@ -66,9 +69,40 @@ final class ArtworkViewModel: ObservableObject {
     }
     
     func retry() async {
-        if let currentUserId {
-            await loadUserArtworks()
+        await loadUserArtworks()
+    }
+    
+    func createArtwork(width: Int, height: Int) async {
+        guard
+            let userId = UserDefaultsManager.shared.currentUserId,
+            let username = UserDefaultsManager.shared.currentUserUsername
+        else {
+            self.error = NSError(domain: "auth", code: 401, userInfo: [NSLocalizedDescriptionKey: "User not logged in."])
+            return
         }
+        
+        let newArtwork = Artwork(
+            id: UUID().uuidString,
+            authorId: userId,
+            authorUsername: username,
+            data: createCanvasByGivenSize(size: [width, height]),
+            competitionId: nil,
+            size: [width, height],
+            topic: freeformArtworkTopic,
+            status: .personal,
+            lastUpdated: .now
+        )
+        
+        do {
+            try await artworkService.createArtwork(newArtwork)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+    
+    func refreshArtworks() async {
+        await loadUserArtworks()
     }
     
     func createPersonalArtwork(width: Int, height: Int) async {
@@ -95,7 +129,8 @@ final class ArtworkViewModel: ObservableObject {
             competitionId: nil,
             size: [width, height],
             topic: freeformArtworkTopic == "" ? "Empty Title" : freeformArtworkTopic,
-            status: .personal
+            status: .personal,
+            lastUpdated: .now
         )
         
         do {

@@ -5,8 +5,5 @@
 //  Created by Hüseyin Gündoğdu on 21/07/2025.
 //
 
-import Foundation
+import SwiftUI
 
-enum ArtworksRoutes: Hashable {
-    
-}
