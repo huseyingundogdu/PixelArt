@@ -22,7 +22,7 @@ final class DefaultArtworkService: ArtworkService {
     }
     
     func fetchSubmittedArtworks(matching filters: [ArtworkFilter]) async throws -> [Artwork] {
-        try await repository.fetchSubmittedArtworks(matching: filters)
+        try await repository.fetchArtworks(matching: filters)
     }
     
     

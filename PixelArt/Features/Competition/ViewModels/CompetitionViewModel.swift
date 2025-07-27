@@ -60,7 +60,7 @@ final class CompetitionViewModel: ObservableObject {
         
         do {
             let artworks = try await artworkService.fetchArtworks(matching: [.competitionId(competition.id)])
-            let joined = artworks.contains { $0.status == .activeCompetition || $0.status == .archived }
+            let joined = artworks.contains { $0.status == .activeCompetition || $0.status == .scoring }
             
             joinState = joined ? .joined : .idle
         } catch {

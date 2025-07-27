@@ -25,6 +25,7 @@ enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
     case shared = "shared"
     case activeCompetition = "activeCompetition"
     case archived = "archived"
+    case scoring = "scoring"
 }
 
 enum ArtworkFilter {

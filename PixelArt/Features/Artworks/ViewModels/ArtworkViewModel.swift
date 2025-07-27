@@ -169,7 +169,9 @@ final class ArtworkViewModel: ObservableObject {
     @Published var feedbackText: String = ""
     @Published var showFeedbackMessage: Bool = false
     @Published var expandedArtworkIds: Set<String> = []
-    
+    @Published var editPresented: Bool = false
+    @Published var newTitle: String = ""
+    @Published var editingArtwork: ArtworkUIModel?
     
     func toggleExpansion(for artwork: ArtworkUIModel) {
         if expandedArtworkIds.contains(artwork.id) {
@@ -232,7 +234,7 @@ final class ArtworkViewModel: ObservableObject {
     }
     func submitArtwork(_ artwork: ArtworkUIModel) async { 
         var domainArtwork = artwork.toDomainModel()
-        domainArtwork.status = .archived
+        domainArtwork.status = .scoring
         
         do {
             try await artworkService.updateArtwork(artwork: domainArtwork, title: domainArtwork.topic)

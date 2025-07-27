@@ -59,6 +59,19 @@ struct ArtworksContentView: View {
                     .zIndex(1)
             }
         }
+        .overlayAlert(
+            isPresented: $viewModel.editPresented,
+            title: "Edit title of artwork",
+            confirmText: "Apply Changes") {
+                TextField("New Title", text: $viewModel.newTitle)
+            } onConfirm: {
+                if let editingArtwork = viewModel.editingArtwork {
+                    Task {
+                        await viewModel.editArtwork(editingArtwork, title: viewModel.newTitle)
+                    }
+                }
+            }
+
     }
 }
 
@@ -159,7 +172,11 @@ struct SectionView: View {
                                         Button("Share") { Task { await viewModel.shareArtwork(artwork) } }
                                         .foregroundStyle(.green)
                                         Spacer()
-                                        Button("Edit") { Task { await viewModel.deleteArtwork(artwork)} }
+                                        Button("Edit") {
+                                            viewModel.editingArtwork = artwork
+                                            viewModel.newTitle = artwork.topic
+                                            viewModel.editPresented = true
+                                        }
                                         .foregroundStyle(.blue)
                                         Spacer()
                                         Button("Delete") { Task { await viewModel.deleteArtwork(artwork) } }
@@ -177,13 +194,18 @@ struct SectionView: View {
                                     }
                                 case .archived:
                                     EmptyView()
+                                case .scoring:
+                                    EmptyView()
                                 }
+                                
                             }
                             .transition(.move(edge: .top).combined(with: .opacity))
                             .padding()
                         }
                     }
+                    
                 }
+                
             }
         }
     }

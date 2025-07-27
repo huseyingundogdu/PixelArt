@@ -37,9 +37,7 @@ struct ScoringCompetitionsView: View {
             
         }
         .onAppear {
-            if case .none = viewModel.state {
-                viewModel.retry()
-            }
+            viewModel.retry()
         }
         .toolbar(.hidden, for: .navigationBar)
         .navigationBarBackButtonHidden()
