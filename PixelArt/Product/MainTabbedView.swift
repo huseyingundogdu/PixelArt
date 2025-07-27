@@ -95,11 +95,6 @@ extension MainTabbedView{
                 .renderingMode(.template)
                 .foregroundColor(isActive ? .black : .gray)
                 .frame(width: 25, height: 25)
-            if isActive{
-                Text(title)
-                    .foregroundColor(isActive ? .black : .gray)
-            }
-            
         }
         .frame(maxWidth: isActive ? .infinity : 30)
         .pixelBackground(paddingValue: 20)

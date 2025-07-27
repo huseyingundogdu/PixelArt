@@ -3,7 +3,7 @@
     <entity name="ArtworkEntity" representedClassName=".ArtworkEntity" syncable="YES">
         <attribute name="authorId" attributeType="String"/>
         <attribute name="authorUsername" attributeType="String"/>
-        <attribute name="colorPalette" optional="YES" attributeType="Transformable"/>
+        <attribute name="colorPalette" optional="YES" attributeType="Transformable" valueTransformerName="StringArrayTransformer"/>
         <attribute name="competitionId" optional="YES" attributeType="String"/>
         <attribute name="data" attributeType="Transformable" valueTransformerName="StringArrayTransformer"/>
         <attribute name="height" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -11,6 +11,7 @@
         <attribute name="isSynced" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="status" attributeType="String"/>
+        <attribute name="syncOperation" optional="YES" attributeType="String"/>
         <attribute name="topic" attributeType="String"/>
         <attribute name="width" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>

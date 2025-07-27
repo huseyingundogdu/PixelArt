@@ -19,3 +19,21 @@ struct ArtworkUIModel: Codable, Equatable, Identifiable, Hashable {
     var lastUpdated: Date
     var isSynced: Bool
 }
+
+
+extension ArtworkUIModel {
+    func toDomainModel() -> Artwork {
+        return Artwork(
+            id: id,
+            authorId: authorId,
+            authorUsername: authorUsername,
+            data: data,
+            colorPalette: nil,
+            competitionId: competitionId,
+            size: size,
+            topic: topic,
+            status: status,
+            lastUpdated: lastUpdated
+        )
+    }
+}

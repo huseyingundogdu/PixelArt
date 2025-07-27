@@ -52,8 +52,8 @@ final class AppState: ObservableObject {
             
             //UserDefaults
             UserDefaultsManager.shared.setUser(id: appUser.id, username: appUser.username)
-            
-            await artworkService.syncIfNeeded()
+
+//            await artworkService.syncIfNeeded(authorId: appUser.id)
             
         } catch {
             self.authError = error.localizedDescription

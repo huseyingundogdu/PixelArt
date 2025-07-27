@@ -41,8 +41,8 @@ final class CurrentUserProfileViewModel: ObservableObject {
         
         do {
             let appUser = try await userService.getAppUser(uid: user.uid)
-            let archivedArtworks = try await artworkService.fetchArchived(for: user.uid)
-            let sharedArtworks = try await artworkService.fetchShared(for: user.uid)
+            let archivedArtworks = try await artworkService.fetchArtworks(matching: [.authorId(user.uid), .status(.archived)])
+            let sharedArtworks = try await artworkService.fetchArtworks(matching: [.authorId(user.uid), .status(.shared)])
             
             state = .success(ProfileViewData(
                 user: appUser,

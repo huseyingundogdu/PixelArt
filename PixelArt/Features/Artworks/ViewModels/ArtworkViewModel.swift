@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseAuth
 
 @MainActor
@@ -23,6 +24,7 @@ final class ArtworkViewModel: ObservableObject {
     @Published var height: Int = 0
     @Published var isSizeLocked: Bool = false
     @Published var showCreateConfirmation: Bool = false
+    @Published var selectedArtwork: ArtworkUIModel? = nil
     
     private weak var appState: AppState?
     private let artworkService: OfflineFirstArtworkService
@@ -50,6 +52,8 @@ final class ArtworkViewModel: ObservableObject {
         
 //        await syncIfNeeded()
         async let artworks = try await artworkService.fetchArtworks(authorId: userId)
+        
+        
         /*
         async let personal = try await artworkService.fetchPersonal(for: currentUserId)
         async let shared = try await artworkService.fetchShared(for: currentUserId)
@@ -120,6 +124,10 @@ final class ArtworkViewModel: ObservableObject {
         isLoading = true
         error = nil
         
+        if freeformArtworkTopic == "" {
+            freeformArtworkTopic = "Empty Title"
+        }
+        
         let artwork = Artwork(
             id: UUID().uuidString,
             authorId: appUser.id,
@@ -129,7 +137,7 @@ final class ArtworkViewModel: ObservableObject {
                                           : [width , height]),
             competitionId: nil,
             size: [width, height],
-            topic: freeformArtworkTopic == "" ? "Empty Title" : freeformArtworkTopic,
+            topic: freeformArtworkTopic,
             status: .personal,
             lastUpdated: .now
         )
@@ -156,4 +164,87 @@ final class ArtworkViewModel: ObservableObject {
         isSizeLocked = false
         hasSizeError = false
     }
+    
+    //MARK: - Content/Section
+    @Published var feedbackText: String = ""
+    @Published var showFeedbackMessage: Bool = false
+    @Published var expandedArtworkIds: Set<String> = []
+    
+    
+    func toggleExpansion(for artwork: ArtworkUIModel) {
+        if expandedArtworkIds.contains(artwork.id) {
+            expandedArtworkIds.remove(artwork.id)
+        } else {
+            expandedArtworkIds.insert(artwork.id)
+        }
+    }
+    
+    func showFeedback(_ feedback: FeedbackSituation) {
+        feedbackText = feedback.rawValue
+        withAnimation {
+            showFeedbackMessage = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            withAnimation {
+                self.showFeedbackMessage = false
+            }
+        }
+    }
+
+    func shareArtwork(_ artwork: ArtworkUIModel) async {
+        var domainArtwork = artwork.toDomainModel()
+        domainArtwork.status = .shared
+        
+        do {
+            try await artworkService.updateArtwork(artwork: domainArtwork, title: domainArtwork.topic)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+    func unshareArtwork(_ artwork: ArtworkUIModel) async { 
+        var domainArtwork = artwork.toDomainModel()
+        domainArtwork.status = .personal
+        
+        do {
+            try await artworkService.updateArtwork(artwork: domainArtwork, title: domainArtwork.topic)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+    func deleteArtwork(_ artwork: ArtworkUIModel) async {
+        do {
+            try await artworkService.deleteArtwork(id: artwork.id)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+    func editArtwork(_ artwork: ArtworkUIModel, title: String) async { 
+        do {
+            let domainArtwork = artwork.toDomainModel()
+            try await artworkService.updateArtwork(artwork: domainArtwork, title: title)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+    func submitArtwork(_ artwork: ArtworkUIModel) async { 
+        var domainArtwork = artwork.toDomainModel()
+        domainArtwork.status = .archived
+        
+        do {
+            try await artworkService.updateArtwork(artwork: domainArtwork, title: domainArtwork.topic)
+            await refreshArtworks()
+        } catch {
+            self.error = error
+        }
+    }
+}
+
+
+enum FeedbackSituation: String {
+    case canNotDraw = "You can only draw personal or active competition artworks."
+    case noInternet = "You need to access internet for this operation."
 }

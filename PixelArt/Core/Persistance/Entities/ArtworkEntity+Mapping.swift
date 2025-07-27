@@ -38,6 +38,9 @@ extension ArtworkEntity {
         self.width = Int32(model.size.first ?? 0)
         self.height = Int32(model.size.last ?? 0)
         self.lastUpdated = model.lastUpdated
+        if self.syncOperation != "create" {
+            self.syncOperation = "update"
+        }
         self.isSynced = false
     }
     
@@ -53,6 +56,7 @@ extension ArtworkEntity {
         self.width = Int32(model.size.first ?? 0)
         self.height = Int32(model.size.last ?? 0)
         self.lastUpdated = model.lastUpdated
+        self.syncOperation = nil
         self.isSynced = true
     }
     
@@ -62,4 +66,17 @@ extension ArtworkEntity {
 //        entity.populate(with: model, context: context)
 //        return entity
 //    }
+}
+
+
+extension ArtworkEntity {
+    var syncOp: SyncOperation? {
+        get {
+            guard let raw = syncOperation else { return nil }
+            return SyncOperation(rawValue: raw)
+        }
+        set {
+            syncOperation = newValue?.rawValue
+        }
+    }
 }
