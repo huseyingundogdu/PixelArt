@@ -37,6 +37,7 @@ final class DrawingCanvasViewModel: ObservableObject {
         entity.setValue(hexData, forKey: "data")
         entity.lastUpdated = .now
         entity.isSynced = false
+        entity.syncOp = .update
         CoreDataManager.shared.save()
     }
     

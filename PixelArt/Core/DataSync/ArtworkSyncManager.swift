@@ -46,11 +46,22 @@ final class ArtworkSyncManager {
     
     func syncToRemote() async {
         do {
-            let unsyncedArtworks = try await coreDataRepository.fetchUnsynced()
+            let unsyncedEntities = try await coreDataRepository.fetchUnsyncedEntities()
             
-            for var artwork in unsyncedArtworks {
-                artwork.lastUpdated = .now
-                try await firestoreRepository.createArtwork(artwork)
+            for entity in unsyncedEntities {
+                let artwork = entity.toModel()
+                
+                switch entity.syncOp {
+                case .create:
+                    try await firestoreRepository.createArtwork(artwork)
+                case .update:
+                    try await firestoreRepository.updateArtwork(artwork)
+                case .delete:
+                    try await firestoreRepository.deleteArtwork(id: artwork.id)
+                case .none:
+                    continue
+                }
+
                 try await coreDataRepository.markAsSynced(id: artwork.id)
             }
         } catch {
@@ -58,4 +69,10 @@ final class ArtworkSyncManager {
         }
     }
     
+}
+
+enum SyncOperation: String {
+    case create
+    case update
+    case delete
 }

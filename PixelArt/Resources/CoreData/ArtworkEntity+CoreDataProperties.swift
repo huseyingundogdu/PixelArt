@@ -25,6 +25,7 @@ extension ArtworkEntity {
     @NSManaged public var width: Int32
     @NSManaged public var height: Int32
     @NSManaged public var lastUpdated: Date
+    @NSManaged public var syncOperation: String?
     @NSManaged public var isSynced: Bool
     
 }

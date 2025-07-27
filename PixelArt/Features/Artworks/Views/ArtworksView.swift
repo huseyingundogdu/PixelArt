@@ -11,7 +11,6 @@ struct ArtworksView: View {
     @EnvironmentObject private var networkMonitor: NetworkMonitor
     let appState: AppState
     @StateObject private var viewModel: ArtworkViewModel
-    @State private var selectedArtwork: ArtworkUIModel? = nil
     
     init(appState: AppState) {
         self.appState = appState
@@ -45,11 +44,11 @@ struct ArtworksView: View {
                     }
                 } else {
                     ArtworksContentView(
+                        viewModel: viewModel,
                         personal: viewModel.personalArtworks,
                         shared: viewModel.sharedArtworks,
                         active: viewModel.activeCompetitionArtworks,
-                        archived: viewModel.archivedArtworks,
-                        selectedArtwork: $selectedArtwork
+                        archived: viewModel.archivedArtworks
                     )
                 }
             }
@@ -59,7 +58,7 @@ struct ArtworksView: View {
         .onAppear {
             Task { await viewModel.loadUserArtworks() }
         }
-        .fullScreenCover(item: $selectedArtwork, onDismiss: {
+        .fullScreenCover(item: $viewModel.selectedArtwork, onDismiss: {
             Task { await viewModel.refreshArtworks() }
         }, content: { artwork in
             

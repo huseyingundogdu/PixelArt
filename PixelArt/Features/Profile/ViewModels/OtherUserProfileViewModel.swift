@@ -56,11 +56,13 @@ final class OtherUserProfileViewModel: ObservableObject {
     }
     
     private func loadSelectedUserSharedArtworks() async throws -> [Artwork] {
-        return try await artworkService.fetchShared(for: selectedUserId)
+//        return try await artworkService.fetchShared(for: selectedUserId)
+        return try await artworkService.fetchArtworks(matching: [.authorId(selectedUserId), .status(.shared)])
     }
     
     private func loadSelectedUserArchivedArtworks() async throws -> [Artwork] {
-        return try await artworkService.fetchArchived(for: selectedUserId)
+//        return try await artworkService.fetchArchived(for: selectedUserId)
+        return try await artworkService.fetchArtworks(matching: [.authorId(selectedUserId), .status(.archived)])
     }
     
     func isOwnProfile() -> Bool {
