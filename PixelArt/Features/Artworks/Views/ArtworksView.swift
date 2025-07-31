@@ -56,7 +56,7 @@ struct ArtworksView: View {
         }
         .background(Color(hex: "d4d4d4"))
         .onAppear {
-            Task { await viewModel.loadUserArtworks() }
+            Task { await viewModel.refreshArtworks() }
         }
         .fullScreenCover(item: $viewModel.selectedArtwork, onDismiss: {
             Task { await viewModel.refreshArtworks() }

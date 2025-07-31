@@ -11,7 +11,7 @@ struct AppUser: Identifiable, Codable, Equatable, Hashable {
     let id: String
     let email: String
     let username: String
-    let profilePictureData: [String]
+    var profilePictureData: [String]
     let followers: [String]
     let following: [String]
     let joinedCompetitions: [String]

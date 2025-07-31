@@ -15,7 +15,7 @@ struct ScoringCompetitionsContentView: View {
     @EnvironmentObject private var router: NavigationRouter
     
     @State private var currentIndex = 0
-    let scoringCompetitions: [Competition]
+    let scoringCompetitions: [CompetitionWithLikeRights]
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -27,7 +27,10 @@ struct ScoringCompetitionsContentView: View {
             
             TabView(selection: $currentIndex.animation()) {
                 ForEach(scoringCompetitions.indices, id: \.self) { index in
-                    let competition = scoringCompetitions[index]
+                    let item = scoringCompetitions[index]
+                    let competition = item.competition
+                    let rights = item.likeRights
+                    
                     VStack(spacing: 5) {
                         Text(competition.topic)
                             .font(.Micro5.xxLarge)
@@ -48,9 +51,16 @@ struct ScoringCompetitionsContentView: View {
                         
                         
                         
-                        Button("Score") {
+                        Button {
                             router.competitionRoutes.append(.voting(competition: competition))
+                        } label: {
+                            if let rights {
+                                Text("\(rights.used) / \(rights.total)" )
+                            } else {
+                                Text("See Artworks")
+                            }
                         }
+                        .font(.Micro5.large)
                         .pixelBackground()
                         .foregroundStyle(.black)
                     }
@@ -74,9 +84,9 @@ struct ScoringCompetitionsContentView: View {
     }
 }
 
-#Preview {
-    ScoringCompetitionsContentView(scoringCompetitions: [MockData.competition, MockData.competition, MockData.competition])
-}
+//#Preview {
+//    ScoringCompetitionsContentView(scoringCompetitions: [MockData.competition, MockData.competition, MockData.competition])
+//}
 
 struct SquareIndexView: View {
     

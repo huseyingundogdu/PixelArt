@@ -15,7 +15,7 @@ struct CustomNavBar: View {
     var leadingButtonAction: (() -> Void)?
     var trailingButtonIcon: String?
     var trailingButtonAction: (() -> Void)?
-    
+    var trailingText: String? = nil
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -44,6 +44,10 @@ struct CustomNavBar: View {
                     Button(action: action) {
                         PixelButton(icon: icon)
                     }
+                }
+                if let text = trailingText {
+                    Text(text)
+                        .font(.Micro5.xxLarge)
                 }
             }
         }

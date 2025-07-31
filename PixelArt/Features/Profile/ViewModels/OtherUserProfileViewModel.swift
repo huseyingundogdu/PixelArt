@@ -19,6 +19,7 @@ final class OtherUserProfileViewModel: ObservableObject {
     private let artworkService: ArtworkService
     private let userService: UserService
     private let followService: FollowService
+    private let likeService: DefaultLikeService
         
     private let selectedUserId: String
     
@@ -27,12 +28,14 @@ final class OtherUserProfileViewModel: ObservableObject {
         artworkService: ArtworkService = DefaultArtworkService(),
         userService: UserService = DefaultUserService(currentUserId: nil),
         followService: FollowService,
+        likeService: DefaultLikeService = DefaultLikeService(),
         selectedUserId: String
     ) {
         self.appState = appState
         self.artworkService = artworkService
         self.userService = userService
         self.followService = followService
+        self.likeService = likeService
         self.selectedUserId = selectedUserId
     }
     
@@ -45,7 +48,29 @@ final class OtherUserProfileViewModel: ObservableObject {
             let sharedArtworks = try await loadSelectedUserSharedArtworks()
             isFollowing = try await isFollowing()
             
-            state = .success(ProfileViewData(user: appUser, archived: archivedArtworks, shared: sharedArtworks, isFollowing: isFollowing))
+            var archivedUI: [ArtworkUIModel] = []
+            
+            for artwork in archivedArtworks {
+                let likeCount = try await likeService.getLikeCount(artworkId: artwork.id)
+                let uiArtwork = ArtworkUIModel(
+                    id: artwork.id,
+                    authorId: artwork.authorId,
+                    authorUsername: artwork.authorUsername,
+                    data: artwork.data,
+                    competitionId: artwork.competitionId,
+                    size: artwork.size,
+                    topic: artwork.topic,
+                    status: artwork.status,
+                    lastUpdated: artwork.lastUpdated,
+                    isSynced: true,
+                    likeCount: likeCount
+                )
+                archivedUI.append(uiArtwork)
+            }
+            
+            archivedUI.sort { $0.lastUpdated > $1.lastUpdated }
+ 
+            state = .success(ProfileViewData(user: appUser, archived: archivedUI, shared: sharedArtworks, isFollowing: isFollowing))
         } catch {
             state = .error(error)
         }

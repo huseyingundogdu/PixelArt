@@ -9,7 +9,7 @@ import Foundation
 
 struct ProfileViewData: Codable, Equatable, Hashable {
     let user: AppUser
-    let archived: [Artwork]
+    let archived: [ArtworkUIModel]
     let shared: [Artwork]
     let isFollowing: Bool?
 }

@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct SignupView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(\.dismiss) var dismiss
+    let appState: AppState
     
-    @Binding var path: NavigationPath
     @StateObject private var viewModel: SignupViewModel
     
-    init(
-        path: Binding<NavigationPath>,
-        appState: AppState
-    ) {
-        _path = path
+    init(appState: AppState) {
+        self.appState = appState
         _viewModel = StateObject(wrappedValue:SignupViewModel(appState:appState))
     }
     
@@ -27,7 +24,7 @@ struct SignupView: View {
                 title: "Pixel-Art",
                 subtitle: "Sign Up",
                 leadingButtonIcon: "ic_arrow",
-                leadingButtonAction: { path.removeLast() }
+                leadingButtonAction: { dismiss() }
             )
             
             VStack {
@@ -58,7 +55,7 @@ struct SignupView: View {
                 .padding(.top)
                 
                 Button("Already have account") {
-                    path.removeLast()
+                    dismiss()
                 }
                 .foregroundStyle(.black)
             }

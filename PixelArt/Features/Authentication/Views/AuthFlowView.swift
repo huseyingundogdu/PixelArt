@@ -7,39 +7,23 @@
 
 import SwiftUI
 
-enum AuthFlowViewPath: Hashable {
-    case signUp
-}
 
 struct AuthFlowView: View {
     let appState: AppState
-    @State private var path: NavigationPath = NavigationPath()
     
     init(appState: AppState) {
         self.appState = appState
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             VStack {
                 CustomNavBar(title: "PixelArt", subtitle: "Login")
-                LoginView(
-                    appState: appState,
-                    path: $path
-                )
+                LoginView(appState: appState)
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(Color(hex: "d4d4d4"))
-            .navigationDestination(for: AuthFlowViewPath.self) { destination in
-                switch destination {
-                case .signUp:
-                    SignupView(
-                        path: $path,
-                        appState: appState
-                    )
-                }
-            }
         }
     }
 }

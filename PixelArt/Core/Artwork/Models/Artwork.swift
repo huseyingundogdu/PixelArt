@@ -18,6 +18,7 @@ struct Artwork: Codable, Equatable, Identifiable, Hashable {
     var topic: String
     var status: ArtworkStatus
     var lastUpdated: Date
+    var isDeleted: Bool?
 }
 
 enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
@@ -25,6 +26,7 @@ enum ArtworkStatus: String, Codable, CaseIterable, Hashable {
     case shared = "shared"
     case activeCompetition = "activeCompetition"
     case archived = "archived"
+    case scoring = "scoring"
 }
 
 enum ArtworkFilter {

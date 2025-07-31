@@ -26,7 +26,9 @@ struct VotingView: View {
                 leadingButtonIcon: "ic_arrow",
                 leadingButtonAction: {
                     router.competitionRoutes.removeLast()
-                }
+                },
+                trailingText: "\(viewModel.usedLike)/\(viewModel.totalLike)"
+
             )
             
             contentView
@@ -34,9 +36,7 @@ struct VotingView: View {
                 .background(Color(hex: "d4d4d4"))
         }
         .onAppear {
-            if case .none = viewModel.state {
-                viewModel.retry()
-            }
+            viewModel.retry()
         }
         .toolbar(.hidden, for: .navigationBar)
         .navigationBarBackButtonHidden()
@@ -51,7 +51,11 @@ struct VotingView: View {
                 
         case .success(let artworks):
             
-            VotingContentView(competition: competition ,artworks: artworks)
+            VotingContentView(
+                viewModel: viewModel,
+                competition: competition,
+                artworks: artworks
+            )
             
         case .error(let error):
             VStack(spacing: 16) {

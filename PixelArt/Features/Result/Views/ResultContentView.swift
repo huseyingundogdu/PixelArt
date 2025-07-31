@@ -16,7 +16,7 @@ struct ResultContentView: View {
     @EnvironmentObject private var router: NavigationRouter
     
     let competition: Competition
-    let artworks: [Artwork]
+    let artworks: [ArtworkUIModel]
     
     var body: some View {
         ScrollView {
@@ -33,30 +33,30 @@ struct ResultContentView: View {
                     .font(.Micro5.medium)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(artworks, id: \.self) { artwork in
+                ForEach(artworks.indices, id: \.self) { index in
                     HStack {
-                        Text("#1")
+                        Text("#\(index + 1)")
                             .font(.Micro5.xxLarge)
                         
                         
                         PixelGridView(
-                            data: artwork.data,
-                            columns: artwork.size[0],
-                            rows: artwork.size[1],
+                            data: artworks[index].data,
+                            columns: artworks[index].size[0],
+                            rows: artworks[index].size[1],
                             availableWidth: K.Artwork.Size.regular.width,
                             availableHeight: K.Artwork.Size.regular.height
                         )
                         
                         Button {
-                            router.competitionRoutes.append(.userProfile(userId: artwork.authorId))
+                            router.competitionRoutes.append(.userProfile(userId: artworks[index].authorId))
                         } label: {
-                            Text(artwork.authorUsername)
+                            Text(artworks[index].authorUsername)
                         }
                         .foregroundStyle(.black)
                         
                         Spacer()
                         
-                        Text("25")
+                        Text("\(artworks[index].likeCount ?? 0)")
                         Image("ic_heart_fill")
                             .interpolation(.none)
                             .resizable()
@@ -73,6 +73,6 @@ struct ResultContentView: View {
     }
 }
 
-#Preview {
-    ResultContentView(competition: MockData.competition, artworks: MockData.artworks)
-}
+//#Preview {
+//    ResultContentView(competition: MockData.competition, artworks: MockData.artworks)
+//}

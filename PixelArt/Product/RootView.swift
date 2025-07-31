@@ -18,8 +18,10 @@ struct RootView: View {
             MainTabbedView(appState: appState)
                 .environmentObject(networkMonitor)
                 .font(.Micro5.small)
+                .persistentSystemOverlays(.hidden)
         } else {
             AuthFlowView(appState: appState)
+                .font(.Micro5.medium)
         }
     }
     

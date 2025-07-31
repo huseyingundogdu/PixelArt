@@ -53,14 +53,21 @@ final class CompetitionViewModel: ObservableObject {
     
     
     func checkIfUserAlreadyJoined(_ competition: Competition) async {
+        /*
         guard let user = appState?.currentUser else {
+            joinState = .error("Auth Error")
+            return
+        }
+        */
+        
+        guard let userId = UserDefaultsManager.shared.currentUserId else {
             joinState = .error("Auth Error")
             return
         }
         
         do {
-            let artworks = try await artworkService.fetchArtworks(matching: [.competitionId(competition.id)])
-            let joined = artworks.contains { $0.status == .activeCompetition || $0.status == .archived }
+            let artworks = try await artworkService.fetchArtworks(matching: [.competitionId(competition.id), .authorId(userId)])
+            let joined = artworks.contains { $0.status == .activeCompetition || $0.status == .scoring }
             
             joinState = joined ? .joined : .idle
         } catch {

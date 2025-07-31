@@ -18,6 +18,7 @@ struct ArtworkUIModel: Codable, Equatable, Identifiable, Hashable {
     var status: ArtworkStatus
     var lastUpdated: Date
     var isSynced: Bool
+    var likeCount: Int?
 }
 
 
