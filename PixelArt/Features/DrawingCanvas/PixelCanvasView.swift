@@ -131,7 +131,7 @@ class PixelCanvasUIView: UIView {
     // Damping factors to make gestures less sensitive
     private let rotationDamping: CGFloat = 0.5
     private let scaleDamping: CGFloat = 0.5
-    private let panDamping: CGFloat = 0.2
+    private let panDamping: CGFloat = 0.4
     
     // Gesture recognizers are now properties of the view
     private let drawGesture = UIPanGestureRecognizer()
@@ -169,6 +169,9 @@ class PixelCanvasUIView: UIView {
         super.draw(rect)
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
+        context.setShouldAntialias(false)
+        context.setAllowsAntialiasing(false)
+        
         // The transform handles all pan/zoom/rotate. The drawing code is now much simpler.
         context.concatenate(viewTransform)
 
@@ -180,7 +183,7 @@ class PixelCanvasUIView: UIView {
             for col in 0..<columns {
                 let index = row * columns + col
                 if index < data.count {
-                    let cellRect = CGRect(x: col, y: row, width: 1, height: 1)
+                    let cellRect = CGRect(x: CGFloat(col), y: CGFloat(row), width: 1.0, height: 1.0)
                     context.setFillColor(data[index].cgColor)
                     context.fill(cellRect)
                 }

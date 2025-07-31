@@ -14,7 +14,7 @@ struct ProfileContentView: View {
     @State private var selectedIndex: Int = 0
     
     let user: AppUser
-    let archived: [Artwork]
+    let archived: [ArtworkUIModel]
     let shared: [Artwork]
     let context: RouteContext
     
@@ -113,13 +113,13 @@ struct ProfileContentView: View {
                     if selectedIndex == 0 {
                         VStack(spacing: 10) {
                             ForEach(archived, id: \.self) { artwork in
-                                galleryRow(isCompetition: true, artwork: artwork)
+                                galleryRowArchived(artwork: artwork)
                             }
                         }
                     } else {
                         VStack(spacing: 10) {
                             ForEach(shared, id: \.self) { artwork in
-                                galleryRow(isCompetition: false, artwork: artwork)
+                                galleryRow(artwork: artwork)
                             }
                         }
                     }
@@ -133,7 +133,7 @@ struct ProfileContentView: View {
 }
 
 extension ProfileContentView {
-    private func galleryRow(isCompetition: Bool, artwork: Artwork) -> some View {
+    private func galleryRow(artwork: Artwork) -> some View {
         HStack(alignment: .center) {
             
             PixelGridView(
@@ -163,19 +163,55 @@ extension ProfileContentView {
                     .foregroundStyle(.gray)
                 
                 Spacer()
-                if isCompetition {
-                    HStack {
-                        Spacer()
-                        Text("25")
-                        Image("ic_heart_fill")
-                            .resizable()
-                            .interpolation(.none)
-                            .frame(width: 20, height: 20)
-                    }
-                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top)
+        }
+        .background(Color(hex:"d4d4d4"))
+        .pixelBackground(paddingValue: 10)
+    }
+    
+    private func galleryRowArchived(artwork: ArtworkUIModel) -> some View {
+        HStack(alignment: .center) {
+            
+            PixelGridView(
+                data: artwork.data,
+                columns: artwork.size[0],
+                rows: artwork.size[1],
+                availableWidth: K.Artwork.Size.regular.width,
+                availableHeight: K.Artwork.Size.regular.height
+            )
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    
+                    Text("\(artwork.topic)")
+                        .font(.Micro5.medium)
+                    
+                    if let compId = artwork.competitionId {
+                        Button {
+                            //router.profileRoutes.append(.result(competition: artwork.competitionId)) //FIXME: - Add needed route
+                        } label: {
+                            Text("\(compId)")
+                        }
+                        .foregroundStyle(.black)
+                    }
+                    
+                    Text("Size: \(artwork.size[0]) x \(artwork.size[1])")
+                        .foregroundStyle(.gray)
+                }
+                .frame(maxHeight: .infinity)
+                
+                Spacer()
+                
+                Text("\(artwork.likeCount ?? 0)")
+                Image("ic_heart_fill")
+                    .resizable()
+                    .interpolation(.none)
+                    .frame(width: 20, height: 20)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+                
         }
         .background(Color(hex:"d4d4d4"))
         .pixelBackground(paddingValue: 10)

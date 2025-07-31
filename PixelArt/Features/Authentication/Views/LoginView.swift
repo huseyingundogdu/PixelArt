@@ -9,15 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     let appState: AppState
-    @Binding var path: NavigationPath
     @StateObject private var viewModel: LoginViewModel
     
-    init(
-        appState: AppState,
-        path: Binding<NavigationPath>
-    ) {
+    init(appState: AppState) {
         self.appState = appState
-        _path = path
         _viewModel = StateObject(wrappedValue: LoginViewModel(appState:appState))
     }
     
@@ -56,8 +51,10 @@ struct LoginView: View {
             .pixelBackground()
             .padding(.top)
             
-            Button("Create account") {
-                path.append(AuthFlowViewPath.signUp)
+            NavigationLink {
+                SignupView(appState: appState)
+            } label: {
+                Text("Create account")
             }
             .foregroundStyle(.black)
         }

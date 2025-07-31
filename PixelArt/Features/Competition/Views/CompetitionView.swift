@@ -27,7 +27,7 @@ struct CompetitionView: View {
                 CustomNavBar(
                     title: "Competition",
                     subtitle: "Active",
-                    leadingButtonIcon: "ic_comp",
+                    leadingButtonIcon: "ic_heart",
                     leadingButtonAction: {
                         router.competitionRoutes.append(.scoringCompetitions)
                     },

@@ -62,7 +62,7 @@ struct ArtworksContentView: View {
         .overlayAlert(
             isPresented: $viewModel.editPresented,
             title: "Edit title of artwork",
-            confirmText: "Apply Changes") {
+            confirmText: "Apply") {
                 TextField("New Title", text: $viewModel.newTitle)
             } onConfirm: {
                 if let editingArtwork = viewModel.editingArtwork {

@@ -12,7 +12,7 @@ import FirebaseAuth
 @MainActor
 final class ArtworkViewModel: ObservableObject {
     
-    @Published var isLoading: Bool = true
+    @Published var isLoading: Bool = false
     @Published var personalArtworks: [ArtworkUIModel] = []
     @Published var sharedArtworks: [ArtworkUIModel] = []
     @Published var activeCompetitionArtworks: [ArtworkUIModel] = []
@@ -42,13 +42,15 @@ final class ArtworkViewModel: ObservableObject {
     
     
     func loadUserArtworks() async {
+        isLoading = true
+        error = nil
+        
         guard let userId = UserDefaultsManager.shared.currentUserId else {
             self.error = NSError(domain: "no-user", code: 401, userInfo: [NSLocalizedDescriptionKey: "There is no auth."])
             return
         }
         
-        isLoading = true
-        error = nil
+        
         
 //        await syncIfNeeded()
         async let artworks = try await artworkService.fetchArtworks(authorId: userId)

@@ -17,6 +17,7 @@ protocol ArtworkService {
     func fetchActiveCompetition(for userId: String) async throws -> [Artwork]
     
     func fetchCompetitionArtworks(_ id: String) async throws -> [Artwork]
+    func fetchCompetitionResultArtworks(_ id: String) async throws -> [Artwork]
     func fetchScoringArtworks(_ id: String) async throws -> [Artwork]
     
     func createArtwork(_ artwork: Artwork) async throws

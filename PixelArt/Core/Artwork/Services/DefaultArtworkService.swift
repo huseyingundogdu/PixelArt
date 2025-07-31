@@ -62,6 +62,13 @@ final class DefaultArtworkService: ArtworkService {
     func fetchCompetitionArtworks(_ id: String) async throws -> [Artwork] {
         try await fetchSubmittedArtworks(matching: [
             .competitionId(id),
+            .status(.scoring)
+        ])
+    }
+    
+    func fetchCompetitionResultArtworks(_ id: String) async throws -> [Artwork] {
+        try await fetchSubmittedArtworks(matching: [
+            .competitionId(id),
             .status(.archived)
         ])
     }

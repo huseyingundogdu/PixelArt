@@ -31,11 +31,18 @@ final class ArtworkSyncManager {
                 if let local = localArtworkDict[remote.id] {
                     //Conflict resolution: if remote is newer than local
                     if remote.lastUpdated > local.lastUpdated {
-                        try await coreDataRepository.save(artwork: remote, source: .firebase)
+                        if remote.isDeleted == true {
+                            try await coreDataRepository.delete(id: remote.id)
+                            try await firestoreRepository.deleteArtwork(id: remote.id)
+                        } else {
+                            try await coreDataRepository.save(artwork: remote, source: .firebase)
+                        }
                     }
                 } else {
                     // if there is no on local
-                    try await coreDataRepository.save(artwork: remote, source: .firebase)
+                    if remote.isDeleted != true {
+                        try await coreDataRepository.save(artwork: remote, source: .firebase)
+                    }
                 }
             }
                 
