@@ -21,6 +21,7 @@ PixelArt is an iOS application that allows users to create pixel art, participat
 - **Scoring Phase**: Vote and rate other participants' artwork
 - **Timer System**: Real-time countdown for competition phases
 - **Past Competitions**: Browse and view historical competition results
+- **Automated Management**: Cloud Functions handle competition lifecycle automatically
 
 ### 👥 Social Features
 - **User Profiles**: Customizable profiles with pixel art avatars
@@ -70,6 +71,7 @@ PixelArt/
 - **Firebase**: Backend services (Auth, Firestore, Cloud Functions)
 - **Core Data**: Local data persistence
 - **UIKit Integration**: Custom drawing canvas implementation
+- **Cloud Functions**: Automated competition management and scheduling
 
 
 ## 📱 App Structure
@@ -119,6 +121,29 @@ The drawing canvas supports:
 - Various drawing operations
 - Real-time collaboration features
 
+## ☁️ Backend Services
+
+### Cloud Functions
+The application includes automated Cloud Functions for competition management:
+
+- **Competition Scheduling**: Automated 24-hour competition cycles
+- **Status Transitions**: Automatic progression from active → scoring → past
+- **Like Rights Management**: Automated distribution of voting rights
+- **Artwork Archiving**: Automatic cleanup and archiving of competition entries
+
+### Competition Lifecycle Automation
+```javascript
+// Automated competition management
+const checkCompetitionsSchedule = onSchedule({
+  schedule: "every 24 hours",
+  timeZone: "Europe/Amsterdam",
+  region: "europe-west3"
+}, async () => {
+  // Handle competition status transitions
+  // Manage voting rights distribution
+  // Archive completed competitions
+});
+```
 
 ## Screenshots app screens
 ### Competition
